@@ -1,9 +1,6 @@
+#Experiment 5: Severe threshold starts from 0.01
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import plotly.express as px
-import opendatasets as od
 from sklearn.model_selection import train_test_split
 import re
 import nltk
@@ -136,10 +133,19 @@ def dictionary_onthresholds(severe_threshold, nonsevere_threshold, dataset, payl
         "FN": FN
         
     }
-    
+#     F1Score for Severe
+
     confusion_matrix["Precision"]= confusion_matrix["TP"]/(confusion_matrix["TP"]+confusion_matrix["FP"]) if (confusion_matrix["TP"]) !=0 else 0
     confusion_matrix["Recall"]= confusion_matrix["TP"]/(confusion_matrix["TP"]+confusion_matrix["FN"]) if (confusion_matrix["TP"]) !=0 else 0
     confusion_matrix["F1Score"] = 2*(confusion_matrix["Precision"] * confusion_matrix["Recall"])/(confusion_matrix["Precision"] + confusion_matrix["Recall"]) if (confusion_matrix["Precision"] + confusion_matrix["Recall"]) != 0 else 0
+ 
+ #     F1Score for NonSevere
+    confusion_matrix["Precision_nonsevere"]= confusion_matrix["TN"]/(confusion_matrix["TN"]+confusion_matrix["FN"]) if (confusion_matrix["TN"]) !=0 else 0
+    confusion_matrix["Recall_nonsevere"]= confusion_matrix["TN"]/(confusion_matrix["TN"]+confusion_matrix["TN"]) if (confusion_matrix["TN"]) !=0 else 0
+    confusion_matrix["F1Score_nonsevere"] = 2*(confusion_matrix["Precision_nonsevere"] * confusion_matrix["Recall_nonsevere"])/(confusion_matrix["Precision_nonsevere"] + confusion_matrix["Recall_nonsevere"]) if (confusion_matrix["Precision_nonsevere"] + confusion_matrix["Recall_nonsevere"]) != 0 else 0
+    
+ #     F1Score average for Severe and NonSevere
+    confusion_matrix["F1Score_Average"]= (confusion_matrix["F1Score"]+confusion_matrix["F1Score_nonsevere"])/2 if (confusion_matrix["F1Score_nonsevere"]) !=0 else 0
                                                                                                    
     
     return confusion_matrix
@@ -184,9 +190,11 @@ def outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdatase
             'r2': r2
         }
         payload_train
-    # severe_threshold = [x * 0.01 for x in range(0, 100)] + [0.2, 0.5, 1.0]
-    # severe_threshold=[x * 0.001 for x in range(0, 1000)] + [0.2, 0.5, 1.0]
-    severe_threshold = [0.0, 0.1 ,0.2, 0.3 ,0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+   
+    #severe_threshold = [0.0, 0.1 ,0.2, 0.3 ,0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+#     severe_threshold = [x * 0.001 for x in range(0, 1000)] + [0.2, 0.5, 1.0]
+    
+    severe_threshold = [x * 0.01 for x in range(0, 100)] + [0.2, 0.5, 1.0]
     nonsevere_threshold = [0.0, 0.1 ,0.2, 0.3 ,0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
     
     possibleThesholdCombination = list(itertools.product(severe_threshold, nonsevere_threshold))
@@ -208,11 +216,15 @@ def outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdatase
     maxf1Score= F1Score_df[F1Score_df['F1Score']==F1Score_df['F1Score'].max()]
     
     print("---------Best threshold for dictionary found testing with validation data------")
+   
+    
     print(maxf1Score)
+ 
     severethreshold_ = maxf1Score['severe_threshold'].values[0]
     nonseverethreshold_ = maxf1Score['nonsevere_threshold'].values[0]
     
     print("---Test the dictionary on test data with the best threshold found above while testing with validation data---")
+ 
     count = dictionary_onthresholds(severethreshold_,nonseverethreshold_,testing_data,payload_train)
         
     
