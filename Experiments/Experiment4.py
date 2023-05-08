@@ -29,6 +29,7 @@ bugs_eclipse['Type'] = np.where(bugs_eclipse['Severity'] == 'enhancement', "enha
 bugs_df = pd.concat([bugs_firefox,bugs_calendar,bugs_eclipse])
 
 
+
 # Dropped rows with severity level '--' and 'Normal' and 'S3'
 bugs_df = bugs_df[bugs_df["Severity"].str.contains("--")==False].reset_index()
 
@@ -45,6 +46,9 @@ bugs_df.drop(indexSevere , inplace=True)
 indexSevere = bugs_df[ (bugs_df['Severity'] == 'S3') & (bugs_df['Severity'] == 'S3') ].index
 bugs_df.drop(indexSevere , inplace=True)
 
+#Drop last column 
+bugs_df = bugs_df.iloc[: , :-1]
+
 
 #Catagorise the severity level into a Severe and Non Severe to make it a binary problem
 bugs_df.loc[bugs_df["Severity"] == "blocker", "Severity"] = 'Severe'
@@ -57,6 +61,8 @@ bugs_df.loc[bugs_df["Severity"] == "normal", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
+
+
 
 dictionary_list = []
 mlresponse_list = []
@@ -74,6 +80,7 @@ for i in range(0,2):
     print(f"No. of training data: {training_data.shape[0]}")
     print(f"No. of validation data: {validation_data.shape[0]}")
     print(f"No. of testing data: {testing_data.shape[0]}")
+    
 
     trainingdataset = len(training_data)
     testingdataset = len(testing_data) 

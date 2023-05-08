@@ -40,6 +40,9 @@ bugs_df.drop(indexSevere , inplace=True)
 indexSevere = bugs_df[ (bugs_df['Type'] == 'task') & (bugs_df['Type'] == 'task') ].index
 bugs_df.drop(indexSevere , inplace=True)
 
+#Drop last column 
+bugs_df = bugs_df.iloc[: , :-1]
+
 
 #Catagorise the severity level into a Severe and Non Severe to make it a binary problem
 bugs_df.loc[bugs_df["Severity"] == "blocker", "Severity"] = 'Severe'

@@ -1,4 +1,4 @@
-#Experiment 3: with complete dataset and bug reports inclused bugs with Normal severity level
+#Experiment 3: with complete dataset and bug reports includes bugs with Normal severity level
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -38,6 +38,9 @@ bugs_df.drop(indexSevere , inplace=True)
 
 indexSevere = bugs_df[ (bugs_df['Type'] == 'task') & (bugs_df['Type'] == 'task') ].index
 bugs_df.drop(indexSevere , inplace=True)
+
+#Drop last column 
+bugs_df = bugs_df.iloc[: , :-1]
 
 
 #Catagorise the severity level into a Severe and Non Severe to make it a binary problem
@@ -97,7 +100,7 @@ for i in range(0,2):
     
     
     
-    #write response of dictionary and Ml CLassifiers in the txt file
+ #write response of dictionary and Ml CLassifiers in the txt file
 file1.write(str(dictionary_list))
 file1.write(str(mlresponse_list))
 

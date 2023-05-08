@@ -304,7 +304,8 @@ def mlclassifier_outerloop(TEST_SIZE,bugs_df, trainingdataset,testingdataset,val
         validationdata_vector = cv.transform(validationdata_tokenised)
         X_validation = validationdata_vector.toarray()
         y_validation = validation_data_df.iloc[:, -2].values
-
+        
+       
     #------------------------------------SVM------------------------------------------------------------------
 #         C_hyperparameter = [0.1,0.5,1,5,10,20,50,100]
         C_hyperparameter = get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation)
@@ -377,33 +378,5 @@ def mlclassifier_outerloop(TEST_SIZE,bugs_df, trainingdataset,testingdataset,val
        #-------------------------------------ML Classifer & Dummy classifier Ended here---------------------------
                            
        
-       # -------------------------------Dummy Classification--------------------------------------
-# def dummyclassifier_outerloop():  
-    
-#     dummyclassifierlist = []
-    
-#         dummy_clf = DummyClassifier(strategy="most_frequent")
-#         dummy_clf.fit(X_train, Y_train)
-#         DummyClassifier(strategy='most_frequent')
-#         dummy_pred = dummy_clf.predict(X_test)
-#         # array([1, 1, 1, 1])
-#         dummy_clf.score(X_test, y_test)
-#         dummyclassifierlist = classification_report(y_test, dummy_pred)
- 
-#     return dummyclassifierlist
 
-
-            
-            
-
-#     #------------------------------------Classification Report------------------------------------------------------------------
-    
-#     print('Classification Reports\n')
-#     print(i)
-#     print(f'MultinomialNB -------------------\n{classification_report(y_test, MultinomialNB_pred)}\n')
-#     print(f'Logistic Regression-------------------\n{classification_report(y_test, lr_pred)}\n')
-#     print(f'SVM -------------------\n{classification_report(y_test, svm_pred)}\n')
-
-
-# #-------------------------------FInalise code until here--- delete the below cells
 

@@ -26,7 +26,7 @@ bugs_eclipse = pd.read_csv("bugs_eclipse.csv")
 # bugs_calendar= pd.read_csv("bugs_calendar.csv")
 
 bugs_eclipse['Type'] = np.where(bugs_eclipse['Severity'] == 'enhancement', "enhancement", "defect")
-bugs_df = pd.concat([bugs_firefox,bugs_calendar,bugs_eclipse])
+bugs_df = pd.concat([bugs_eclipse])
 
 # Dropped rows with severity level '--'
 bugs_df = bugs_df[bugs_df["Severity"].str.contains("--")==False].reset_index()
