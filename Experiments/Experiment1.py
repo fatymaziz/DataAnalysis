@@ -18,6 +18,7 @@ from sklearn.svm import SVC
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 import numpy as np
 from sklearn.dummy import DummyClassifier
+import time
 
 
 # bugs_df= pd.read_csv("bugs_calendar.csv")
@@ -55,18 +56,25 @@ dictionary_list = []
 mlresponse_list = []
 file1 = open("output_Experiment1.txt", "w")  # write mode
 
+list_of_random_seeds = []
+
 
     
-for i in range(0,2):
+for i in range(0,1):
     TEST_SIZE = 0.2
+    
+    rs=random.randint(0, 1000000)
+    list_of_random_seeds.append(rs)
    
     
-    training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE)
-    training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE)
+    training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
+    training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
 
     print(f"No. of training data: {training_data.shape[0]}")
     print(f"No. of validation data: {validation_data.shape[0]}")
     print(f"No. of testing data: {testing_data.shape[0]}")
+    
+    print("dataset random seed:" + str(rs))
 
     trainingdataset = len(training_data)
     testingdataset = len(testing_data) 
@@ -78,11 +86,14 @@ for i in range(0,2):
     print("------interation------", i)
     file1.write("------Interation------")
     
+    
     dict_resp = outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdataset,training_data_df,validation_data_df,testing_data_df,validation_data,testing_data)
 
     print(dict_resp)
+    
     dictionary_resp_eachiteration = dict_resp
     dictionary_list.append(dictionary_resp_eachiteration)
+    
     
     print("*************************Dictionary Ends**************************")
     file1.write("*******************Dictionary Ends**************************")

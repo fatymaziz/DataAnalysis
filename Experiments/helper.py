@@ -17,8 +17,13 @@ from sklearn.metrics import confusion_matrix, accuracy_score, classification_rep
 import numpy as np
 from sklearn.dummy import DummyClassifier
 from sklearn.metrics import f1_score
+import time
 
-
+#CPU execution time
+def cpuexecutiontime():
+    current_time = time.time()
+    return current_time
+   
 
 #Tokenise the Summary text
 def nlpsteps(x):
@@ -152,8 +157,15 @@ def dictionary_onthresholds(severe_threshold, nonsevere_threshold, dataset, payl
 
 
 def outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdataset,training_data_df,validation_data_df, testing_data_df,validation_data, testing_data):
-  
+    
+   
+    
     corpus_trainingdata = []
+    lexicon_list = []
+    lexicon_dict = {}
+    
+    dictionary_start_time = cpuexecutiontime()
+    
     for i in range(0,trainingdataset):
         review = nlpsteps(str(training_data_df['Summary'][i]))
         corpus_trainingdata.append(review)
@@ -215,7 +227,7 @@ def outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdatase
     print("---------Best threshold for dictionary found testing with validation data------")
    
     
-    print(maxf1Score)
+#     print(maxf1Score)
  
     severethreshold_ = maxf1Score['severe_threshold'].values[0]
     nonseverethreshold_ = maxf1Score['nonsevere_threshold'].values[0]
@@ -223,9 +235,20 @@ def outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdatase
     print("---Test the dictionary on test data with the best threshold found above while testing with validation data---")
  
     count = dictionary_onthresholds(severethreshold_,nonseverethreshold_,testing_data,payload_train)
+    
+    dictionary_end_time = cpuexecutiontime()
+    dictionary_execution_time =  dictionary_end_time -  dictionary_start_time
+    
+    lexicon_dict = {"severe_threshold":severethreshold_,"nonsevere_threshold":nonseverethreshold_,"result": count, "CPUTime": dictionary_execution_time }
+    
+    lexicon_list.append(lexicon_dict)
+    
+    lexicon_classifier_results = pd.DataFrame(lexicon_list)
+      
+    return lexicon_classifier_results
         
     
-    return count
+#     return count
 
 def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
     C_hyperparameter = [0.1,0.5,1,5,10,20,50,100]
@@ -307,6 +330,7 @@ def mlclassifier_outerloop(TEST_SIZE,bugs_df, trainingdataset,testingdataset,val
         
        
     #------------------------------------SVM------------------------------------------------------------------
+        SVM_start_time = cpuexecutiontime()
 #         C_hyperparameter = [0.1,0.5,1,5,10,20,50,100]
         C_hyperparameter = get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation)
     
@@ -323,13 +347,20 @@ def mlclassifier_outerloop(TEST_SIZE,bugs_df, trainingdataset,testingdataset,val
 
         SVM_accuracy_list= accuracy_score(y_test, svm_pred)
         f1_score_svm = f1_score(y_test, svm_pred, average=None)
-        SVM_dict = {"features":i,"C":C_hyperparameter,"Model":'SVM', "confusionmatrix":svm_model,"Accuracy": SVM_accuracy_list, "F1Score": f1_score_svm }
+        
+        SVM_end_time = cpuexecutiontime()
+        SVM_execution_time = SVM_end_time - SVM_start_time
+
+
+        SVM_dict = {"features":i,"C":C_hyperparameter,"Model":'SVM', "confusionmatrix":svm_model,"Accuracy": SVM_accuracy_list, "F1Score": f1_score_svm,"CPUTime_SVM": SVM_execution_time}
         SVM_list.append(SVM_dict)
         SVM_list
         max_feature_list.append(SVM_dict)
                            
 
      #-------------------------------------Naive Bayes-------------------------------------------------------------
+        NB_start_time = cpuexecutiontime()
+        
         classifier = MultinomialNB()
         classifier.fit(X_train, Y_train)
 
@@ -338,12 +369,16 @@ def mlclassifier_outerloop(TEST_SIZE,bugs_df, trainingdataset,testingdataset,val
         cm_MB = confusion_matrix(y_test, MultinomialNB_pred)
         max_feature_accuracy = accuracy_score(y_test, MultinomialNB_pred)
         f1_score_MB = f1_score(y_test, MultinomialNB_pred, average=None)
+        
+        NB_end_time = cpuexecutiontime()
+        MNB_execution_time = NB_end_time - NB_start_time
 
-        maxfeature_dict = {"features":i,"Model":'MultinomialNB', "confusionmatrix": cm_MB ,"Accuracy": max_feature_accuracy, "F1Score": f1_score_MB }
+        maxfeature_dict = {"features":i,"Model":'MultinomialNB', "confusionmatrix": cm_MB ,"Accuracy": max_feature_accuracy, "F1Score": f1_score_MB,"CPUTime_MNB": MNB_execution_time}
         max_feature_list.append(maxfeature_dict)
 
         #-------------------------------------Logistic Regression-------------------------------------------------------------
-
+        lr_start_time = cpuexecutiontime()
+            
         lr_model = LogisticRegression()
         lr_model.fit(X_train,Y_train)
 
@@ -353,15 +388,19 @@ def mlclassifier_outerloop(TEST_SIZE,bugs_df, trainingdataset,testingdataset,val
         cm_lr = confusion_matrix(y_test, lr_pred)
         max_feature_accuracy =  accuracy_score(y_test, lr_pred)
         f1_score_lr = f1_score(y_test, lr_pred, average=None)
+        
+        lr_end_time = cpuexecutiontime()
+        LR_execution_time = lr_end_time - lr_start_time
 
-        maxfeature_dict = {"features":i, "Model":'LogisticRegression', "confusionmatrix": cm_lr ,"Accuracy": max_feature_accuracy, "F1Score": f1_score_lr }
+        maxfeature_dict = {"features":i, "Model":'LogisticRegression', "confusionmatrix": cm_lr ,"Accuracy": max_feature_accuracy, "F1Score": f1_score_lr, "CPUTime_LR": LR_execution_time}
         max_feature_list.append(maxfeature_dict)
         
                            
     
 
        # -------------------------------Dummy Classification--------------------------------------
-   
+        dummy_start_time = cpuexecutiontime()
+        
         dummy_clf = DummyClassifier(strategy="most_frequent")
         dummy_clf.fit(X_train, Y_train)
         DummyClassifier(strategy='most_frequent')
@@ -369,10 +408,15 @@ def mlclassifier_outerloop(TEST_SIZE,bugs_df, trainingdataset,testingdataset,val
         cm_dummy = confusion_matrix(y_test, dummy_pred)
         dummy_accuracy = dummy_clf.score(X_test, y_test)
         f1_score_dummy = f1_score(y_test, dummy_pred, average=None)
-        maxfeature_dict = {"features":i, "Model":'DummyClassifier', "confusionmatrix": cm_dummy ,"Accuracy": dummy_accuracy, "F1Score": f1_score_dummy }
         
-        ml_classifier_results = pd.DataFrame(max_feature_list)
+        dummy_end_time = cpuexecutiontime()
+        dummy_execution_time = dummy_end_time - dummy_start_time
+        
+        maxfeature_dict = {"features":i, "Model":'DummyClassifier', "confusionmatrix": cm_dummy ,"Accuracy": dummy_accuracy, "F1Score": f1_score_dummy, "CPUTime_dummy": dummy_execution_time }
+        
         max_feature_list.append(maxfeature_dict)
+        ml_classifier_results = pd.DataFrame(max_feature_list)
+       
 
     return ml_classifier_results
        #-------------------------------------ML Classifer & Dummy classifier Ended here---------------------------
