@@ -19,6 +19,23 @@ from sklearn.dummy import DummyClassifier
 from sklearn.metrics import f1_score
 import time
 
+def calculate_average_results_lexicon(lexicon_results):
+    total_results = len(lexicon_results)
+    average_results = {}
+    sum_results = {}
+
+    for result in lexicon_results:
+        for key, value in result.items():
+            if key not in sum_results:
+                sum_results[key] = value
+            else:
+                sum_results[key] += value
+
+    for key, value in sum_results.items():
+        average_results[key] = value / total_results
+
+    return average_results
+
 #CPU execution time
 def cpuexecutiontime():
     current_time = time.time()
@@ -205,6 +222,7 @@ def outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdatase
     # severe_threshold=[x * 0.001 for x in range(0, 1000)] + [0.2, 0.5, 1.0]
     severe_threshold = [0.0, 0.1 ,0.2, 0.3 ,0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
     nonsevere_threshold = [0.0, 0.1 ,0.2, 0.3 ,0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+   
     
     possibleThesholdCombination = list(itertools.product(severe_threshold, nonsevere_threshold))
     result_list=[]
@@ -224,7 +242,7 @@ def outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdatase
         F1Score_df = pd.DataFrame(result_list)
     maxf1Score= F1Score_df[F1Score_df['F1Score']==F1Score_df['F1Score'].max()]
     
-    print("---------Best threshold for dictionary found testing with validation data------")
+#     print("---------Best threshold for dictionary found testing with validation data------")
    
     
 #     print(maxf1Score)
@@ -232,23 +250,19 @@ def outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdatase
     severethreshold_ = maxf1Score['severe_threshold'].values[0]
     nonseverethreshold_ = maxf1Score['nonsevere_threshold'].values[0]
     
-    print("---Test the dictionary on test data with the best threshold found above while testing with validation data---")
+#     print("---Test the dictionary on test data with the best threshold found above while testing with validation data---")
  
     count = dictionary_onthresholds(severethreshold_,nonseverethreshold_,testing_data,payload_train)
     
     dictionary_end_time = cpuexecutiontime()
     dictionary_execution_time =  dictionary_end_time -  dictionary_start_time
     
-    lexicon_dict = {"severe_threshold":severethreshold_,"nonsevere_threshold":nonseverethreshold_,"result": count, "CPUTime": dictionary_execution_time }
     
-    lexicon_list.append(lexicon_dict)
+    additional_dict = {'cpu': dictionary_execution_time}
+    lexicon_classifier_results = {**count, **additional_dict}
     
-    lexicon_classifier_results = pd.DataFrame(lexicon_list)
-      
+    
     return lexicon_classifier_results
-        
-    
-#     return count
 
 def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
     C_hyperparameter = [0.1,0.5,1,5,10,20,50,100]

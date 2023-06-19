@@ -60,7 +60,7 @@ list_of_random_seeds = []
 
 
     
-for i in range(0,1):
+for i in range(0,2):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -89,14 +89,16 @@ for i in range(0,1):
     
     dict_resp = outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdataset,training_data_df,validation_data_df,testing_data_df,validation_data,testing_data)
 
-    print(dict_resp)
+#     print(dict_resp)
     
     dictionary_resp_eachiteration = dict_resp
     dictionary_list.append(dictionary_resp_eachiteration)
     
+
     
-    print("*************************Dictionary Ends**************************")
-    file1.write("*******************Dictionary Ends**************************")
+    
+#     print("*************************Dictionary Ends**************************")
+#     file1.write("*******************Dictionary Ends**************************")
     
     mlclassifierresp =  mlclassifier_outerloop(TEST_SIZE,bugs_df, trainingdataset,testingdataset,validationdataset,training_data_df,validation_data_df,testing_data_df,training_data)
     
@@ -107,8 +109,13 @@ for i in range(0,1):
     
     
     
-    #write response of dictionary and Ml CLassifiers in the txt file
-file1.write(str(dictionary_list))
+#     #Average results and write the response of dictionary and Ml CLassifiers in the txt file
+average_results_lexicon = calculate_average_results_lexicon(dictionary_list)
+average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
+
+print(average_results_lexicon_df)
+
+file1.write(str(average_results_lexicon_df))
 file1.write(str(mlresponse_list))
 
   
