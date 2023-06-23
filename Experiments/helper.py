@@ -19,6 +19,23 @@ from sklearn.dummy import DummyClassifier
 from sklearn.metrics import f1_score
 import time
 
+#  NOT DONE YET: Function that should return average result of machine learning classifers on each features for each model.......
+def calculate_average_results(results):
+    total_accuracy = 0
+    total_f1_score = [0, 0]
+    iteration_count = len(results)
+    
+    for result in results:
+        total_accuracy += result['Accuracy']
+        total_f1_score[0] += result['F1Score'][0]
+        total_f1_score[1] += result['F1Score'][1]
+    
+    average_accuracy = total_accuracy / iteration_count
+    average_f1_score = [total_f1_score[0] / iteration_count, total_f1_score[1] / iteration_count]
+    
+    return average_accuracy, average_f1_score
+
+#Function that returns the average result for the lexicon classfier
 def calculate_average_results_lexicon(lexicon_results):
     total_results = len(lexicon_results)
     average_results = {}
@@ -173,17 +190,13 @@ def dictionary_onthresholds(severe_threshold, nonsevere_threshold, dataset, payl
    
 
 
-def outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdataset,training_data_df,validation_data_df, testing_data_df,validation_data, testing_data):
-    
-   
-    
+################# outerloop breakdown##########################################################################
+# Function that returns the worlists for severe and non severe 
+def lexicon_preprocess(trainingdataset_length,training_data_df):
+
     corpus_trainingdata = []
-    lexicon_list = []
-    lexicon_dict = {}
-    
-    dictionary_start_time = cpuexecutiontime()
-    
-    for i in range(0,trainingdataset):
+       
+    for i in range(0,trainingdataset_length):
         review = nlpsteps(str(training_data_df['Summary'][i]))
         corpus_trainingdata.append(review)
    
@@ -218,11 +231,14 @@ def outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdatase
             'r2': r2
         }
         payload_train
-    # severe_threshold = [x * 0.01 for x in range(0, 100)] + [0.2, 0.5, 1.0]
-    # severe_threshold=[x * 0.001 for x in range(0, 1000)] + [0.2, 0.5, 1.0]
+
+    return payload_train 
+
+# Function in which dictioanries are created on possible combination of the severe and non severe threshold and returns best thresholds
+def lexicon_learner(payload_train,validation_data):
+    
     severe_threshold = [0.0, 0.1 ,0.2, 0.3 ,0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
     nonsevere_threshold = [0.0, 0.1 ,0.2, 0.3 ,0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-   
     
     possibleThesholdCombination = list(itertools.product(severe_threshold, nonsevere_threshold))
     result_list=[]
@@ -250,22 +266,21 @@ def outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdatase
     severethreshold_ = maxf1Score['severe_threshold'].values[0]
     nonseverethreshold_ = maxf1Score['nonsevere_threshold'].values[0]
     
-#     print("---Test the dictionary on test data with the best threshold found above while testing with validation data---")
- 
-    count = dictionary_onthresholds(severethreshold_,nonseverethreshold_,testing_data,payload_train)
+    return severethreshold_, nonseverethreshold_ 
+
+#Function that creates a dictioanry on the best threshold and tests with testing dataset
+def lexicon_classifier(severethreshold_,nonseverethreshold_,testing_data,payload_train):
     
-    dictionary_end_time = cpuexecutiontime()
-    dictionary_execution_time =  dictionary_end_time -  dictionary_start_time
-    
-    
-    additional_dict = {'cpu': dictionary_execution_time}
-    lexicon_classifier_results = {**count, **additional_dict}
-    
-    
+    lexicon_classifier_results = dictionary_onthresholds(severethreshold_,nonseverethreshold_,testing_data,payload_train)
+  
     return lexicon_classifier_results
 
+
+############### outerloop breakdown ends #############
+
 def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
-    C_hyperparameter = [0.1,0.5,1,5,10,20,50,100]
+#     C_hyperparameter = [0.1,0.5,1,5,10,20,50,100]
+    C_hyperparameter = [0.1]
    
     SVM_accuracy_list = []
     SVM_list= []
@@ -303,22 +318,22 @@ def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
 # #---------------------------ML Classifier Starts---------------------------------
 
 
-def mlclassifier_outerloop(TEST_SIZE,bugs_df, trainingdataset,testingdataset,validationdataset,training_data_df,validation_data_df,testing_data_df,training_data):
-    #Tokenised the testing data
+def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data):
+    #Tokenised the training data
     trainingdata_tokenised = []
-    for i in range(0,trainingdataset):
+    for i in range(0,trainingdataset_length):
         review_train = nlpsteps(str(training_data_df['Summary'][i]))
         trainingdata_tokenised.append(review_train)
 
     #Tokenised the testing data
     testingdata_tokenised = []
-    for i in range(0,testingdataset):
+    for i in range(0,testingdataset_length):
         review_test = nlpsteps(str(testing_data_df['Summary'][i]))
         testingdata_tokenised.append(review_test)
                            
     #Tokenised the validation data
     validationdata_tokenised = []
-    for i in range(0,validationdataset):
+    for i in range(0,validationdataset_length):
         review_validation = nlpsteps(str(validation_data_df['Summary'][i]))
         validationdata_tokenised.append(review_validation)
                            
@@ -328,7 +343,7 @@ def mlclassifier_outerloop(TEST_SIZE,bugs_df, trainingdataset,testingdataset,val
         SVM_list= []
 
 
-    features = [1000,10000,15000]
+    features = [1000,10000]
 
     for i in features:
 
@@ -393,7 +408,7 @@ def mlclassifier_outerloop(TEST_SIZE,bugs_df, trainingdataset,testingdataset,val
         #-------------------------------------Logistic Regression-------------------------------------------------------------
         lr_start_time = cpuexecutiontime()
             
-        lr_model = LogisticRegression()
+        lr_model = LogisticRegression(max_iter=1000)
         lr_model.fit(X_train,Y_train)
 
         lr_pred = lr_model.predict(X_test)
@@ -429,10 +444,10 @@ def mlclassifier_outerloop(TEST_SIZE,bugs_df, trainingdataset,testingdataset,val
         maxfeature_dict = {"features":i, "Model":'DummyClassifier', "confusionmatrix": cm_dummy ,"Accuracy": dummy_accuracy, "F1Score": f1_score_dummy, "CPUTime_dummy": dummy_execution_time }
         
         max_feature_list.append(maxfeature_dict)
-        ml_classifier_results = pd.DataFrame(max_feature_list)
+#         ml_classifier_results = pd.DataFrame(max_feature_list)
        
 
-    return ml_classifier_results
+    return max_feature_list
        #-------------------------------------ML Classifer & Dummy classifier Ended here---------------------------
                            
        

@@ -39,6 +39,14 @@ bugs_df.drop(indexSevere , inplace=True)
 indexSevere = bugs_df[ (bugs_df['Type'] == 'task') & (bugs_df['Type'] == 'task') ].index
 bugs_df.drop(indexSevere , inplace=True)
 
+#------this needs to be deleted ---------------
+indexSevere = bugs_df[ (bugs_df['Severity'] == 'normal') & (bugs_df['Severity'] == 'normal') ].index
+bugs_df.drop(indexSevere , inplace=True)
+
+indexSevere = bugs_df[ (bugs_df['Severity'] == 'S3') & (bugs_df['Severity'] == 'S3') ].index
+bugs_df.drop(indexSevere , inplace=True)
+#-----up till here------------------
+
 
 #Catagorise the severity level into a Severe and Non Severe to make it a binary problem
 bugs_df.loc[bugs_df["Severity"] == "blocker", "Severity"] = 'Severe'
@@ -76,9 +84,9 @@ for i in range(0,2):
     
     print("dataset random seed:" + str(rs))
 
-    trainingdataset = len(training_data)
-    testingdataset = len(testing_data) 
-    validationdataset = len(validation_data)
+    trainingdataset_length = len(training_data)
+    testingdataset_length = len(testing_data) 
+    validationdataset_length = len(validation_data)
 
     training_data_df=training_data.reset_index()
     validation_data_df=validation_data.reset_index()
@@ -87,35 +95,69 @@ for i in range(0,2):
     file1.write("------Interation------")
     
     
-    dict_resp = outer_loop(TEST_SIZE,bugs_df,trainingdataset,testingdataset,validationdataset,training_data_df,validation_data_df,testing_data_df,validation_data,testing_data)
-
-#     print(dict_resp)
+ #----------------------Lexicon Preprocess ------------------------------#
+    lexicon_preprocess_start_time = cpuexecutiontime()
     
-    dictionary_resp_eachiteration = dict_resp
+    payload_train = lexicon_preprocess(trainingdataset_length,training_data_df)
+    
+    lexicon_preprocess_end_time = cpuexecutiontime()
+    lexicon_preprocess_execution_time =  lexicon_preprocess_end_time -  lexicon_preprocess_start_time
+    
+#-----------------------Lexicon Learner --------------------------------#
+    lexicon_learner_start_time = cpuexecutiontime()
+    
+    severethreshold, nonseverethreshold = lexicon_learner(payload_train, validation_data)
+    
+    lexicon_learner_end_time = cpuexecutiontime()
+    lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time
+    
+#-----------------------Lexicon Classifier ---------------------------------#
+    lexicon_classifer_start_time = cpuexecutiontime()
+    dict_resp = lexicon_classifier(severethreshold,nonseverethreshold,testing_data,payload_train)
+    
+    lexicon_classifer_end_time = cpuexecutiontime()
+    lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
+    
+    additional_dict = {'cputime_preprocess': lexicon_preprocess_execution_time,'cputime_learner': lexicon_learner_execution_time,'cputime_classifer': lexicon_classifer_execution_time}
+    
+    lexicon_classifier_results = {**dict_resp, **additional_dict}
+        
+    print(lexicon_classifier_results)
+
+#-----------------------List of dictionaries ---------------------------------#
+    dictionary_resp_eachiteration = lexicon_classifier_results
     dictionary_list.append(dictionary_resp_eachiteration)
     
-
+      
     
+    print("*************************Dictionary Ends**************************")
+    file1.write("*******************Dictionary Ends**************************")
     
-#     print("*************************Dictionary Ends**************************")
-#     file1.write("*******************Dictionary Ends**************************")
-    
-    mlclassifierresp =  mlclassifier_outerloop(TEST_SIZE,bugs_df, trainingdataset,testingdataset,validationdataset,training_data_df,validation_data_df,testing_data_df,training_data)
+    mlclassifierresp =  mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data)
     
     print(mlclassifierresp)
     ml_resp_eachiteration = mlclassifierresp
     mlresponse_list.append(ml_resp_eachiteration)
+    
     print("********************One Iteration completed***********************")
     
     
     
-#     #Average results and write the response of dictionary and Ml CLassifiers in the txt file
+    #Average results and write the response of dictionary in the txt file
+print("************************** Average Result for Lexicon classifier**************************")
 average_results_lexicon = calculate_average_results_lexicon(dictionary_list)
 average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
 
 print(average_results_lexicon_df)
 
+#     #Average results and write the response of dictionary in the txt file
+#average_accuracy, average_f1_score = calculate_average_results(mlresponse_list)
+# average_results_ml = calculate_average_results(mlresponse_list)
+# average_results_ml_df = pd.DataFrame(average_results_ml,index=[0])
+
+
+
 file1.write(str(average_results_lexicon_df))
-file1.write(str(mlresponse_list))
+# file1.write(str(average_results_ml_df))
 
   
