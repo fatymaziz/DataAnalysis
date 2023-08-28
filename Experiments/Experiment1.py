@@ -39,14 +39,6 @@ bugs_df.drop(indexSevere , inplace=True)
 indexSevere = bugs_df[ (bugs_df['Type'] == 'task') & (bugs_df['Type'] == 'task') ].index
 bugs_df.drop(indexSevere , inplace=True)
 
-#------this needs to be deleted ---------------
-indexSevere = bugs_df[ (bugs_df['Severity'] == 'normal') & (bugs_df['Severity'] == 'normal') ].index
-bugs_df.drop(indexSevere , inplace=True)
-
-indexSevere = bugs_df[ (bugs_df['Severity'] == 'S3') & (bugs_df['Severity'] == 'S3') ].index
-bugs_df.drop(indexSevere , inplace=True)
-#-----up till here------------------
-
 
 #Catagorise the severity level into a Severe and Non Severe to make it a binary problem
 bugs_df.loc[bugs_df["Severity"] == "blocker", "Severity"] = 'Severe'
@@ -68,7 +60,7 @@ list_of_random_seeds = []
 
 
     
-for i in range(0,2):
+for i in range(0,10):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -138,26 +130,32 @@ for i in range(0,2):
     print(mlclassifierresp)
     ml_resp_eachiteration = mlclassifierresp
     mlresponse_list.append(ml_resp_eachiteration)
+#     print(mlresponse_list)
     
     print("********************One Iteration completed***********************")
     
     
     
-    #Average results and write the response of dictionary in the txt file
+    #Average results and write the response of Lexicon dictionary in the txt file
 print("************************** Average Result for Lexicon classifier**************************")
 average_results_lexicon = calculate_average_results_lexicon(dictionary_list)
 average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
 
 print(average_results_lexicon_df)
 
-#     #Average results and write the response of dictionary in the txt file
-#average_accuracy, average_f1_score = calculate_average_results(mlresponse_list)
-# average_results_ml = calculate_average_results(mlresponse_list)
-# average_results_ml_df = pd.DataFrame(average_results_ml,index=[0])
+
+#  Average results and write the response of ML Models in the txt file
+avg_confusionmatrices,average_accuracy, average_f1score,avg_meanf1score, avg_preprocesscputime,avg_learnercputime,avg_classifiercputime = calculate_average_results_ML(mlresponse_list)
+
+average_results_ml = {'Avg ConfusionMatrix':avg_confusionmatrices,'Avg Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
+
+average_results_ml_df = pd.DataFrame(average_results_ml)
+print(average_results_ml_df)
 
 
-
+#write response of dictionary and Ml CLassifiers in the txt file
 file1.write(str(average_results_lexicon_df))
-# file1.write(str(average_results_ml_df))
+file1.write(str(average_results_ml_df))
+
 
   
