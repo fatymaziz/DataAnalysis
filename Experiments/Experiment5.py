@@ -10,7 +10,7 @@ from nltk.stem.porter import PorterStemmer
 import collections
 import random
 import itertools
-from helperExperiment5 import *
+from helper import *
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
@@ -18,12 +18,13 @@ from sklearn.svm import SVC
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 import numpy as np
 from sklearn.dummy import DummyClassifier
+import time
+import json 
 
 
-# bugs_df= pd.read_csv("bugs_calendar.csv")
 bugs_eclipse = pd.read_csv("bugs_eclipse.csv")
 bugs_firefox= pd.read_csv("bugs_firefox.csv")
-bugs_calendar= pd.read_csv("bugs_calendar.csv")
+bugs_calendar= pd.read_csv("bugs_Calendar.csv")
 
 bugs_eclipse['Type'] = np.where(bugs_eclipse['Severity'] == 'enhancement', "enhancement", "defect")
 bugs_df = pd.concat([bugs_firefox,bugs_calendar,bugs_eclipse])
@@ -31,7 +32,6 @@ bugs_df = pd.concat([bugs_firefox,bugs_calendar,bugs_eclipse])
 
 # Dropped rows with severity level '--' 
 bugs_df = bugs_df[bugs_df["Severity"].str.contains("--")==False].reset_index()
-
 
 #Dropped rows with Type "Enhancement" and "Task" because they are not a bug but a new feature
 indexSevere = bugs_df[ (bugs_df['Type'] == 'enhancement') & (bugs_df['Type'] == 'enhancement') ].index
@@ -62,8 +62,6 @@ file1 = open("output_Experiment5.txt", "w")  # write mode
 
 list_of_random_seeds = []
 
-
-    
 for i in range(0,10):
     TEST_SIZE = 0.2
     
@@ -128,33 +126,61 @@ for i in range(0,10):
     
     print("*************************Dictionary Ends**************************")
     file1.write("*******************Dictionary Ends**************************")
-    
+ 
+
+ #--------------------------------ML Models -----------------------------------------------#
     mlclassifierresp =  mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data)
     
     print(mlclassifierresp)
     ml_resp_eachiteration = mlclassifierresp
     mlresponse_list.append(ml_resp_eachiteration)
 #     print(mlresponse_list)
-    
+ 
     print("********************One Iteration completed***********************")
     
     
-    
-    #Average results and write the response of Lexicon dictionary in the txt file
+#--------------------------------Average Results of Lexicon -----------------------------------------------#  
 print("************************** Average Result for Lexicon classifier**************************")
 average_results_lexicon = calculate_average_results_lexicon(dictionary_list)
 average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
 
-print(average_results_lexicon_df)
+print("Average Result Lexicon",average_results_lexicon_df)
 
+# store all lexicon results as JSON
+with open('lexicon_results5.json', 'w') as json_file:
+    json.dump(dictionary_list, json_file)
+# store average lexicon results as JSON
+with open('lexicon_average_results5.json', 'w') as json_file:
+    json.dump(average_results_lexicon, json_file)
+ 
+ #--------------------------------Average Results for ML -----------------------------------------------------#    
+print("************************** Average Result for ML classifier**************************")
 
 #  Average results and write the response of ML Models in the txt file
 avg_confusionmatrices,average_accuracy, average_f1score,avg_meanf1score, avg_preprocesscputime,avg_learnercputime,avg_classifiercputime = calculate_average_results_ML(mlresponse_list)
 
-average_results_ml = {'Avg ConfusionMatrix':avg_confusionmatrices,'Avg Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
+average_results_ml = {'Avg Confusion Matrix': avg_confusionmatrices,'Avg Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
+
 
 average_results_ml_df = pd.DataFrame(average_results_ml)
-print(average_results_ml_df)
+print("Average result ML",average_results_ml_df)
+
+
+# Initialize an empty dictionary to store the values of confusion matrix for each model
+model_values_CM = {}
+
+for model_name, model_array in avg_confusionmatrices.items():
+    model_values_CM[model_name] = model_array.tolist()
+# Create a JSON object
+average_ml_json_data = {'Avg Confusionmatrix': model_values_CM, 'Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
+
+
+# store all ML results as JSON
+with open('ml_results5.json', 'w') as json_file:
+     json.dump(mlresponse_list, json_file)
+# store average ML results as JSON
+with open('ml_average_results5.json', 'w') as json_file:
+     json.dump(average_ml_json_data, json_file)
 
 
 #write response of dictionary and Ml CLassifiers in the txt file

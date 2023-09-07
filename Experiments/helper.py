@@ -418,7 +418,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
 
         SVM_dict = {}
 
-        svm_model = SVC(C = C_hyperparameter, kernel='linear', gamma='auto')
+        svm_model = SVC(C = 0.1, kernel='linear', gamma='auto')
         svm_model.fit(X_train,Y_train)
 
         SVM_learner_endtime = cpuexecutiontime()
@@ -427,9 +427,13 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         SVM_classifier_starttime = cpuexecutiontime()
         svm_pred = svm_model.predict(X_test)
         svm_model = confusion_matrix(y_test, svm_pred)
+        #convert to numpy
+        numpy_array_CM = np.array(svm_model)
+        svm_model = numpy_array_CM.tolist()
 
         SVM_accuracy_list= accuracy_score(y_test, svm_pred)
         f1_score_svm = f1_score(y_test, svm_pred, average=None)
+        
 
         f1score_SVM_mean = np.mean(f1_score_svm)
 
@@ -438,7 +442,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
 
 
 
-        SVM_dict = {"features":i,"c": C_hyperparameter,"Model":'SVM', "confusionmatrix":svm_model,"Accuracy": SVM_accuracy_list, "F1Score": f1_score_svm,"F1Score_mean": f1score_SVM_mean,"ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":SVM_learner_cputime, "ModelClassiferCPUTime":SVM_classifer_cputime}
+        SVM_dict = {"features":i,"c": C_hyperparameter,"Model":'SVM', "confusionmatrix":svm_model,"Accuracy": SVM_accuracy_list, "F1Score": f1_score_svm.tolist(),"F1Score_mean": f1score_SVM_mean,"ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":SVM_learner_cputime, "ModelClassiferCPUTime":SVM_classifer_cputime}
         SVM_list.append(SVM_dict)
         SVM_list
         max_feature_list.append(SVM_dict)
@@ -458,6 +462,10 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         MultinomialNB_pred = classifier.predict(X_test)
 
         cm_MB = confusion_matrix(y_test, MultinomialNB_pred)
+        #convert to numpy
+        numpy_array_CM = np.array(cm_MB)
+        cm_MB = numpy_array_CM.tolist()
+        
         max_feature_accuracy = accuracy_score(y_test, MultinomialNB_pred)
         f1_score_MB = f1_score(y_test, MultinomialNB_pred, average=None)
 
@@ -467,7 +475,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         NB_classifier_endtime = cpuexecutiontime()
         NB_classifer_cputime = NB_classifier_endtime - NB_classifier_starttime
 
-        maxfeature_dict = {"features":i,"Model":'MultinomialNB', "confusionmatrix": cm_MB ,"Accuracy": max_feature_accuracy, "F1Score": f1_score_MB, "F1Score_mean":f1score_MB_mean, "ModelPreprocessCPUTime": ml_preprocess_cputime,"ModelLearnerCPUTime":NB_learner_cputime, "ModelClassiferCPUTime":NB_classifer_cputime}
+        maxfeature_dict = {"features":i,"Model":'MultinomialNB', "confusionmatrix": cm_MB ,"Accuracy": max_feature_accuracy, "F1Score": f1_score_MB.tolist(), "F1Score_mean":f1score_MB_mean, "ModelPreprocessCPUTime": ml_preprocess_cputime,"ModelLearnerCPUTime":NB_learner_cputime, "ModelClassiferCPUTime":NB_classifer_cputime}
         max_feature_list.append(maxfeature_dict)
 
 
@@ -485,6 +493,10 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
 
 
         cm_lr = confusion_matrix(y_test, lr_pred)
+         #convert to numpy
+        numpy_array_lr = np.array(cm_lr)
+        cm_lr = numpy_array_lr.tolist()
+        
         max_feature_accuracy =  accuracy_score(y_test, lr_pred)
         f1_score_lr = f1_score(y_test, lr_pred, average=None)
 
@@ -494,7 +506,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         LR_classifer_endtime = cpuexecutiontime()
         LR_classifer_cputime = LR_classifer_endtime - LR_classifer_starttime
 
-        maxfeature_dict = {"features":i, "Model":'LogisticRegression', "confusionmatrix": cm_lr ,"Accuracy": max_feature_accuracy, "F1Score": f1_score_lr,"F1Score_mean":f1score_LR_mean,"ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":LR_learner_cputime, "ModelClassiferCPUTime":LR_classifer_cputime}
+        maxfeature_dict = {"features":i, "Model":'LogisticRegression', "confusionmatrix": cm_lr ,"Accuracy": max_feature_accuracy, "F1Score": f1_score_lr.tolist(),"F1Score_mean":f1score_LR_mean,"ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":LR_learner_cputime, "ModelClassiferCPUTime":LR_classifer_cputime}
         max_feature_list.append(maxfeature_dict)
 
 
@@ -511,15 +523,21 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         DummyClassifier(strategy='most_frequent')
         dummy_pred = dummy_clf.predict(X_test)
         cm_dummy = confusion_matrix(y_test, dummy_pred)
+         #convert to numpy
+        numpy_array_dummy = np.array(cm_dummy)
+        cm_dummy = numpy_array_dummy.tolist()
+        
+        
         dummy_accuracy = dummy_clf.score(X_test, y_test)
         f1_score_dummy = f1_score(y_test, dummy_pred, average=None)
+       
 
         f1score_dummy_mean = np.mean(f1_score_dummy)
 
         dummy_classifer_endtime = cpuexecutiontime()
         dummy_classifer_cputime = dummy_classifer_endtime - dummy_classifer_starttime
 
-        maxfeature_dict = {"features":i, "Model":'DummyClassifier', "confusionmatrix": cm_dummy ,"Accuracy": dummy_accuracy, "F1Score": f1_score_dummy,"F1Score_mean":f1score_dummy_mean, "ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":dummy_learner_cputime, "ModelClassiferCPUTime":dummy_classifer_cputime }
+        maxfeature_dict = {"features":i, "Model":'DummyClassifier', "confusionmatrix": cm_dummy ,"Accuracy": dummy_accuracy, "F1Score": f1_score_dummy.tolist(),"F1Score_mean":f1score_dummy_mean, "ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":dummy_learner_cputime, "ModelClassiferCPUTime":dummy_classifer_cputime }
 
         max_feature_list.append(maxfeature_dict)
 
