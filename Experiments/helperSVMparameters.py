@@ -1,4 +1,4 @@
-#Experiment 5: Severe threshold starts from 0.001
+#Helper file that has list SVM C parameters
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -284,7 +284,7 @@ def lexicon_preprocess(trainingdataset_length,training_data_df):
 # Function that returns the created dictioanries on possible combination of the severe and non severe threshold and returns best thresholds
 def lexicon_learner(payload_train,validation_data):
     
-    severe_threshold = [0.0, 0.001, 0.005, 0.01, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+    severe_threshold = [0.0, 0.001, 0.005, 0.01, 0.05, 0.1 ,0.2, 0.3 ,0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
     nonsevere_threshold = [0.0, 0.1 ,0.2, 0.3 ,0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
     
     possibleThesholdCombination = list(itertools.product(severe_threshold, nonsevere_threshold))
@@ -365,7 +365,7 @@ def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
 # #---------------------------ML Classifier Starts---------------------------------
 
 
-def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data):
+def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data, rs):
     
     ml_starttime_preprocess = cpuexecutiontime()
     #Tokenised the training data
@@ -420,7 +420,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
 
         SVM_dict = {}
 
-        svm_model = SVC(C = 0.1, kernel='linear', gamma='auto')
+        svm_model = SVC(C = C_hyperparameter, kernel='linear', gamma='auto')
         svm_model.fit(X_train,Y_train)
 
         SVM_learner_endtime = cpuexecutiontime()
@@ -444,7 +444,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
 
 
 
-        SVM_dict = {"features":i,"c": C_hyperparameter,"Model":'SVM', "confusionmatrix":svm_model,"Accuracy": SVM_accuracy_list, "F1Score": f1_score_svm.tolist(),"F1Score_mean": f1score_SVM_mean,"ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":SVM_learner_cputime, "ModelClassiferCPUTime":SVM_classifer_cputime}
+        SVM_dict = {"features":i,"c": C_hyperparameter,"Model":'SVM', "confusionmatrix":svm_model,"Accuracy": SVM_accuracy_list, "F1Score": f1_score_svm.tolist(),"F1Score_mean": f1score_SVM_mean,"ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":SVM_learner_cputime, "ModelClassiferCPUTime":SVM_classifer_cputime,"RandomSeeds":rs}
         SVM_list.append(SVM_dict)
         SVM_list
         max_feature_list.append(SVM_dict)
@@ -477,7 +477,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         NB_classifier_endtime = cpuexecutiontime()
         NB_classifer_cputime = NB_classifier_endtime - NB_classifier_starttime
 
-        maxfeature_dict = {"features":i,"Model":'MultinomialNB', "confusionmatrix": cm_MB ,"Accuracy": max_feature_accuracy, "F1Score": f1_score_MB.tolist(), "F1Score_mean":f1score_MB_mean, "ModelPreprocessCPUTime": ml_preprocess_cputime,"ModelLearnerCPUTime":NB_learner_cputime, "ModelClassiferCPUTime":NB_classifer_cputime}
+        maxfeature_dict = {"features":i,"Model":'MultinomialNB', "confusionmatrix": cm_MB ,"Accuracy": max_feature_accuracy, "F1Score": f1_score_MB.tolist(), "F1Score_mean":f1score_MB_mean, "ModelPreprocessCPUTime": ml_preprocess_cputime,"ModelLearnerCPUTime":NB_learner_cputime, "ModelClassiferCPUTime":NB_classifer_cputime,"RandomSeeds":rs}
         max_feature_list.append(maxfeature_dict)
 
 
@@ -508,7 +508,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         LR_classifer_endtime = cpuexecutiontime()
         LR_classifer_cputime = LR_classifer_endtime - LR_classifer_starttime
 
-        maxfeature_dict = {"features":i, "Model":'LogisticRegression', "confusionmatrix": cm_lr ,"Accuracy": max_feature_accuracy, "F1Score": f1_score_lr.tolist(),"F1Score_mean":f1score_LR_mean,"ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":LR_learner_cputime, "ModelClassiferCPUTime":LR_classifer_cputime}
+        maxfeature_dict = {"features":i, "Model":'LogisticRegression', "confusionmatrix": cm_lr ,"Accuracy": max_feature_accuracy, "F1Score": f1_score_lr.tolist(),"F1Score_mean":f1score_LR_mean,"ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":LR_learner_cputime, "ModelClassiferCPUTime":LR_classifer_cputime,"RandomSeeds":rs}
         max_feature_list.append(maxfeature_dict)
 
 
@@ -539,7 +539,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         dummy_classifer_endtime = cpuexecutiontime()
         dummy_classifer_cputime = dummy_classifer_endtime - dummy_classifer_starttime
 
-        maxfeature_dict = {"features":i, "Model":'DummyClassifier', "confusionmatrix": cm_dummy ,"Accuracy": dummy_accuracy, "F1Score": f1_score_dummy.tolist(),"F1Score_mean":f1score_dummy_mean, "ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":dummy_learner_cputime, "ModelClassiferCPUTime":dummy_classifer_cputime }
+        maxfeature_dict = {"features":i, "Model":'DummyClassifier', "confusionmatrix": cm_dummy ,"Accuracy": dummy_accuracy, "F1Score": f1_score_dummy.tolist(),"F1Score_mean":f1score_dummy_mean, "ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":dummy_learner_cputime, "ModelClassiferCPUTime":dummy_classifer_cputime,"RandomSeeds":rs }
 
         max_feature_list.append(maxfeature_dict)
 

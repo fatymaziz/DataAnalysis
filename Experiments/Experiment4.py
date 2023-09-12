@@ -76,6 +76,7 @@ for i in range(0,10):
     
     rs=random.randint(0, 1000000)
     list_of_random_seeds.append(rs)
+    randomseed = {'random_seeds':rs}
    
     
     training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
@@ -110,6 +111,7 @@ for i in range(0,10):
     lexicon_learner_start_time = cpuexecutiontime()
     
     severethreshold, nonseverethreshold = lexicon_learner(payload_train, validation_data)
+    winning_threshold = {'severe threshold':severethreshold, 'non severe threshold':nonseverethreshold}
     
     lexicon_learner_end_time = cpuexecutiontime()
     lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time
@@ -123,7 +125,7 @@ for i in range(0,10):
     
     additional_dict = {'cputime_preprocess': lexicon_preprocess_execution_time,'cputime_learner': lexicon_learner_execution_time,'cputime_classifer': lexicon_classifer_execution_time}
     
-    lexicon_classifier_results = {**dict_resp, **additional_dict}
+    lexicon_classifier_results = {**dict_resp, **additional_dict, **winning_threshold,**randomseed}
         
     print(lexicon_classifier_results)
 
@@ -138,7 +140,7 @@ for i in range(0,10):
  
 
  #--------------------------------ML Models -----------------------------------------------#
-    mlclassifierresp =  mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data)
+    mlclassifierresp =  mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data,rs)
     
     print(mlclassifierresp)
     ml_resp_eachiteration = mlclassifierresp
@@ -146,6 +148,7 @@ for i in range(0,10):
 #     print(mlresponse_list)
  
     print("********************One Iteration completed***********************")
+    
     
     
 #--------------------------------Average Results of Lexicon -----------------------------------------------#  
