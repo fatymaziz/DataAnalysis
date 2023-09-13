@@ -24,7 +24,7 @@ import json
 
 
 bugs_firefox= pd.read_csv("bugs_firefox.csv")
-bugs_calendar= pd.read_csv("bugs_calendar.csv")
+bugs_calendar= pd.read_csv("bugs_Calendar.csv")
 
 
 bugs_df = pd.concat([bugs_firefox,bugs_calendar])
