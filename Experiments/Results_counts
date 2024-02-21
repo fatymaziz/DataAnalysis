@@ -1,0 +1,1171 @@
+total bugs 27393
+NonSevere    20838
+Severe        6555
+Name: Severity, dtype: int64
+No. of training data: 17531
+No. of validation data: 4383
+No. of testing data: 5479
+dataset random seed:400296
+
+------interation------ 0
+Severe threshold, NonSevere threshold 0.0 0.0
+Severe counts 0
+NonSevere counts 0
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 4364
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.0 0.1
+Severe counts 119
+NonSevere counts 0
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 4245
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.0 0.2
+Severe counts 119
+NonSevere counts 0
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 4245
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.0 0.3
+Severe counts 133
+NonSevere counts 0
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 4231
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.0 0.4
+Severe counts 246
+NonSevere counts 0
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 4118
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.0 0.5
+Severe counts 358
+NonSevere counts 0
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 4006
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.0 0.6
+Severe counts 1008
+NonSevere counts 0
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3356
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.0 0.7
+Severe counts 2871
+NonSevere counts 0
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 1493
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.0 0.8
+Severe counts 4277
+NonSevere counts 0
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 87
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.0 0.9
+Severe counts 4346
+NonSevere counts 0
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 18
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.0 1.0
+Severe counts 4351
+NonSevere counts 0
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 13
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.001 0.0
+Severe counts 0
+NonSevere counts 758
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3606
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.001 0.1
+Severe counts 104
+NonSevere counts 743
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3517
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.001 0.2
+Severe counts 104
+NonSevere counts 743
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3517
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.001 0.3
+Severe counts 114
+NonSevere counts 740
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3510
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.001 0.4
+Severe counts 213
+NonSevere counts 727
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3424
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.001 0.5
+Severe counts 313
+NonSevere counts 713
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3338
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.001 0.6
+Severe counts 877
+NonSevere counts 620
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 2867
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.001 0.7
+Severe counts 2627
+NonSevere counts 355
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 1382
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.001 0.8
+Severe counts 4193
+NonSevere counts 49
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 122
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.001 0.9
+Severe counts 4308
+NonSevere counts 18
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 38
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.001 1.0
+Severe counts 4321
+NonSevere counts 16
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 27
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.005 0.0
+Severe counts 0
+NonSevere counts 758
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3606
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.005 0.1
+Severe counts 104
+NonSevere counts 743
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3517
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.005 0.2
+Severe counts 104
+NonSevere counts 743
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3517
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.005 0.3
+Severe counts 114
+NonSevere counts 740
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3510
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.005 0.4
+Severe counts 213
+NonSevere counts 727
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3424
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.005 0.5
+Severe counts 313
+NonSevere counts 713
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3338
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.005 0.6
+Severe counts 877
+NonSevere counts 620
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 2867
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.005 0.7
+Severe counts 2627
+NonSevere counts 355
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 1382
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.005 0.8
+Severe counts 4193
+NonSevere counts 49
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 122
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.005 0.9
+Severe counts 4308
+NonSevere counts 18
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 38
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.005 1.0
+Severe counts 4321
+NonSevere counts 16
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 27
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.01 0.0
+Severe counts 0
+NonSevere counts 758
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3606
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.01 0.1
+Severe counts 104
+NonSevere counts 743
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3517
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.01 0.2
+Severe counts 104
+NonSevere counts 743
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3517
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.01 0.3
+Severe counts 114
+NonSevere counts 740
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3510
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.01 0.4
+Severe counts 213
+NonSevere counts 727
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3424
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.01 0.5
+Severe counts 313
+NonSevere counts 713
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3338
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.01 0.6
+Severe counts 877
+NonSevere counts 620
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 2867
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.01 0.7
+Severe counts 2627
+NonSevere counts 355
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 1382
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.01 0.8
+Severe counts 4193
+NonSevere counts 49
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 122
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.01 0.9
+Severe counts 4308
+NonSevere counts 18
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 38
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.01 1.0
+Severe counts 4321
+NonSevere counts 16
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 27
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.05 0.0
+Severe counts 0
+NonSevere counts 924
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3440
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.05 0.1
+Severe counts 98
+NonSevere counts 904
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3362
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.05 0.2
+Severe counts 98
+NonSevere counts 904
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3362
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.05 0.3
+Severe counts 107
+NonSevere counts 900
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3357
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.05 0.4
+Severe counts 206
+NonSevere counts 887
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3271
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.05 0.5
+Severe counts 307
+NonSevere counts 870
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3187
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.05 0.6
+Severe counts 855
+NonSevere counts 765
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 2744
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.05 0.7
+Severe counts 2563
+NonSevere counts 440
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 1361
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.05 0.8
+Severe counts 4163
+NonSevere counts 68
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 133
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.05 0.9
+Severe counts 4301
+NonSevere counts 21
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 42
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.05 1.0
+Severe counts 4319
+NonSevere counts 16
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 29
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.1 0.0
+Severe counts 0
+NonSevere counts 1359
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3005
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.1 0.1
+Severe counts 94
+NonSevere counts 1337
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 2933
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.1 0.2
+Severe counts 94
+NonSevere counts 1337
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 2933
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.1 0.3
+Severe counts 103
+NonSevere counts 1334
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 2927
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.1 0.4
+Severe counts 198
+NonSevere counts 1317
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 2849
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.1 0.5
+Severe counts 291
+NonSevere counts 1290
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 2783
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.1 0.6
+Severe counts 773
+NonSevere counts 1132
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 2459
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.1 0.7
+Severe counts 2429
+NonSevere counts 683
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 1252
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.1 0.8
+Severe counts 4086
+NonSevere counts 96
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 182
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.1 0.9
+Severe counts 4279
+NonSevere counts 33
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 52
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.1 1.0
+Severe counts 4311
+NonSevere counts 17
+Neutral_bothZero counts 22
+Neutral_bothNoZero counts 33
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.2 0.0
+Severe counts 0
+NonSevere counts 3480
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 884
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.2 0.1
+Severe counts 38
+NonSevere counts 3454
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 872
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.2 0.2
+Severe counts 38
+NonSevere counts 3454
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 872
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.2 0.3
+Severe counts 42
+NonSevere counts 3451
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 871
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.2 0.4
+Severe counts 93
+NonSevere counts 3417
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 854
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.2 0.5
+Severe counts 135
+NonSevere counts 3364
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 865
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.2 0.6
+Severe counts 348
+NonSevere counts 3156
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 860
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.2 0.7
+Severe counts 1353
+NonSevere counts 2270
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 741
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.2 0.8
+Severe counts 3239
+NonSevere counts 713
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 412
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.2 0.9
+Severe counts 4095
+NonSevere counts 96
+Neutral_bothZero counts 54
+Neutral_bothNoZero counts 138
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.2 1.0
+Severe counts 4199
+NonSevere counts 48
+Neutral_bothZero counts 71
+Neutral_bothNoZero counts 65
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.3 0.0
+Severe counts 0
+NonSevere counts 4284
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 80
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.3 0.1
+Severe counts 2
+NonSevere counts 4276
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 86
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.3 0.2
+Severe counts 2
+NonSevere counts 4276
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 86
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.3 0.3
+Severe counts 4
+NonSevere counts 4276
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 84
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.3 0.4
+Severe counts 17
+NonSevere counts 4261
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 86
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.3 0.5
+Severe counts 19
+NonSevere counts 4245
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 100
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.3 0.6
+Severe counts 49
+NonSevere counts 4185
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 130
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.3 0.7
+Severe counts 354
+NonSevere counts 3741
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 269
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.3 0.8
+Severe counts 1333
+NonSevere counts 2323
+Neutral_bothZero counts 143
+Neutral_bothNoZero counts 584
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.3 0.9
+Severe counts 2454
+NonSevere counts 688
+Neutral_bothZero counts 861
+Neutral_bothNoZero counts 380
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.3 1.0
+Severe counts 2669
+NonSevere counts 350
+Neutral_bothZero counts 1140
+Neutral_bothNoZero counts 224
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.4 0.0
+Severe counts 0
+NonSevere counts 4351
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 13
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.4 0.1
+Severe counts 0
+NonSevere counts 4345
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 19
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.4 0.2
+Severe counts 0
+NonSevere counts 4345
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 19
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.4 0.3
+Severe counts 1
+NonSevere counts 4344
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 19
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.4 0.4
+Severe counts 9
+NonSevere counts 4335
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 20
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.4 0.5
+Severe counts 9
+NonSevere counts 4327
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 28
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.4 0.6
+Severe counts 21
+NonSevere counts 4303
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 40
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.4 0.7
+Severe counts 54
+NonSevere counts 4186
+Neutral_bothZero counts 62
+Neutral_bothNoZero counts 81
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.4 0.8
+Severe counts 350
+NonSevere counts 3193
+Neutral_bothZero counts 554
+Neutral_bothNoZero counts 286
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.4 0.9
+Severe counts 820
+NonSevere counts 1150
+Neutral_bothZero counts 2203
+Neutral_bothNoZero counts 210
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.4 1.0
+Severe counts 936
+NonSevere counts 611
+Neutral_bothZero counts 2707
+Neutral_bothNoZero counts 129
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.5 0.0
+Severe counts 0
+NonSevere counts 4355
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 9
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.5 0.1
+Severe counts 0
+NonSevere counts 4350
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 14
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.5 0.2
+Severe counts 0
+NonSevere counts 4350
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 14
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.5 0.3
+Severe counts 1
+NonSevere counts 4349
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 14
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.5 0.4
+Severe counts 8
+NonSevere counts 4341
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 15
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.5 0.5
+Severe counts 8
+NonSevere counts 4334
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 22
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.5 0.6
+Severe counts 15
+NonSevere counts 4320
+Neutral_bothZero counts 21
+Neutral_bothNoZero counts 27
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.5 0.7
+Severe counts 30
+NonSevere counts 4236
+Neutral_bothZero counts 73
+Neutral_bothNoZero counts 44
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.5 0.8
+Severe counts 181
+NonSevere counts 3373
+Neutral_bothZero counts 685
+Neutral_bothNoZero counts 144
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.5 0.9
+Severe counts 419
+NonSevere counts 1287
+Neutral_bothZero counts 2583
+Neutral_bothNoZero counts 94
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.5 1.0
+Severe counts 465
+NonSevere counts 686
+Neutral_bothZero counts 3166
+Neutral_bothNoZero counts 66
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.6 0.0
+Severe counts 0
+NonSevere counts 4358
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 6
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.6 0.1
+Severe counts 0
+NonSevere counts 4353
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 11
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.6 0.2
+Severe counts 0
+NonSevere counts 4353
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 11
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.6 0.3
+Severe counts 1
+NonSevere counts 4352
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 11
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.6 0.4
+Severe counts 8
+NonSevere counts 4344
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 12
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.6 0.5
+Severe counts 8
+NonSevere counts 4339
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 17
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.6 0.6
+Severe counts 9
+NonSevere counts 4330
+Neutral_bothZero counts 25
+Neutral_bothNoZero counts 19
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.6 0.7
+Severe counts 17
+NonSevere counts 4252
+Neutral_bothZero counts 82
+Neutral_bothNoZero counts 32
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.6 0.8
+Severe counts 104
+NonSevere counts 3456
+Neutral_bothZero counts 754
+Neutral_bothNoZero counts 69
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.6 0.9
+Severe counts 222
+NonSevere counts 1347
+Neutral_bothZero counts 2776
+Neutral_bothNoZero counts 38
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.6 1.0
+Severe counts 234
+NonSevere counts 724
+Neutral_bothZero counts 3394
+Neutral_bothNoZero counts 31
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.7 0.0
+Severe counts 0
+NonSevere counts 4364
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 0
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.7 0.1
+Severe counts 0
+NonSevere counts 4361
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.7 0.2
+Severe counts 0
+NonSevere counts 4361
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.7 0.3
+Severe counts 0
+NonSevere counts 4359
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 5
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.7 0.4
+Severe counts 1
+NonSevere counts 4353
+Neutral_bothZero counts 24
+Neutral_bothNoZero counts 5
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.7 0.5
+Severe counts 1
+NonSevere counts 4352
+Neutral_bothZero counts 24
+Neutral_bothNoZero counts 6
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.7 0.6
+Severe counts 1
+NonSevere counts 4345
+Neutral_bothZero counts 30
+Neutral_bothNoZero counts 7
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.7 0.7
+Severe counts 4
+NonSevere counts 4278
+Neutral_bothZero counts 93
+Neutral_bothNoZero counts 8
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.7 0.8
+Severe counts 40
+NonSevere counts 3512
+Neutral_bothZero counts 806
+Neutral_bothNoZero counts 25
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.7 0.9
+Severe counts 100
+NonSevere counts 1370
+Neutral_bothZero counts 2885
+Neutral_bothNoZero counts 28
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.7 1.0
+Severe counts 114
+NonSevere counts 740
+Neutral_bothZero counts 3511
+Neutral_bothNoZero counts 18
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.8 0.0
+Severe counts 0
+NonSevere counts 4364
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 0
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.8 0.1
+Severe counts 0
+NonSevere counts 4361
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.8 0.2
+Severe counts 0
+NonSevere counts 4361
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.8 0.3
+Severe counts 0
+NonSevere counts 4361
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.8 0.4
+Severe counts 0
+NonSevere counts 4354
+Neutral_bothZero counts 25
+Neutral_bothNoZero counts 4
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.8 0.5
+Severe counts 0
+NonSevere counts 4353
+Neutral_bothZero counts 25
+Neutral_bothNoZero counts 5
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.8 0.6
+Severe counts 0
+NonSevere counts 4346
+Neutral_bothZero counts 31
+Neutral_bothNoZero counts 6
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.8 0.7
+Severe counts 2
+NonSevere counts 4278
+Neutral_bothZero counts 95
+Neutral_bothNoZero counts 8
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.8 0.8
+Severe counts 37
+NonSevere counts 3514
+Neutral_bothZero counts 809
+Neutral_bothNoZero counts 23
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.8 0.9
+Severe counts 92
+NonSevere counts 1374
+Neutral_bothZero counts 2893
+Neutral_bothNoZero counts 24
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.8 1.0
+Severe counts 104
+NonSevere counts 742
+Neutral_bothZero counts 3521
+Neutral_bothNoZero counts 16
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.9 0.0
+Severe counts 0
+NonSevere counts 4364
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 0
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.9 0.1
+Severe counts 0
+NonSevere counts 4361
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.9 0.2
+Severe counts 0
+NonSevere counts 4361
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.9 0.3
+Severe counts 0
+NonSevere counts 4361
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.9 0.4
+Severe counts 0
+NonSevere counts 4354
+Neutral_bothZero counts 25
+Neutral_bothNoZero counts 4
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.9 0.5
+Severe counts 0
+NonSevere counts 4353
+Neutral_bothZero counts 25
+Neutral_bothNoZero counts 5
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.9 0.6
+Severe counts 0
+NonSevere counts 4346
+Neutral_bothZero counts 31
+Neutral_bothNoZero counts 6
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.9 0.7
+Severe counts 2
+NonSevere counts 4278
+Neutral_bothZero counts 95
+Neutral_bothNoZero counts 8
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.9 0.8
+Severe counts 37
+NonSevere counts 3514
+Neutral_bothZero counts 809
+Neutral_bothNoZero counts 23
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.9 0.9
+Severe counts 92
+NonSevere counts 1374
+Neutral_bothZero counts 2893
+Neutral_bothNoZero counts 24
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.9 1.0
+Severe counts 104
+NonSevere counts 743
+Neutral_bothZero counts 3521
+Neutral_bothNoZero counts 15
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 1.0 0.0
+Severe counts 0
+NonSevere counts 4364
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 0
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 1.0 0.1
+Severe counts 0
+NonSevere counts 4361
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 1.0 0.2
+Severe counts 0
+NonSevere counts 4361
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 1.0 0.3
+Severe counts 0
+NonSevere counts 4361
+Neutral_bothZero counts 19
+Neutral_bothNoZero counts 3
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 1.0 0.4
+Severe counts 0
+NonSevere counts 4354
+Neutral_bothZero counts 25
+Neutral_bothNoZero counts 4
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 1.0 0.5
+Severe counts 0
+NonSevere counts 4353
+Neutral_bothZero counts 25
+Neutral_bothNoZero counts 5
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 1.0 0.6
+Severe counts 0
+NonSevere counts 4346
+Neutral_bothZero counts 31
+Neutral_bothNoZero counts 6
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 1.0 0.7
+Severe counts 2
+NonSevere counts 4278
+Neutral_bothZero counts 95
+Neutral_bothNoZero counts 8
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 1.0 0.8
+Severe counts 37
+NonSevere counts 3514
+Neutral_bothZero counts 809
+Neutral_bothNoZero counts 23
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 1.0 0.9
+Severe counts 92
+NonSevere counts 1374
+Neutral_bothZero counts 2893
+Neutral_bothNoZero counts 24
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 1.0 1.0
+Severe counts 104
+NonSevere counts 743
+Neutral_bothZero counts 3521
+Neutral_bothNoZero counts 15
+Neutral_WithSomethingElse counts 0
+ 
+Severe threshold, NonSevere threshold 0.0 0.4
+Severe counts 349
+NonSevere counts 0
+Neutral_bothZero counts 15
+Neutral_bothNoZero counts 5115
+Neutral_WithSomethingElse counts 0

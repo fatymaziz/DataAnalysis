@@ -2,10 +2,12 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 import re
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+import nltk
+nltk.download('wordnet')
 import nltk
 nltk.download('stopwords')
-from nltk.corpus import stopwords
-from nltk.stem.porter import PorterStemmer
 import collections
 import random
 import itertools
@@ -14,14 +16,69 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
-import numpy as np
+import pandas as pd
 from sklearn.dummy import DummyClassifier
 from sklearn.metrics import f1_score
 import time
+from sklearn import metrics
+import matplotlib.pyplot as plt
+
+def nonzero_equal(summary, severe_words, nonsevere_words):
+    """
+    Analyzes a summary text and identifies words from severe and non-severe word lists.
+
+    Args:
+        summary: A list of words representing the summary text.
+        severe_words: A list of severe words.
+        nonsevere_words: A list of non-severe words.
+
+    Returns:
+       Returns the category which has a minimum percentage
+    """
+    severe_set = set(severe_words)
+    nonsevere_set = set(nonsevere_words)
+
+    severe_percentages = []
+    nonsevere_percentages = []
+
+    for word in summary:
+        lower_word = word.lower()  # case-insensitive matching
+
+        if lower_word in severe_set:
+            index = list(severe_words).index(lower_word)
+            severe_percentages.append(index / len(severe_words) * 100)
+
+        if lower_word in nonsevere_set:
+            index = list(nonsevere_words).index(lower_word)
+            nonsevere_percentages.append(index / len(nonsevere_words) * 100)
+
+    # Create separate DataFrames for severe and non-severe percentages
+    df_severe = pd.DataFrame({'Severe': severe_percentages})
+    df_nonsevere = pd.DataFrame({'Non-severe': nonsevere_percentages})
+
+    # Calculate the minimum value for each category
+    min_severe = df_severe.min().values[0]
+    min_nonsevere = df_nonsevere.min().values[0]
+
+    # Determine the category with the lower percentage
+    if min_severe < min_nonsevere:
+        return 'Severe'
+    else:
+        return 'NonSevere'
+
 
 #Function that returns the average result for the ML classfiers
 def calculate_average_results_ML(ml_results):
-   
+    """
+    Calculate the average result for the Machine Learning Models(SVM, LG, NB)
+
+    Args:
+        ml_results: list of results for ML Model wise
+        
+
+    Returns: Variables that has average results for each column in the result.
+    """  
+    
     # Create dictionaries to store values for each variables for each model
     model_accuracy_sum = {}
     model_f1score_sum = {}
@@ -83,6 +140,15 @@ def calculate_average_results_ML(ml_results):
             
 #Function that returns the average result for the lexicon classfier
 def calculate_average_results_lexicon(lexicon_results):
+    """
+    Calculate the average result for the Lexicon classifer
+
+    Args:
+        lexicon_results: list of results for lexicon classifer
+        
+
+    Returns: A dictionary which has the average results of each column in the result of Lexicon classifer
+    """
     total_results = len(lexicon_results)
     average_results = {}
     sum_results = {}
@@ -101,25 +167,55 @@ def calculate_average_results_lexicon(lexicon_results):
 
 #CPU execution time
 def cpuexecutiontime():
+    """
+    Calculate the CPU execution time for each process
+
+    Returns: returns current time
+    """
     current_time = time.time()
     return current_time
    
 
 #Tokenise the Summary text
 def nlpsteps(x):
+    """
+    Tokenizes and preprocesses a summary of a bug.
+
+    Args:
+        x (str): The summary text to be processed.
+
+    Returns:
+        str: The processed text after removing non-alphabetic characters, converting to lowercase,
+             lemmatizing words, and removing stopwords.
+    """
+    
+    # Remove non-alphabetic characters
     review = re.sub('[^a-zA-Z]', ' ', str(x))
     review = review.lower()
     review = review.split()
-    ps = PorterStemmer()
-    all_stopwords = stopwords.words('english')
+
+    # Initialize WordNetLemmatizer
+    lemmatizer = WordNetLemmatizer()
+
+    # Remove stopwords and lemmatize words
+    all_stopwords = set(stopwords.words('english'))
     all_stopwords.remove('not')
-    review = [ps.stem(word) for word in review if not word in set(all_stopwords)]
+    review = [lemmatizer.lemmatize(word) for word in review if word not in all_stopwords]
+
+    # Join the processed words back into a sentence
     review = ' '.join(review)
     return review
 
-
 #Corpus data splitted into separate words
 def convert(corpus_trainingdata):
+    """
+    Data after preprocessing splitting into separate words
+
+    Args:
+        corpus_trainingdata: Preprocessed data of the training dataset
+     
+    Returns: Splitted words
+    """
     return ([i for item in corpus_trainingdata for i in item.split()])
      
 
@@ -132,6 +228,15 @@ def getwordcounts(splittedWords):
 
 #Function that returns the counts for each words that falls in Severe or Non Severe category
 def get_distribution(val,training_data_df):
+    """
+    Data after preprocessing splitting into separate words
+
+    Args:
+        val: Preprocessed data of the training dataset
+        training_data_df: training dataset dataframe
+      
+    Returns: Splitted words
+    """
     records = training_data_df[
         training_data_df["Summary"].str.contains(val)
     ]
@@ -146,36 +251,78 @@ def get_distribution(val,training_data_df):
     
 # Function that returns Severe ratio
 def get_r1(ns,s):
+    """
+    Calculate ratio for severe
+
+    Args:
+        ns:Number of counts for a word as nonsevere
+        s: Number of counts for a word as severe
+      
+    Returns: severe ratio for a given word
+    """
     return s/(s+ns)
 
 # Function that returns NonSevere ratio
 def get_r2(ns,s):
+    """
+    Calculate ratio for nonsevere
+
+    Args:
+        ns:Number of counts for a word as nonsevere
+        s: Number of counts for a word as severe
+      
+    Returns: non-severe ratio for a given word
+    """
     return ns/(s+ns)
 
-    
-
+ 
 #Incase of equal frequency the classifier will be Severe
 def classifier(Summary,severedictionary_list,nonseveredictionary_list):
+    """
+    Classify a data item as severe or nonsevere from validation and test dataset
+
+    Args:
+        Summary: textual data from summary column from a validation and test dataset
+        severedictionary_list: severe dictionary having words that falls in severe category
+        nonseveredictionary_list: nonsevere dictionary having words that falls in severe category
+      
+    Returns: Tags as severe and nonsevere
+    """
   
     summaryList = Summary.split()
     mytest_severe = len(set(severedictionary_list).intersection(summaryList))
     mytest_nonsevere = len(set(nonseveredictionary_list).intersection(summaryList))
     
-    if mytest_severe >= mytest_nonsevere:
+    if mytest_severe > mytest_nonsevere:
         tag = "Severe"
     elif mytest_severe < mytest_nonsevere:
         tag = "NonSevere"
+    elif mytest_severe == mytest_nonsevere == 0:
+        tag = "Neutral_bothZero"
+    elif mytest_severe == mytest_nonsevere != 0:
+        tag = nonzero_equal(summaryList, severedictionary_list,nonseveredictionary_list) #retuns tag as Severe or NonSevere
+    else:
+        tag = "Neutral_WithSomethingElse"
    
     return tag
-   
-
-
-
-#Function that creates dictionary on different threholds and tests with validation data and returns the confusion matrix and accuracy scores of each dictionary
+    
+# Function that creates dictionary on different threholds and tests with validation data and returns the confusion matrix and accuracy scores of each dictionary
 def dictionary_onthresholds(severe_threshold, nonsevere_threshold, dataset, payload_train):
+    """
+    Create dictionaries on each combination of severe and nonsevere threshold
+
+    Args:
+        severe_threshold: threshold set manually for severe from 00.1 to 1.0
+        nonsevere_threshold: threshold set manually for nonsevere from 0.1 to 1.0
+        dataset: Validation dataset for testing the created dictionaries on each combination of threshold
+        payload_train: Dictionary having words with its counts as severe and nonsevere from the training dataset
+      
+    Returns: confusion matrix, accuracy scores, f1score-severe f1score-nonsevere,recall,precision, f1score-average
+    """
 
     severe_dictionary = {}
     nonsevere_dictionary = {}
+    
     for keyy in payload_train:
         if payload_train[keyy]['r1'] >= severe_threshold:
             severe_dictionary[keyy] = payload_train[keyy]
@@ -184,15 +331,15 @@ def dictionary_onthresholds(severe_threshold, nonsevere_threshold, dataset, payl
             nonsevere_dictionary[keyy] = payload_train[keyy]
             
     severedictionary_list = list(severe_dictionary.keys())
-#     print(severedictionary_list)
+    
     nonseveredictionary_list = list(nonsevere_dictionary.keys())
-#     print(nonseveredictionary_list)
+    
     
     dataset["Summary"]  = dataset["Summary"].apply(lambda x: nlpsteps(x))
     
     dataset["my_tag"] = dataset["Summary"].apply(lambda x: classifier(x,severedictionary_list,nonseveredictionary_list))
     
-   
+    
     TP = 0 
     for d in dataset.iterrows():
         if ((d[1]["my_tag"]== "Severe") & (d[1]["Severity"]== "Severe")):
@@ -239,6 +386,15 @@ def dictionary_onthresholds(severe_threshold, nonsevere_threshold, dataset, payl
 ################# outerloop breakdown##########################################################################
 # Function that returns the worlists for severe and non severe 
 def lexicon_preprocess(trainingdataset_length,training_data_df):
+    """
+    Create wordlists for severe and non severe from the preprocessed training dataset 
+
+    Args:
+        trainingdataset_length: size of training dataset
+        training_data_df: training dataset dataframe
+      
+    Returns: a wrodlist that has words from training dataset with its counts for severe and nonsevere
+    """
 
     corpus_trainingdata = []
        
@@ -263,6 +419,8 @@ def lexicon_preprocess(trainingdataset_length,training_data_df):
         if res:
             all_data[key] = res
             all_data
+            all_data_df = pd.DataFrame(all_data)
+#             print("wordlists for severe and non-severe",all_data_df)
         
     payload_train = {}
     for key, value in all_data.items():
@@ -277,23 +435,42 @@ def lexicon_preprocess(trainingdataset_length,training_data_df):
             'r2': r2
         }
         payload_train
+        payload_train_df = pd.DataFrame(payload_train)
+        
 
     return payload_train 
 
-# Function that returns the created dictioanries on possible combination of the severe and non severe threshold and returns best thresholds
+
+# Function that returns the created dictionaries on possible combination of the severe and non severe threshold and returns best thresholds
 def lexicon_learner(payload_train,validation_data):
+    """
+    Identify the best threshold for severe and nonsevere on which the best dictionary has been created
+
+    Args:
+        payload_train: wordlist containing words woth severe and nonsevere counts from the training dataset
+        validation_data: validation dataset for testing the created dictionaries
+      
+    Returns: best threshold for severe and nonsevere on which the created dictionary has the highest f1score
+    """
     
     severe_threshold = [0.0, 0.001, 0.005, 0.01, 0.05, 0.1 ,0.2, 0.3 ,0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
     nonsevere_threshold = [0.0, 0.1 ,0.2, 0.3 ,0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+
+#     severe_threshold = [0.8]
+#     nonsevere_threshold = [0.5]
+   
     
     possibleThesholdCombination = list(itertools.product(severe_threshold, nonsevere_threshold))
     result_list=[]
+    result_list_test=[]
     for i in possibleThesholdCombination:
 
         severe_randomthreshold = i[0]
         nonsevere_randomthreshold = i[1]
-
+       
+        
         count = dictionary_onthresholds(severe_randomthreshold,nonsevere_randomthreshold,validation_data, payload_train)
+       
         result_dictionary = {
          "severe_threshold": severe_randomthreshold,
          "nonsevere_threshold":nonsevere_randomthreshold,
@@ -302,6 +479,10 @@ def lexicon_learner(payload_train,validation_data):
         result_dictionary.update(count)
         result_list.append(result_dictionary)
         F1Score_df = pd.DataFrame(result_list)
+        
+   
+
+       
     maxf1Score= F1Score_df[F1Score_df['F1Score']==F1Score_df['F1Score'].max()]
     
 #     print("---------Best threshold for dictionary found testing with validation data------")
@@ -316,6 +497,17 @@ def lexicon_learner(payload_train,validation_data):
 
 #Function that creates a dictioanry on the best threshold and tests with testing dataset
 def lexicon_classifier(severethreshold_,nonseverethreshold_,testing_data,payload_train):
+    """
+    Test the best created dictionary with testing dataset
+
+    Args:
+        severethreshold_: best severe threshold
+        nonseverethreshold_: best non severe threshold
+        testing_data: testing dataset
+        payload_train: wordlist having severe and nonsevere counts
+      
+    Returns: confusion matrix, f1score-severe. f1score-nonsevere, f1score-average, accuracy-score
+    """
     
     lexicon_classifier_results = dictionary_onthresholds(severethreshold_,nonseverethreshold_,testing_data,payload_train)
   
@@ -325,6 +517,17 @@ def lexicon_classifier(severethreshold_,nonseverethreshold_,testing_data,payload
 ############### outerloop breakdown ends #############
 
 def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
+    """
+    Find the best c parameter for SVM model 
+
+    Args:
+        X_train: feature from training dataset
+        Y_train: preditive label from training dataset
+        X_validation:feature from validation datsset
+        y_validation: preditive label from validation dataset dataset
+      
+    Returns: c paramater of SVM on which the model has performed the best
+    """
     C_hyperparameter = [0.1,0.5,1,5,10,20,50,100]
 #     C_hyperparameter = [0.1]
    
@@ -365,6 +568,22 @@ def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
 
 
 def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data, rs):
+    """
+    Tokenise, train validate and test the machine learning models i.e SVm, Logistic Regression, Nayes Bayes
+
+    Args:
+        trainingdataset_length: size of training dataset
+        testingdataset_length: size of testing dataset
+        validationdataset_length:size of validation dataset
+        training_data_df: training dataset in a dataframe
+        validation_data_df:validation dataset in a dataframe
+        testing_data_df:testing dataset in a dataframe
+        training_data: training dataset
+        rs:
+      
+    Returns: Confusion matrix, accuracy score, f1score-severe, f1score-nonsevere, f1score-mean, ml_preprocess_cputime, ml_learner_cputime, ml_classifer_cputime
+    
+    """
     
     ml_starttime_preprocess = cpuexecutiontime()
     #Tokenised the training data
@@ -431,8 +650,17 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         svm_model = confusion_matrix(y_test, svm_pred)
         #convert to numpy
         numpy_array_CM = np.array(svm_model)
-        svm_model = numpy_array_CM.tolist()
+        _svm_model = numpy_array_CM.tolist()
+        
+        
+#         print("------------------------Confusion Matrix display test-------------------")
+#         numpy_array_CM_shape = numpy_array_CM.shape
+#         cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = svm_model, display_labels = [False, True])
 
+#         cm_display.plot()
+#         plt.show()
+#         print("------------------------Confusion Matrix display test end-------------------")
+        
         SVM_accuracy_list= accuracy_score(y_test, svm_pred)
         f1_score_svm = f1_score(y_test, svm_pred, average=None)
         
@@ -444,7 +672,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
 
 
 
-        SVM_dict = {"features":i,"c": C_hyperparameter,"Model":'SVM', "confusionmatrix":svm_model,"Accuracy": SVM_accuracy_list, "F1Score": f1_score_svm.tolist(),"F1Score_mean": f1score_SVM_mean,"ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":SVM_learner_cputime, "ModelClassiferCPUTime":SVM_classifer_cputime,"RandomSeeds":rs}
+        SVM_dict = {"features":i,"c": C_hyperparameter,"Model":'SVM', "confusionmatrix":_svm_model,"Accuracy": SVM_accuracy_list, "F1Score": f1_score_svm.tolist(),"F1Score_mean": f1score_SVM_mean,"ModelPreprocessCPUTime": ml_preprocess_cputime, "ModelLearnerCPUTime":SVM_learner_cputime, "ModelClassiferCPUTime":SVM_classifer_cputime,"RandomSeeds":rs}
         SVM_list.append(SVM_dict)
         SVM_list
         max_feature_list.append(SVM_dict)
@@ -467,6 +695,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         #convert to numpy
         numpy_array_CM = np.array(cm_MB)
         cm_MB = numpy_array_CM.tolist()
+        
         
         max_feature_accuracy = accuracy_score(y_test, MultinomialNB_pred)
         f1_score_MB = f1_score(y_test, MultinomialNB_pred, average=None)
@@ -528,6 +757,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
          #convert to numpy
         numpy_array_dummy = np.array(cm_dummy)
         cm_dummy = numpy_array_dummy.tolist()
+      
         
         
         dummy_accuracy = dummy_clf.score(X_test, y_test)
