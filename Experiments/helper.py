@@ -25,7 +25,7 @@ import matplotlib.pyplot as plt
 
 def nonzero_equal(summary, severe_words, nonsevere_words):
     """
-    Analyzes a summary text and identifies words from severe and non-severe word lists.
+    Analyzes the the dataitems which are tagged Neutral or non zero equal and calculates their percentage by their index position and tags them Severe or Nonsevere
 
     Args:
         summary: A list of words representing the summary text.
