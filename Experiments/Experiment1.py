@@ -37,7 +37,6 @@ bugs_df.drop(indexSevere , inplace=True)
 indexSevere = bugs_df[ (bugs_df['Type'] == 'task') & (bugs_df['Type'] == 'task') ].index
 bugs_df.drop(indexSevere , inplace=True)
 
-bugs_df = bugs_df.head(1000)
 
 
 #Catagorise the severity level into a Severe and Non Severe to make it a binary problem
@@ -63,7 +62,7 @@ file1 = open("output_Experiment1.txt", "w")  # write mode
 list_of_random_seeds = []
 
   
-for i in range(0,2):
+for i in range(0,10):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
