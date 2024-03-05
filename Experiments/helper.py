@@ -22,7 +22,25 @@ from sklearn.metrics import f1_score
 import time
 from sklearn import metrics
 import matplotlib.pyplot as plt
+import json
 
+
+def zero_equal():
+    """
+    Randomly tags a bug as Severe or Non Severe.
+
+    Returns:
+        str: "Severe" or "Non Severe" based on random selection.
+    """
+    # Generate a random number (0 or 1)
+    random_number = random.randint(0, 1)
+
+    # Assign severity based on the random number
+    if random_number == 0:
+        return "NonSevere"
+    else:
+        return "Severe"
+    
 def nonzero_equal(summary, severe_words, nonsevere_words):
     """
     Analyzes the the dataitems which are tagged Neutral or non zero equal and calculates their percentage by their index position and tags them Severe or Nonsevere
@@ -65,6 +83,7 @@ def nonzero_equal(summary, severe_words, nonsevere_words):
         return 'Severe'
     else:
         return 'NonSevere'
+
 
 
 #Function that returns the average result for the ML classfiers
@@ -274,7 +293,119 @@ def get_r2(ns,s):
     Returns: non-severe ratio for a given word
     """
     return ns/(s+ns)
+#Function that returns the total counts
+def calculate_total_counts(data):
+    """
+    Calculate total number of bugs category wise (Severe, NonSevere, NonZero_Equal, Zero_Equal)
 
+    Args:
+        data: The results represents the the list of of results for each iteration
+        
+
+    Returns:
+        Returns a dictioanry that has the total counts category wise 
+    """
+    total_counts = {}
+    df_totalcounts = pd.DataFrame(data)
+   
+    
+    total_severecounts = df_totalcounts['severe_counts'].sum()
+    total_nonseverecounts = df_totalcounts['nonsevere_counts'].sum()
+    total_bothZero_counts = df_totalcounts['neutral_bothZero_counts'].sum()
+    total_NoZero_counts = df_totalcounts['neutral_NoZero_counts'].sum()
+    total_somethingElse_counts = df_totalcounts['neutral_somethingElse_counts'].sum()
+    
+    total_counts = {
+    "total_severecounts": total_severecounts,
+    "total_nonseverecounts": total_nonseverecounts,
+    "total_bothZero_counts": total_bothZero_counts,
+    "total_NoZero_counts": total_NoZero_counts,
+    "total_somethingElse_counts": total_somethingElse_counts
+    }
+    
+    
+    return total_counts
+
+#Classifer function to check all the bug category  according to their ratios
+def classifier_counts(Summary,severedictionary_list,nonseveredictionary_list):
+    """
+    Classify a data item as severe or nonsevere Zero Equal, NonZero Equal from validation and test dataset
+
+    Args:
+        Summary: textual data from summary column from a validation and test dataset
+        severedictionary_list: severe dictionary having words that falls in severe category
+        nonseveredictionary_list: nonsevere dictionary having words that falls in severe category
+      
+    Returns: Tags as Severe Nonsevere, total_bothZero_counts,total_NoZero_counts,total_somethingElse_counts
+    """
+  
+    summaryList = Summary.split()
+    mytest_severe = len(set(severedictionary_list).intersection(summaryList))
+    mytest_nonsevere = len(set(nonseveredictionary_list).intersection(summaryList))
+    
+    if mytest_severe > mytest_nonsevere:
+        tag = "Severe"
+    elif mytest_severe < mytest_nonsevere:
+        tag = "NonSevere"
+    elif mytest_severe == mytest_nonsevere == 0:
+        tag = "Neutral_bothZero"                            
+    elif mytest_severe == mytest_nonsevere != 0:
+        tag =  "Neutral_bothNoZero"
+    else:
+        tag = "Neutral_WithSomethingElse"
+   
+    return tag
+
+# Function that returns the total counts for each severeity level on all combination of threshold.
+def severeity_counts(severe_threshold, nonsevere_threshold, dataset, payload_train):
+    """
+    Calculate the counts of bug category wise and and for each combination of severe and nonsevere threshold
+
+    Args:
+        severe_threshold: Severe threshold defined
+        nonsevere_threshold: Nonsevere threshold defined
+        dataset: Validtion dataset for testing each created dictionary
+        payload_train: The wordlist created from training dataset having words wit its severe and nonsevere ratios
+   
+    Returns:
+        Returns a dictioanry that has the total counts category wise and on each combination of thresholds
+    """
+
+    severe_dictionary = {}
+    nonsevere_dictionary = {}
+    dict_counts = {}
+    dict1 = {}
+    Severitycounts_list = []
+    
+    
+    
+    for keyy in payload_train:
+        if payload_train[keyy]['r1'] >= severe_threshold:
+            severe_dictionary[keyy] = payload_train[keyy]
+        
+        if payload_train[keyy]['r2'] >= nonsevere_threshold:
+            nonsevere_dictionary[keyy] = payload_train[keyy]
+            
+    severedictionary_list = list(severe_dictionary.keys())
+#     print(severedictionary_list)
+    nonseveredictionary_list = list(nonsevere_dictionary.keys())
+#     print(nonseveredictionary_list)
+    
+    dataset["Summary"]  = dataset["Summary"].apply(lambda x: nlpsteps(x))
+    
+    dataset["my_tag"] = dataset["Summary"].apply(lambda x: classifier_counts(x,severedictionary_list,nonseveredictionary_list))
+    
+    severe_threshold, nonsevere_threshold = severe_threshold, nonsevere_threshold
+    severe_counts = dataset[dataset.my_tag == 'Severe'].shape[0]
+    nonsevere_counts = dataset[dataset.my_tag == 'NonSevere'].shape[0]
+    neutral_bothZero_counts = dataset[dataset.my_tag == 'Neutral_bothZero'].shape[0]
+    neutral_NoZero_counts = dataset[dataset.my_tag == 'Neutral_bothNoZero'].shape[0]
+    neutral_somethingElse_counts = dataset[dataset.my_tag == 'Neutral_WithSomethingElse'].shape[0]
+    
+    
+    dict_counts = {"severe_threshold":severe_threshold, "nonsevere_threshold":nonsevere_threshold,"severe_counts":severe_counts, "nonsevere_counts":nonsevere_counts,"neutral_bothZero_counts":neutral_bothZero_counts,"neutral_NoZero_counts": neutral_NoZero_counts,"neutral_somethingElse_counts":neutral_somethingElse_counts}
+    
+    return dict_counts
  
 #Incase of equal frequency the classifier will be Severe
 def classifier(Summary,severedictionary_list,nonseveredictionary_list):
@@ -298,11 +429,13 @@ def classifier(Summary,severedictionary_list,nonseveredictionary_list):
     elif mytest_severe < mytest_nonsevere:
         tag = "NonSevere"
     elif mytest_severe == mytest_nonsevere == 0:
-        tag = "Neutral_bothZero"
+        tag = zero_equal()                            #returns tag as Severe or NonSevere
+#         print(f"Bug severity: {Summary} {tag}")
     elif mytest_severe == mytest_nonsevere != 0:
         tag = nonzero_equal(summaryList, severedictionary_list,nonseveredictionary_list) #retuns tag as Severe or NonSevere
     else:
         tag = "Neutral_WithSomethingElse"
+        
    
     return tag
     
@@ -444,10 +577,10 @@ def lexicon_preprocess(trainingdataset_length,training_data_df):
 # Function that returns the created dictionaries on possible combination of the severe and non severe threshold and returns best thresholds
 def lexicon_learner(payload_train,validation_data):
     """
-    Identify the best threshold for severe and nonsevere on which the best dictionary has been created
+    Identify the best threshold for severe and nonsevere on which the best dictionary has been created and saves counts of bugs categorywise in a new file
 
     Args:
-        payload_train: wordlist containing words woth severe and nonsevere counts from the training dataset
+        payload_train: wordlist containing words with severe and nonsevere counts from the training dataset
         validation_data: validation dataset for testing the created dictionaries
       
     Returns: best threshold for severe and nonsevere on which the created dictionary has the highest f1score
@@ -467,6 +600,18 @@ def lexicon_learner(payload_train,validation_data):
 
         severe_randomthreshold = i[0]
         nonsevere_randomthreshold = i[1]
+        
+        #counts for bugs category wise
+        count_severity = severeity_counts(severe_randomthreshold,nonsevere_randomthreshold,validation_data, payload_train)
+        result_dictionary_test = {
+         "severe_threshold": severe_randomthreshold,
+         "nonsevere_threshold":nonsevere_randomthreshold,
+ 
+        }
+        
+        result_dictionary_test.update(count_severity)
+        result_list_test.append(result_dictionary_test)
+     #counts for bugs category wise until here
        
         
         count = dictionary_onthresholds(severe_randomthreshold,nonsevere_randomthreshold,validation_data, payload_train)
@@ -480,20 +625,25 @@ def lexicon_learner(payload_train,validation_data):
         result_list.append(result_dictionary)
         F1Score_df = pd.DataFrame(result_list)
         
-   
+   #----Function that returns the total counts of bug category wise
+    total_bug_counts_category = calculate_total_counts(result_list_test)
+    print("Total bugs category wise predicted by our algorithm")
+    print(total_bug_counts_category)
+    # store counts results as JSON
+    with open('lexicon_total_counts.json', 'w') as json_file:
+        json.dump(str(total_bug_counts_category), json_file, indent=4)
+   #----Function that returns the total counts of bug category wise until here
 
        
     maxf1Score= F1Score_df[F1Score_df['F1Score']==F1Score_df['F1Score'].max()]
     
 #     print("---------Best threshold for dictionary found testing with validation data------")
    
-    
-#     print(maxf1Score)
  
     severethreshold_ = maxf1Score['severe_threshold'].values[0]
     nonseverethreshold_ = maxf1Score['nonsevere_threshold'].values[0]
     
-    return severethreshold_, nonseverethreshold_ 
+    return severethreshold_, nonseverethreshold_
 
 #Function that creates a dictioanry on the best threshold and tests with testing dataset
 def lexicon_classifier(severethreshold_,nonseverethreshold_,testing_data,payload_train):
@@ -512,6 +662,8 @@ def lexicon_classifier(severethreshold_,nonseverethreshold_,testing_data,payload
     lexicon_classifier_results = dictionary_onthresholds(severethreshold_,nonseverethreshold_,testing_data,payload_train)
   
     return lexicon_classifier_results
+
+
 
 
 ############### outerloop breakdown ends #############

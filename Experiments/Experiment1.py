@@ -37,6 +37,8 @@ bugs_df.drop(indexSevere , inplace=True)
 indexSevere = bugs_df[ (bugs_df['Type'] == 'task') & (bugs_df['Type'] == 'task') ].index
 bugs_df.drop(indexSevere , inplace=True)
 
+bugs_df = bugs_df.head(1000)
+
 
 #Catagorise the severity level into a Severe and Non Severe to make it a binary problem
 bugs_df.loc[bugs_df["Severity"] == "blocker", "Severity"] = 'Severe'
@@ -61,7 +63,7 @@ file1 = open("output_Experiment1.txt", "w")  # write mode
 list_of_random_seeds = []
 
   
-for i in range(0,10):
+for i in range(0,2):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -133,7 +135,7 @@ for i in range(0,10):
  #--------------------------------ML Models -----------------------------------------------#
     mlclassifierresp =  helper.mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data,rs)
     
-    print(mlclassifierresp)
+#     print(mlclassifierresp)
     ml_resp_eachiteration = mlclassifierresp
     mlresponse_list.append(ml_resp_eachiteration)
 #     print(mlresponse_list)
