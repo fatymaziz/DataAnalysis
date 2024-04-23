@@ -8,7 +8,6 @@ import nltk
 nltk.download('wordnet')
 import nltk
 nltk.download('stopwords')
-nltk.download('omw-1.4')
 import collections
 import random
 import itertools
@@ -484,7 +483,7 @@ def evaluate_lexicon_classifer(severe_threshold, nonsevere_threshold, dataset, p
     Returns: confusion matrix, accuracy scores, f1score-severe f1score-nonsevere,recall,precision, f1score-average
     """
 
-    severedictionary_list,nonseveredictionary_list,severe_threshold,nonsevere_threshold = dictionary_onthresholds(severe_threshold, nonsevere_threshold, payload_train)
+    severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = dictionary_onthresholds(severe_threshold, nonsevere_threshold, payload_train)
 
     dataset["Summary"] = dataset["Summary"].apply(lambda x: nlpsteps(x))
     
@@ -743,7 +742,7 @@ def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
 
 def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data, rs):
     """
-    Tokenise, train validate and test the machine learning models i.e SVM, Logistic Regression, Nayes Bayes
+    Tokenise, train validate and test the machine learning models i.e SVm, Logistic Regression, Nayes Bayes
 
     Args:
         trainingdataset_length: size of training dataset
@@ -793,18 +792,15 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         cv = CountVectorizer(max_features = i)
         X_train = cv.fit_transform(trainingdata_tokenised).toarray()
         Y_train = training_data.iloc[:, -2].values
-       
-        validationdata_vector = cv.transform(validationdata_tokenised)
-        X_validation = validationdata_vector.toarray()
-        y_validation = validation_data_df.iloc[:, -2].values
-        
         testingdata_vector = cv.transform(testingdata_tokenised)
         X_test = testingdata_vector.toarray()
         y_test = testing_data_df.iloc[:, -2].values
+        validationdata_vector = cv.transform(validationdata_tokenised)
+        X_validation = validationdata_vector.toarray()
+        y_validation = validation_data_df.iloc[:, -2].values
 
         ml_endtime_preprocess = cpuexecutiontime()
         ml_preprocess_cputime = ml_endtime_preprocess - ml_starttime_preprocess
-        
 
     #------------------------------------SVM------------------------------------------------------------------
         SVM_learner_starttime = cpuexecutiontime()
@@ -825,12 +821,9 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         SVM_classifier_starttime = cpuexecutiontime()
         svm_pred = svm_model.predict(X_test)
         svm_model = confusion_matrix(y_test, svm_pred)
-        
-        
         #convert to numpy
         numpy_array_CM = np.array(svm_model)
         _svm_model = numpy_array_CM.tolist()
-       
         
         
 #         print("------------------------Confusion Matrix display test-------------------")

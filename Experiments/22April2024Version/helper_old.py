@@ -8,7 +8,6 @@ import nltk
 nltk.download('wordnet')
 import nltk
 nltk.download('stopwords')
-nltk.download('omw-1.4')
 import collections
 import random
 import itertools
@@ -441,7 +440,7 @@ def classifier(Summary,severedictionary_list,nonseveredictionary_list):
     return tag
     
 # Function that creates dictionary on different threholds and tests with validation data and returns the confusion matrix and accuracy scores of each dictionary
-def dictionary_onthresholds(severe_threshold, nonsevere_threshold, payload_train):
+def dictionary_onthresholds(severe_threshold, nonsevere_threshold, dataset, payload_train):
     """
     Create dictionaries on each combination of severe and nonsevere threshold
 
@@ -468,30 +467,10 @@ def dictionary_onthresholds(severe_threshold, nonsevere_threshold, payload_train
     
     nonseveredictionary_list = list(nonsevere_dictionary.keys())
     
-    return severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold
     
-    
-def evaluate_lexicon_classifer(severe_threshold, nonsevere_threshold, dataset, payload_train):
-    """
-    Create dictionaries on each combination of severe and nonsevere threshold
-
-    Args:
-        severe_threshold: threshold set manually for severe from 00.1 to 1.0
-        nonsevere_threshold: threshold set manually for nonsevere from 0.1 to 1.0
-        dataset: Validation dataset for testing the created dictionaries on each combination of threshold
-        payload_train: Dictionary having words with its counts as severe and nonsevere from the training dataset
-      
-    Returns: confusion matrix, accuracy scores, f1score-severe f1score-nonsevere,recall,precision, f1score-average
-    """
-
-    severedictionary_list,nonseveredictionary_list,severe_threshold,nonsevere_threshold = dictionary_onthresholds(severe_threshold, nonsevere_threshold, payload_train)
-
-    dataset["Summary"] = dataset["Summary"].apply(lambda x: nlpsteps(x))
+    dataset["Summary"]  = dataset["Summary"].apply(lambda x: nlpsteps(x))
     
     dataset["my_tag"] = dataset["Summary"].apply(lambda x: classifier(x,severedictionary_list,nonseveredictionary_list))
-    
-    
-#     print(dataset.loc[:, ["Summary","Severity","my_tag"]]) # DEMO Test Example print in the console
     
     
     TP = 0 
@@ -635,8 +614,7 @@ def lexicon_learner(payload_train,validation_data):
      #counts for bugs category wise until here
        
         
-#         count = dictionary_onthresholds(severe_randomthreshold,nonsevere_randomthreshold,validation_data, payload_train)
-        count = evaluate_lexicon_classifer(severe_randomthreshold,nonsevere_randomthreshold,validation_data,payload_train)
+        count = dictionary_onthresholds(severe_randomthreshold,nonsevere_randomthreshold,validation_data, payload_train)
        
         result_dictionary = {
          "severe_threshold": severe_randomthreshold,
@@ -670,7 +648,7 @@ def lexicon_learner(payload_train,validation_data):
 #Function that creates a dictioanry on the best threshold and tests with testing dataset
 def lexicon_classifier(severethreshold_,nonseverethreshold_,testing_data,payload_train):
     """
-    Test the best created dictionary with testing dataset
+    Create a dictionary on the best thresholds and test the created dictionary with testing dataset
 
     Args:
         severethreshold_: best severe threshold
@@ -681,7 +659,7 @@ def lexicon_classifier(severethreshold_,nonseverethreshold_,testing_data,payload
     Returns: confusion matrix, f1score-severe. f1score-nonsevere, f1score-average, accuracy-score
     """
     
-    lexicon_classifier_results = evaluate_lexicon_classifer(severethreshold_,nonseverethreshold_,testing_data,payload_train)
+    lexicon_classifier_results = dictionary_onthresholds(severethreshold_,nonseverethreshold_,testing_data,payload_train)
   
     return lexicon_classifier_results
 
@@ -743,7 +721,7 @@ def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
 
 def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data, rs):
     """
-    Tokenise, train validate and test the machine learning models i.e SVM, Logistic Regression, Nayes Bayes
+    Tokenise, train validate and test the machine learning models i.e SVm, Logistic Regression, Nayes Bayes
 
     Args:
         trainingdataset_length: size of training dataset
@@ -793,18 +771,15 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         cv = CountVectorizer(max_features = i)
         X_train = cv.fit_transform(trainingdata_tokenised).toarray()
         Y_train = training_data.iloc[:, -2].values
-       
-        validationdata_vector = cv.transform(validationdata_tokenised)
-        X_validation = validationdata_vector.toarray()
-        y_validation = validation_data_df.iloc[:, -2].values
-        
         testingdata_vector = cv.transform(testingdata_tokenised)
         X_test = testingdata_vector.toarray()
         y_test = testing_data_df.iloc[:, -2].values
+        validationdata_vector = cv.transform(validationdata_tokenised)
+        X_validation = validationdata_vector.toarray()
+        y_validation = validation_data_df.iloc[:, -2].values
 
         ml_endtime_preprocess = cpuexecutiontime()
         ml_preprocess_cputime = ml_endtime_preprocess - ml_starttime_preprocess
-        
 
     #------------------------------------SVM------------------------------------------------------------------
         SVM_learner_starttime = cpuexecutiontime()
@@ -825,12 +800,9 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         SVM_classifier_starttime = cpuexecutiontime()
         svm_pred = svm_model.predict(X_test)
         svm_model = confusion_matrix(y_test, svm_pred)
-        
-        
         #convert to numpy
         numpy_array_CM = np.array(svm_model)
         _svm_model = numpy_array_CM.tolist()
-       
         
         
 #         print("------------------------Confusion Matrix display test-------------------")

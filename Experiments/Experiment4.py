@@ -62,6 +62,8 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
+# bugs_df = bugs_df.head(500)
+
 
 dictionary_list = []
 mlresponse_list = []
@@ -132,6 +134,17 @@ for i in range(0,10):
     dictionary_list.append(dictionary_resp_eachiteration)
 #     print(dictionary_list)
     
+     #----------------------------Static Dictionary----------------------------------------#
+
+    lexicon_classifer_start_time = helper.cpuexecutiontime()
+    severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helper.dictionary_onthresholds(severethreshold,nonseverethreshold,payload_train)
+    
+    # Add both severe and non severe lists in a dictionary
+    static_dict_resp = {'Severe Lexicons': severedictionary_list, 'NonSevere Lexicon': nonseveredictionary_list }
+ 
+
+    lexicon_classifer_end_time = helper.cpuexecutiontime()
+    lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
       
     
     print("*************************Dictionary Ends**************************")
@@ -192,6 +205,10 @@ with open('ml_results4.json', 'w') as json_file:
 # store average ML results as JSON
 with open('ml_average_results4.json', 'w') as json_file:
      json.dump(average_ml_json_data, json_file)
+        
+# store a General static dictionary with no bugs with status Normal as json
+with open('static_dictionary_General_2.json', 'w') as json_file:
+     json.dump(static_dict_resp, json_file,indent=2)
         
 
 #write response of dictionary and Ml CLassifiers in the txt file
