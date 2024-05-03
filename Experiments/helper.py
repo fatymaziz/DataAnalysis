@@ -425,6 +425,7 @@ def classifier(Summary,severedictionary_list,nonseveredictionary_list):
     mytest_severe = len(set(severedictionary_list).intersection(summaryList))
     mytest_nonsevere = len(set(nonseveredictionary_list).intersection(summaryList))
     
+    
     if mytest_severe > mytest_nonsevere:
         tag = "Severe"
     elif mytest_severe < mytest_nonsevere:
@@ -441,6 +442,7 @@ def classifier(Summary,severedictionary_list,nonseveredictionary_list):
     return tag
     
 # Function that creates dictionary on different threholds and tests with validation data and returns the confusion matrix and accuracy scores of each dictionary
+
 def dictionary_onthresholds(severe_threshold, nonsevere_threshold, payload_train):
     """
     Create dictionaries on each combination of severe and nonsevere threshold
@@ -448,32 +450,63 @@ def dictionary_onthresholds(severe_threshold, nonsevere_threshold, payload_train
     Args:
         severe_threshold: threshold set manually for severe from 00.1 to 1.0
         nonsevere_threshold: threshold set manually for nonsevere from 0.1 to 1.0
-        dataset: Validation dataset for testing the created dictionaries on each combination of threshold
         payload_train: Dictionary having words with its counts as severe and nonsevere from the training dataset
       
-    Returns: confusion matrix, accuracy scores, f1score-severe f1score-nonsevere,recall,precision, f1score-average
+    Returns: severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold
     """
-
+    
     severe_dictionary = {}
     nonsevere_dictionary = {}
-    
+
     for keyy in payload_train:
-        if payload_train[keyy]['r1'] >= severe_threshold:
-            severe_dictionary[keyy] = payload_train[keyy]
-        
-        if payload_train[keyy]['r2'] >= nonsevere_threshold:
-            nonsevere_dictionary[keyy] = payload_train[keyy]
+        # Check for 'r1' existence and value for severe threshold
+        if 'r1' in payload_train[keyy] and payload_train[keyy]['r1'] >= severe_threshold:
+            severe_dictionary[keyy] = {'ratio': payload_train[keyy]['r1']}  # Store value and ratio
+
+        # Check for 'r2' existence and value for non-severe threshold
+        if 'r2' in payload_train[keyy] and payload_train[keyy]['r2'] >= nonsevere_threshold:
+            nonsevere_dictionary[keyy] = {'ratio': payload_train[keyy]['r2']}  # Store value and ratio
             
-    severedictionary_list = list(severe_dictionary.keys())
+
+    return severe_dictionary, nonsevere_dictionary, severe_threshold, nonsevere_threshold    
+
+def merge_and_dedupe_lexicons(severe_lexicon, non_severe_lexicon):
+    """
+    Merges severe and non-severe lexicons, keeping only the highest ratio word.
+
+    Args:
+      severe_lexicon (dict): The severe lexicon with words as keys and ratios as values.
+      non_severe_lexicon (dict): The non-severe lexicon with words as keys and ratios as values.
+
+    Returns:
+      dict: The merged lexicon with duplicates removed and highest ratios preserved.
+    """
+    common_words = set(severe_lexicon.keys()) & set(non_severe_lexicon.keys())
+    print("common_words", common_words)
+    filtered_severe_lexicon = {word: severe_lexicon[word] for word in severe_lexicon if word not in common_words}
+    print("filtered_severe_lexicon", filtered_severe_lexicon)
     
-    nonseveredictionary_list = list(nonsevere_dictionary.keys())
-    
-    return severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold
-    
+    for word in common_words:
+        if word in severe_lexicon and word in non_severe_lexicon:
+            ratio_severe = severe_lexicon[word]
+            ratio_non_severe = non_severe_lexicon[word]
+            
+            severe_ratio_ = ratio_severe['ratio']
+            non_severe_ratio_ = ratio_non_severe['ratio']
+
+        # Access the value (ratio) associated with the word in each dictionary
+        if severe_ratio_ >= non_severe_ratio_:  # Compare the ratios
+            filtered_severe_lexicon[word] = ratio_severe
+        else:
+            non_severe_lexicon[word] = ratio_non_severe
+    return {**filtered_severe_lexicon, **non_severe_lexicon}
+
+
+
     
 def evaluate_lexicon_classifer(severe_threshold, nonsevere_threshold, dataset, payload_train):
     """
-    Create dictionaries on each combination of severe and nonsevere threshold
+    Evaluate the created dictionaires on each combination of severe nonsevere threshold
 
     Args:
         severe_threshold: threshold set manually for severe from 00.1 to 1.0
@@ -765,6 +798,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
     for i in range(0,trainingdataset_length):
         review_train = nlpsteps(str(training_data_df['Summary'][i]))
         trainingdata_tokenised.append(review_train)
+        
 
     #Tokenised the testing data
     testingdata_tokenised = []
@@ -777,6 +811,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
     for i in range(0,validationdataset_length):
         review_validation = nlpsteps(str(validation_data_df['Summary'][i]))
         validationdata_tokenised.append(review_validation)
+   
 
 
     max_feature_list = []
@@ -793,17 +828,26 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         cv = CountVectorizer(max_features = i)
         X_train = cv.fit_transform(trainingdata_tokenised).toarray()
         Y_train = training_data.iloc[:, -2].values
-       
-        validationdata_vector = cv.transform(validationdata_tokenised)
-        X_validation = validationdata_vector.toarray()
-        y_validation = validation_data_df.iloc[:, -2].values
-        
         testingdata_vector = cv.transform(testingdata_tokenised)
         X_test = testingdata_vector.toarray()
         y_test = testing_data_df.iloc[:, -2].values
+        validationdata_vector = cv.transform(validationdata_tokenised)
+        X_validation = validationdata_vector.toarray()
+        y_validation = validation_data_df.iloc[:, -2].values
+       
 
         ml_endtime_preprocess = cpuexecutiontime()
         ml_preprocess_cputime = ml_endtime_preprocess - ml_starttime_preprocess
+        
+        
+#         #------------ test purpose, remove later------------------------
+#         print("X_train", X_train)
+#         print("Y_train", Y_train)
+#         print("X_validation", X_train)
+#         print("y_validation", Y_train)
+#         print("X_test", y_test)
+#         print("y_test", Y_train)
+        #------------ test purpose, remove later------------------------
         
 
     #------------------------------------SVM------------------------------------------------------------------
