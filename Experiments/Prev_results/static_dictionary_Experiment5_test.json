@@ -1,0 +1,4737 @@
+{
+  "Severe Lexicons": {
+    "would": {
+      "ratio": 1.0
+    },
+    "compiled": {
+      "ratio": 1.0
+    },
+    "flexible": {
+      "ratio": 1.0
+    },
+    "acquire": {
+      "ratio": 1.0
+    },
+    "occurring": {
+      "ratio": 1.0
+    },
+    "accepting": {
+      "ratio": 1.0
+    },
+    "structural": {
+      "ratio": 1.0
+    },
+    "processing": {
+      "ratio": 1.0
+    },
+    "deployables": {
+      "ratio": 1.0
+    },
+    "concatinated": {
+      "ratio": 1.0
+    },
+    "response": {
+      "ratio": 1.0
+    },
+    "slowly": {
+      "ratio": 1.0
+    },
+    "duriing": {
+      "ratio": 1.0
+    },
+    "every": {
+      "ratio": 1.0
+    },
+    "yhe": {
+      "ratio": 1.0
+    },
+    "obselete": {
+      "ratio": 1.0
+    },
+    "national": {
+      "ratio": 1.0
+    },
+    "nillable": {
+      "ratio": 1.0
+    },
+    "stub": {
+      "ratio": 0.5
+    },
+    "builder": {
+      "ratio": 0.5
+    },
+    "emf": {
+      "ratio": 0.5
+    },
+    "navigator": {
+      "ratio": 0.5
+    },
+    "expected": {
+      "ratio": 0.5
+    },
+    "slow": {
+      "ratio": 0.5
+    },
+    "second": {
+      "ratio": 0.5
+    },
+    "length": {
+      "ratio": 0.5
+    },
+    "showing": {
+      "ratio": 0.5
+    },
+    "triggered": {
+      "ratio": 0.5
+    },
+    "mix": {
+      "ratio": 0.5
+    },
+    "accept": {
+      "ratio": 0.5
+    },
+    "adding": {
+      "ratio": 0.4
+    },
+    "root": {
+      "ratio": 0.4
+    },
+    "zero": {
+      "ratio": 0.3333333333333333
+    },
+    "workbench": {
+      "ratio": 0.3333333333333333
+    },
+    "dynamic": {
+      "ratio": 0.3333333333333333
+    },
+    "embedded": {
+      "ratio": 0.3333333333333333
+    },
+    "creating": {
+      "ratio": 0.3333333333333333
+    },
+    "find": {
+      "ratio": 0.3333333333333333
+    },
+    "trigger": {
+      "ratio": 0.3333333333333333
+    },
+    "browse": {
+      "ratio": 0.3333333333333333
+    },
+    "mf": {
+      "ratio": 0.3333333333333333
+    },
+    "child": {
+      "ratio": 0.3333333333333333
+    },
+    "browser": {
+      "ratio": 0.3333333333333333
+    },
+    "gt": {
+      "ratio": 0.3333333333333333
+    },
+    "pick": {
+      "ratio": 0.3333333333333333
+    },
+    "debug": {
+      "ratio": 0.3
+    },
+    "wse": {
+      "ratio": 0.2857142857142857
+    },
+    "cannot": {
+      "ratio": 0.2857142857142857
+    },
+    "scenario": {
+      "ratio": 0.2857142857142857
+    },
+    "allows": {
+      "ratio": 0.25
+    },
+    "runtimes": {
+      "ratio": 0.25
+    },
+    "automatically": {
+      "ratio": 0.25
+    },
+    "requires": {
+      "ratio": 0.25
+    },
+    "operation": {
+      "ratio": 0.25
+    },
+    "externalized": {
+      "ratio": 0.25
+    },
+    "deploy": {
+      "ratio": 0.2222222222222222
+    },
+    "imported": {
+      "ratio": 0.2
+    },
+    "external": {
+      "ratio": 0.2
+    },
+    "component": {
+      "ratio": 0.2
+    },
+    "called": {
+      "ratio": 0.2
+    },
+    "character": {
+      "ratio": 0.2
+    },
+    "dispose": {
+      "ratio": 0.2
+    },
+    "enablement": {
+      "ratio": 0.2
+    },
+    "write": {
+      "ratio": 0.2
+    },
+    "existing": {
+      "ratio": 0.18181818181818182
+    },
+    "running": {
+      "ratio": 0.18181818181818182
+    },
+    "acc": {
+      "ratio": 0.18181818181818182
+    },
+    "generic": {
+      "ratio": 0.16666666666666666
+    },
+    "contains": {
+      "ratio": 0.16666666666666666
+    },
+    "module": {
+      "ratio": 0.15625
+    },
+    "validator": {
+      "ratio": 0.15384615384615385
+    },
+    "bug": {
+      "ratio": 0.14814814814814814
+    },
+    "many": {
+      "ratio": 0.14285714285714285
+    },
+    "allow": {
+      "ratio": 0.14285714285714285
+    },
+    "resource": {
+      "ratio": 0.14285714285714285
+    },
+    "bundle": {
+      "ratio": 0.14285714285714285
+    },
+    "process": {
+      "ratio": 0.14285714285714285
+    },
+    "uri": {
+      "ratio": 0.13793103448275862
+    },
+    "import": {
+      "ratio": 0.13636363636363635
+    },
+    "exist": {
+      "ratio": 0.13636363636363635
+    },
+    "jar": {
+      "ratio": 0.13333333333333333
+    },
+    "sse": {
+      "ratio": 0.13333333333333333
+    },
+    "selection": {
+      "ratio": 0.13333333333333333
+    },
+    "run": {
+      "ratio": 0.125
+    },
+    "access": {
+      "ratio": 0.125
+    },
+    "provider": {
+      "ratio": 0.125
+    },
+    "opening": {
+      "ratio": 0.125
+    },
+    "call": {
+      "ratio": 0.125
+    },
+    "service": {
+      "ratio": 0.12121212121212122
+    },
+    "mode": {
+      "ratio": 0.12
+    },
+    "arch": {
+      "ratio": 0.11764705882352941
+    },
+    "port": {
+      "ratio": 0.11702127659574468
+    },
+    "string": {
+      "ratio": 0.1111111111111111
+    },
+    "using": {
+      "ratio": 0.1111111111111111
+    },
+    "epl": {
+      "ratio": 0.1111111111111111
+    },
+    "panel": {
+      "ratio": 0.1111111111111111
+    },
+    "object": {
+      "ratio": 0.1111111111111111
+    },
+    "dep": {
+      "ratio": 0.1111111111111111
+    },
+    "non": {
+      "ratio": 0.10526315789473684
+    },
+    "library": {
+      "ratio": 0.1
+    },
+    "build": {
+      "ratio": 0.1
+    },
+    "target": {
+      "ratio": 0.1
+    },
+    "issue": {
+      "ratio": 0.1
+    },
+    "rename": {
+      "ratio": 0.1
+    },
+    "api": {
+      "ratio": 0.1
+    },
+    "compile": {
+      "ratio": 0.1
+    },
+    "one": {
+      "ratio": 0.1
+    },
+    "unc": {
+      "ratio": 0.1
+    },
+    "cc": {
+      "ratio": 0.1
+    }
+  },
+  "NonSevere Lexicon": {
+    "preced": {
+      "ratio": 1.0
+    },
+    "clean": {
+      "ratio": 1.0
+    },
+    "compilation": {
+      "ratio": 1.0
+    },
+    "warning": {
+      "ratio": 1.0
+    },
+    "internet": {
+      "ratio": 1.0
+    },
+    "plugins": {
+      "ratio": 1.0
+    },
+    "typo": {
+      "ratio": 1.0
+    },
+    "directive": {
+      "ratio": 1.0
+    },
+    "long": {
+      "ratio": 1.0
+    },
+    "xml": {
+      "ratio": 1.0
+    },
+    "content": {
+      "ratio": 1.0
+    },
+    "different": {
+      "ratio": 1.0
+    },
+    "associated": {
+      "ratio": 1.0
+    },
+    "java": {
+      "ratio": 1.0
+    },
+    "method": {
+      "ratio": 1.0
+    },
+    "invalid": {
+      "ratio": 1.0
+    },
+    "error": {
+      "ratio": 1.0
+    },
+    "reported": {
+      "ratio": 1.0
+    },
+    "ear": {
+      "ratio": 1.0
+    },
+    "collection": {
+      "ratio": 1.0
+    },
+    "attribute": {
+      "ratio": 1.0
+    },
+    "initialized": {
+      "ratio": 1.0
+    },
+    "tct": {
+      "ratio": 1.0
+    },
+    "truncation": {
+      "ratio": 1.0
+    },
+    "default": {
+      "ratio": 1.0
+    },
+    "value": {
+      "ratio": 1.0
+    },
+    "property": {
+      "ratio": 1.0
+    },
+    "xsd": {
+      "ratio": 1.0
+    },
+    "documentation": {
+      "ratio": 1.0
+    },
+    "section": {
+      "ratio": 1.0
+    },
+    "editing": {
+      "ratio": 1.0
+    },
+    "inline": {
+      "ratio": 1.0
+    },
+    "truncated": {
+      "ratio": 1.0
+    },
+    "empty": {
+      "ratio": 1.0
+    },
+    "related": {
+      "ratio": 1.0
+    },
+    "concept": {
+      "ratio": 1.0
+    },
+    "binary": {
+      "ratio": 1.0
+    },
+    "entity": {
+      "ratio": 1.0
+    },
+    "without": {
+      "ratio": 1.0
+    },
+    "constructor": {
+      "ratio": 1.0
+    },
+    "cxf": {
+      "ratio": 1.0
+    },
+    "test": {
+      "ratio": 1.0
+    },
+    "hanging": {
+      "ratio": 1.0
+    },
+    "space": {
+      "ratio": 1.0
+    },
+    "moudle": {
+      "ratio": 1.0
+    },
+    "shared": {
+      "ratio": 1.0
+    },
+    "mutiple": {
+      "ratio": 1.0
+    },
+    "rule": {
+      "ratio": 1.0
+    },
+    "deployment": {
+      "ratio": 1.0
+    },
+    "assembly": {
+      "ratio": 1.0
+    },
+    "read": {
+      "ratio": 1.0
+    },
+    "define": {
+      "ratio": 1.0
+    },
+    "packaging": {
+      "ratio": 1.0
+    },
+    "structure": {
+      "ratio": 1.0
+    },
+    "ee": {
+      "ratio": 1.0
+    },
+    "application": {
+      "ratio": 1.0
+    },
+    "static": {
+      "ratio": 1.0
+    },
+    "plug": {
+      "ratio": 1.0
+    },
+    "spelling": {
+      "ratio": 1.0
+    },
+    "paint": {
+      "ratio": 1.0
+    },
+    "like": {
+      "ratio": 1.0
+    },
+    "custom": {
+      "ratio": 1.0
+    },
+    "directory": {
+      "ratio": 1.0
+    },
+    "reflected": {
+      "ratio": 1.0
+    },
+    "explorer": {
+      "ratio": 1.0
+    },
+    "publish": {
+      "ratio": 1.0
+    },
+    "console": {
+      "ratio": 1.0
+    },
+    "ant": {
+      "ratio": 1.0
+    },
+    "task": {
+      "ratio": 1.0
+    },
+    "search": {
+      "ratio": 1.0
+    },
+    "uddi": {
+      "ratio": 1.0
+    },
+    "possible": {
+      "ratio": 1.0
+    },
+    "junit": {
+      "ratio": 1.0
+    },
+    "encoding": {
+      "ratio": 1.0
+    },
+    "charset": {
+      "ratio": 1.0
+    },
+    "sensitive": {
+      "ratio": 1.0
+    },
+    "exact": {
+      "ratio": 1.0
+    },
+    "vm": {
+      "ratio": 1.0
+    },
+    "used": {
+      "ratio": 1.0
+    },
+    "npe": {
+      "ratio": 1.0
+    },
+    "html": {
+      "ratio": 1.0
+    },
+    "editor": {
+      "ratio": 1.0
+    },
+    "close": {
+      "ratio": 1.0
+    },
+    "failure": {
+      "ratio": 1.0
+    },
+    "field": {
+      "ratio": 1.0
+    },
+    "refresh": {
+      "ratio": 1.0
+    },
+    "need": {
+      "ratio": 1.0
+    },
+    "hold": {
+      "ratio": 1.0
+    },
+    "receive": {
+      "ratio": 1.0
+    },
+    "unhandled": {
+      "ratio": 1.0
+    },
+    "event": {
+      "ratio": 1.0
+    },
+    "loop": {
+      "ratio": 1.0
+    },
+    "change": {
+      "ratio": 1.0
+    },
+    "jpa": {
+      "ratio": 1.0
+    },
+    "apply": {
+      "ratio": 1.0
+    },
+    "updating": {
+      "ratio": 1.0
+    },
+    "correctly": {
+      "ratio": 1.0
+    },
+    "mapping": {
+      "ratio": 1.0
+    },
+    "added": {
+      "ratio": 1.0
+    },
+    "javadoc": {
+      "ratio": 1.0
+    },
+    "refers": {
+      "ratio": 1.0
+    },
+    "nonexistent": {
+      "ratio": 1.0
+    },
+    "servlet": {
+      "ratio": 1.0
+    },
+    "right": {
+      "ratio": 1.0
+    },
+    "left": {
+      "ratio": 1.0
+    },
+    "viewed": {
+      "ratio": 1.0
+    },
+    "incorrectly": {
+      "ratio": 1.0
+    },
+    "tag": {
+      "ratio": 1.0
+    },
+    "marked": {
+      "ratio": 1.0
+    },
+    "wrong": {
+      "ratio": 1.0
+    },
+    "xpath": {
+      "ratio": 1.0
+    },
+    "within": {
+      "ratio": 1.0
+    },
+    "xsl": {
+      "ratio": 1.0
+    },
+    "document": {
+      "ratio": 1.0
+    },
+    "ibm": {
+      "ratio": 1.0
+    },
+    "icu": {
+      "ratio": 1.0
+    },
+    "package": {
+      "ratio": 1.0
+    },
+    "specified": {
+      "ratio": 1.0
+    },
+    "minimum": {
+      "ratio": 1.0
+    },
+    "found": {
+      "ratio": 1.0
+    },
+    "higher": {
+      "ratio": 1.0
+    },
+    "present": {
+      "ratio": 1.0
+    },
+    "translation": {
+      "ratio": 1.0
+    },
+    "missing": {
+      "ratio": 1.0
+    },
+    "mnemonic": {
+      "ratio": 1.0
+    },
+    "key": {
+      "ratio": 1.0
+    },
+    "global": {
+      "ratio": 1.0
+    },
+    "supertype": {
+      "ratio": 1.0
+    },
+    "recognise": {
+      "ratio": 1.0
+    },
+    "changing": {
+      "ratio": 1.0
+    },
+    "make": {
+      "ratio": 1.0
+    },
+    "necessary": {
+      "ratio": 1.0
+    },
+    "edits": {
+      "ratio": 1.0
+    },
+    "steal": {
+      "ratio": 1.0
+    },
+    "focus": {
+      "ratio": 1.0
+    },
+    "first": {
+      "ratio": 1.0
+    },
+    "opened": {
+      "ratio": 1.0
+    },
+    "render": {
+      "ratio": 1.0
+    },
+    "image": {
+      "ratio": 1.0
+    },
+    "url": {
+      "ratio": 1.0
+    },
+    "preview": {
+      "ratio": 1.0
+    },
+    "param": {
+      "ratio": 1.0
+    },
+    "bold": {
+      "ratio": 1.0
+    },
+    "hover": {
+      "ratio": 1.0
+    },
+    "range": {
+      "ratio": 1.0
+    },
+    "saving": {
+      "ratio": 1.0
+    },
+    "detail": {
+      "ratio": 1.0
+    },
+    "wsil": {
+      "ratio": 1.0
+    },
+    "containing": {
+      "ratio": 1.0
+    },
+    "tomcat": {
+      "ratio": 1.0
+    },
+    "workspace": {
+      "ratio": 1.0
+    },
+    "drive": {
+      "ratio": 1.0
+    },
+    "outline": {
+      "ratio": 1.0
+    },
+    "parameter": {
+      "ratio": 1.0
+    },
+    "line": {
+      "ratio": 1.0
+    },
+    "remove": {
+      "ratio": 1.0
+    },
+    "wtp": {
+      "ratio": 1.0
+    },
+    "facet": {
+      "ratio": 1.0
+    },
+    "unclear": {
+      "ratio": 1.0
+    },
+    "needed": {
+      "ratio": 1.0
+    },
+    "base": {
+      "ratio": 1.0
+    },
+    "doc": {
+      "ratio": 1.0
+    },
+    "creates": {
+      "ratio": 1.0
+    },
+    "eclipselink": {
+      "ratio": 1.0
+    },
+    "dfdsfsdfsdf": {
+      "ratio": 1.0
+    },
+    "always": {
+      "ratio": 1.0
+    },
+    "return": {
+      "ratio": 1.0
+    },
+    "true": {
+      "ratio": 1.0
+    },
+    "regardless": {
+      "ratio": 1.0
+    },
+    "modulecore": {
+      "ratio": 1.0
+    },
+    "multiple": {
+      "ratio": 1.0
+    },
+    "declaration": {
+      "ratio": 1.0
+    },
+    "cs": {
+      "ratio": 1.0
+    },
+    "vertical": {
+      "ratio": 1.0
+    },
+    "align": {
+      "ratio": 1.0
+    },
+    "assist": {
+      "ratio": 1.0
+    },
+    "list": {
+      "ratio": 1.0
+    },
+    "top": {
+      "ratio": 1.0
+    },
+    "twice": {
+      "ratio": 1.0
+    },
+    "color": {
+      "ratio": 1.0
+    },
+    "look": {
+      "ratio": 1.0
+    },
+    "bad": {
+      "ratio": 1.0
+    },
+    "mac": {
+      "ratio": 1.0
+    },
+    "failing": {
+      "ratio": 1.0
+    },
+    "unrecognized": {
+      "ratio": 1.0
+    },
+    "muted": {
+      "ratio": 1.0
+    },
+    "video": {
+      "ratio": 1.0
+    },
+    "complex": {
+      "ratio": 1.0
+    },
+    "deleted": {
+      "ratio": 1.0
+    },
+    "making": {
+      "ratio": 1.0
+    },
+    "inherit": {
+      "ratio": 1.0
+    },
+    "another": {
+      "ratio": 1.0
+    },
+    "jsf": {
+      "ratio": 1.0
+    },
+    "cv": {
+      "ratio": 1.0
+    },
+    "datatype": {
+      "ratio": 1.0
+    },
+    "updated": {
+      "ratio": 1.0
+    },
+    "proposal": {
+      "ratio": 1.0
+    },
+    "inside": {
+      "ratio": 1.0
+    },
+    "fieldset": {
+      "ratio": 1.0
+    },
+    "session": {
+      "ratio": 1.0
+    },
+    "bean": {
+      "ratio": 1.0
+    },
+    "result": {
+      "ratio": 1.0
+    },
+    "duplicate": {
+      "ratio": 1.0
+    },
+    "entry": {
+      "ratio": 1.0
+    },
+    "wrongly": {
+      "ratio": 1.0
+    },
+    "warns": {
+      "ratio": 1.0
+    },
+    "null": {
+      "ratio": 1.0
+    },
+    "pointer": {
+      "ratio": 1.0
+    },
+    "status": {
+      "ratio": 1.0
+    },
+    "importing": {
+      "ratio": 1.0
+    },
+    "maven": {
+      "ratio": 1.0
+    },
+    "parent": {
+      "ratio": 1.0
+    },
+    "smart": {
+      "ratio": 1.0
+    },
+    "fault": {
+      "ratio": 1.0
+    },
+    "generated": {
+      "ratio": 1.0
+    },
+    "viewer": {
+      "ratio": 1.0
+    },
+    "configuration": {
+      "ratio": 1.0
+    },
+    "format": {
+      "ratio": 1.0
+    },
+    "thrown": {
+      "ratio": 1.0
+    },
+    "transfer": {
+      "ratio": 1.0
+    },
+    "axis": {
+      "ratio": 1.0
+    },
+    "resolve": {
+      "ratio": 1.0
+    },
+    "current": {
+      "ratio": 1.0
+    },
+    "code": {
+      "ratio": 1.0
+    },
+    "next": {
+      "ratio": 1.0
+    },
+    "finish": {
+      "ratio": 1.0
+    },
+    "disabled": {
+      "ratio": 1.0
+    },
+    "handler": {
+      "ratio": 1.0
+    },
+    "conflict": {
+      "ratio": 1.0
+    },
+    "log": {
+      "ratio": 1.0
+    },
+    "seems": {
+      "ratio": 1.0
+    },
+    "banner": {
+      "ratio": 1.0
+    },
+    "consistent": {
+      "ratio": 1.0
+    },
+    "license": {
+      "ratio": 1.0
+    },
+    "column": {
+      "ratio": 1.0
+    },
+    "append": {
+      "ratio": 1.0
+    },
+    "inserting": {
+      "ratio": 1.0
+    },
+    "script": {
+      "ratio": 1.0
+    },
+    "causing": {
+      "ratio": 1.0
+    },
+    "made": {
+      "ratio": 1.0
+    },
+    "ignore": {
+      "ratio": 1.0
+    },
+    "cause": {
+      "ratio": 1.0
+    },
+    "surround": {
+      "ratio": 1.0
+    },
+    "link": {
+      "ratio": 1.0
+    },
+    "edit": {
+      "ratio": 1.0
+    },
+    "formatter": {
+      "ratio": 1.0
+    },
+    "indent": {
+      "ratio": 1.0
+    },
+    "xhtml": {
+      "ratio": 1.0
+    },
+    "dtd": {
+      "ratio": 1.0
+    },
+    "inner": {
+      "ratio": 1.0
+    },
+    "table": {
+      "ratio": 1.0
+    },
+    "formatting": {
+      "ratio": 1.0
+    },
+    "via": {
+      "ratio": 1.0
+    },
+    "cleanup": {
+      "ratio": 1.0
+    },
+    "dirties": {
+      "ratio": 1.0
+    },
+    "patch": {
+      "ratio": 1.0
+    },
+    "renamed": {
+      "ratio": 1.0
+    },
+    "implementation": {
+      "ratio": 1.0
+    },
+    "customize": {
+      "ratio": 1.0
+    },
+    "jee": {
+      "ratio": 1.0
+    },
+    "extra": {
+      "ratio": 1.0
+    },
+    "grammer": {
+      "ratio": 1.0
+    },
+    "releng": {
+      "ratio": 1.0
+    },
+    "well": {
+      "ratio": 1.0
+    },
+    "map": {
+      "ratio": 1.0
+    },
+    "compiler": {
+      "ratio": 1.0
+    },
+    "loading": {
+      "ratio": 1.0
+    },
+    "config": {
+      "ratio": 1.0
+    },
+    "taglib": {
+      "ratio": 1.0
+    },
+    "additional": {
+      "ratio": 1.0
+    },
+    "persistence": {
+      "ratio": 1.0
+    },
+    "mapped": {
+      "ratio": 1.0
+    },
+    "scrip": {
+      "ratio": 1.0
+    },
+    "load": {
+      "ratio": 1.0
+    },
+    "breakpoints": {
+      "ratio": 1.0
+    },
+    "place": {
+      "ratio": 1.0
+    },
+    "group": {
+      "ratio": 1.0
+    },
+    "shown": {
+      "ratio": 1.0
+    },
+    "mulitple": {
+      "ratio": 1.0
+    },
+    "menu": {
+      "ratio": 1.0
+    },
+    "internal": {
+      "ratio": 1.0
+    },
+    "adt": {
+      "ratio": 1.0
+    },
+    "design": {
+      "ratio": 1.0
+    },
+    "better": {
+      "ratio": 1.0
+    },
+    "description": {
+      "ratio": 1.0
+    },
+    "etc": {
+      "ratio": 1.0
+    },
+    "set": {
+      "ratio": 1.0
+    },
+    "dialog": {
+      "ratio": 1.0
+    },
+    "mock": {
+      "ratio": 1.0
+    },
+    "width": {
+      "ratio": 1.0
+    },
+    "improve": {
+      "ratio": 1.0
+    },
+    "jsdt": {
+      "ratio": 1.0
+    },
+    "development": {
+      "ratio": 1.0
+    },
+    "debugger": {
+      "ratio": 1.0
+    },
+    "modulemap": {
+      "ratio": 1.0
+    },
+    "xmi": {
+      "ratio": 1.0
+    },
+    "refactor": {
+      "ratio": 1.0
+    },
+    "named": {
+      "ratio": 1.0
+    },
+    "fourth": {
+      "ratio": 1.0
+    },
+    "wrapping": {
+      "ratio": 1.0
+    },
+    "tab": {
+      "ratio": 1.0
+    },
+    "catalog": {
+      "ratio": 1.0
+    },
+    "store": {
+      "ratio": 1.0
+    },
+    "resolved": {
+      "ratio": 1.0
+    },
+    "location": {
+      "ratio": 1.0
+    },
+    "metadata": {
+      "ratio": 1.0
+    },
+    "incomplete": {
+      "ratio": 1.0
+    },
+    "generate": {
+      "ratio": 1.0
+    },
+    "definition": {
+      "ratio": 1.0
+    },
+    "accessible": {
+      "ratio": 1.0
+    },
+    "javascript": {
+      "ratio": 1.0
+    },
+    "tutorial": {
+      "ratio": 1.0
+    },
+    "improvement": {
+      "ratio": 1.0
+    },
+    "programmer": {
+      "ratio": 1.0
+    },
+    "framework": {
+      "ratio": 1.0
+    },
+    "snippet": {
+      "ratio": 1.0
+    },
+    "title": {
+      "ratio": 1.0
+    },
+    "window": {
+      "ratio": 1.0
+    },
+    "eye": {
+      "ratio": 1.0
+    },
+    "protocol": {
+      "ratio": 1.0
+    },
+    "starting": {
+      "ratio": 1.0
+    },
+    "df": {
+      "ratio": 1.0
+    },
+    "abstract": {
+      "ratio": 1.0
+    },
+    "collect": {
+      "ratio": 1.0
+    },
+    "probs": {
+      "ratio": 1.0
+    },
+    "common": {
+      "ratio": 1.0
+    },
+    "face": {
+      "ratio": 1.0
+    },
+    "broken": {
+      "ratio": 1.0
+    },
+    "cache": {
+      "ratio": 1.0
+    },
+    "check": {
+      "ratio": 1.0
+    },
+    "box": {
+      "ratio": 1.0
+    },
+    "since": {
+      "ratio": 1.0
+    },
+    "newly": {
+      "ratio": 1.0
+    },
+    "incorrect": {
+      "ratio": 1.0
+    },
+    "hardcoded": {
+      "ratio": 1.0
+    },
+    "delete": {
+      "ratio": 1.0
+    },
+    "enabled": {
+      "ratio": 1.0
+    },
+    "even": {
+      "ratio": 1.0
+    },
+    "main": {
+      "ratio": 1.0
+    },
+    "preselected": {
+      "ratio": 1.0
+    },
+    "state": {
+      "ratio": 1.0
+    },
+    "decorator": {
+      "ratio": 1.0
+    },
+    "english": {
+      "ratio": 1.0
+    },
+    "may": {
+      "ratio": 1.0
+    },
+    "vary": {
+      "ratio": 1.0
+    },
+    "sample": {
+      "ratio": 1.0
+    },
+    "setting": {
+      "ratio": 1.0
+    },
+    "indentation": {
+      "ratio": 1.0
+    },
+    "size": {
+      "ratio": 1.0
+    },
+    "mouse": {
+      "ratio": 1.0
+    },
+    "wheel": {
+      "ratio": 1.0
+    },
+    "occurs": {
+      "ratio": 1.0
+    },
+    "tree": {
+      "ratio": 1.0
+    },
+    "node": {
+      "ratio": 1.0
+    },
+    "dragging": {
+      "ratio": 1.0
+    },
+    "lower": {
+      "ratio": 1.0
+    },
+    "last": {
+      "ratio": 1.0
+    },
+    "wml": {
+      "ratio": 1.0
+    },
+    "honor": {
+      "ratio": 1.0
+    },
+    "case": {
+      "ratio": 1.0
+    },
+    "parser": {
+      "ratio": 1.0
+    },
+    "comment": {
+      "ratio": 1.0
+    },
+    "validated": {
+      "ratio": 1.0
+    },
+    "correct": {
+      "ratio": 1.0
+    },
+    "expression": {
+      "ratio": 1.0
+    },
+    "perspective": {
+      "ratio": 1.0
+    },
+    "considered": {
+      "ratio": 1.0
+    },
+    "minor": {
+      "ratio": 1.0
+    },
+    "enhancement": {
+      "ratio": 1.0
+    },
+    "fix": {
+      "ratio": 1.0
+    },
+    "scratch": {
+      "ratio": 1.0
+    },
+    "radio": {
+      "ratio": 1.0
+    },
+    "mistake": {
+      "ratio": 1.0
+    },
+    "constant": {
+      "ratio": 1.0
+    },
+    "suspen": {
+      "ratio": 1.0
+    },
+    "correction": {
+      "ratio": 1.0
+    },
+    "inconsistent": {
+      "ratio": 1.0
+    },
+    "hyperlink": {
+      "ratio": 1.0
+    },
+    "lack": {
+      "ratio": 1.0
+    },
+    "proper": {
+      "ratio": 1.0
+    },
+    "drag": {
+      "ratio": 1.0
+    },
+    "drop": {
+      "ratio": 1.0
+    },
+    "insert": {
+      "ratio": 1.0
+    },
+    "dropped": {
+      "ratio": 1.0
+    },
+    "resolver": {
+      "ratio": 1.0
+    },
+    "handle": {
+      "ratio": 1.0
+    },
+    "stage": {
+      "ratio": 1.0
+    },
+    "confused": {
+      "ratio": 1.0
+    },
+    "indexed": {
+      "ratio": 1.0
+    },
+    "plugin": {
+      "ratio": 1.0
+    },
+    "activated": {
+      "ratio": 1.0
+    },
+    "trying": {
+      "ratio": 1.0
+    },
+    "throw": {
+      "ratio": 1.0
+    },
+    "report": {
+      "ratio": 1.0
+    },
+    "progress": {
+      "ratio": 1.0
+    },
+    "doubleclick": {
+      "ratio": 1.0
+    },
+    "referenced": {
+      "ratio": 1.0
+    },
+    "classpath": {
+      "ratio": 1.0
+    },
+    "instance": {
+      "ratio": 1.0
+    },
+    "display": {
+      "ratio": 1.0
+    },
+    "unable": {
+      "ratio": 1.0
+    },
+    "colump": {
+      "ratio": 1.0
+    },
+    "required": {
+      "ratio": 1.0
+    },
+    "returned": {
+      "ratio": 1.0
+    },
+    "indication": {
+      "ratio": 1.0
+    },
+    "choosing": {
+      "ratio": 1.0
+    },
+    "incompatible": {
+      "ratio": 1.0
+    },
+    "choice": {
+      "ratio": 1.0
+    },
+    "restore": {
+      "ratio": 1.0
+    },
+    "policy": {
+      "ratio": 1.0
+    },
+    "monitor": {
+      "ratio": 1.0
+    },
+    "restarts": {
+      "ratio": 1.0
+    },
+    "blank": {
+      "ratio": 1.0
+    },
+    "jdk": {
+      "ratio": 1.0
+    },
+    "match": {
+      "ratio": 1.0
+    },
+    "include": {
+      "ratio": 1.0
+    },
+    "sheet": {
+      "ratio": 1.0
+    },
+    "laid": {
+      "ratio": 1.0
+    },
+    "nicely": {
+      "ratio": 1.0
+    },
+    "commonarchive": {
+      "ratio": 1.0
+    },
+    "array": {
+      "ratio": 1.0
+    },
+    "identified": {
+      "ratio": 1.0
+    },
+    "ignored": {
+      "ratio": 1.0
+    },
+    "whitespace": {
+      "ratio": 1.0
+    },
+    "resized": {
+      "ratio": 1.0
+    },
+    "control": {
+      "ratio": 1.0
+    },
+    "big": {
+      "ratio": 1.0
+    },
+    "rewording": {
+      "ratio": 1.0
+    },
+    "retrieving": {
+      "ratio": 1.0
+    },
+    "supported": {
+      "ratio": 1.0
+    },
+    "platform": {
+      "ratio": 1.0
+    },
+    "annotation": {
+      "ratio": 1.0
+    },
+    "removing": {
+      "ratio": 1.0
+    },
+    "see": {
+      "ratio": 1.0
+    },
+    "palete": {
+      "ratio": 1.0
+    },
+    "seam": {
+      "ratio": 1.0
+    },
+    "receiving": {
+      "ratio": 1.0
+    },
+    "stored": {
+      "ratio": 1.0
+    },
+    "validate": {
+      "ratio": 1.0
+    },
+    "website": {
+      "ratio": 1.0
+    },
+    "zip": {
+      "ratio": 1.0
+    },
+    "password": {
+      "ratio": 1.0
+    },
+    "protected": {
+      "ratio": 1.0
+    },
+    "correlation": {
+      "ratio": 1.0
+    },
+    "maintenance": {
+      "ratio": 1.0
+    },
+    "navigation": {
+      "ratio": 1.0
+    },
+    "information": {
+      "ratio": 1.0
+    },
+    "synchronized": {
+      "ratio": 1.0
+    },
+    "update": {
+      "ratio": 1.0
+    },
+    "nested": {
+      "ratio": 1.0
+    },
+    "ability": {
+      "ratio": 1.0
+    },
+    "distinct": {
+      "ratio": 1.0
+    },
+    "item": {
+      "ratio": 1.0
+    },
+    "fn": {
+      "ratio": 1.0
+    },
+    "respect": {
+      "ratio": 1.0
+    },
+    "disappears": {
+      "ratio": 1.0
+    },
+    "user": {
+      "ratio": 1.0
+    },
+    "topic": {
+      "ratio": 1.0
+    },
+    "rwrcview": {
+      "ratio": 1.0
+    },
+    "crash": {
+      "ratio": 1.0
+    },
+    "localhost": {
+      "ratio": 1.0
+    },
+    "already": {
+      "ratio": 1.0
+    },
+    "logged": {
+      "ratio": 1.0
+    },
+    "keyword": {
+      "ratio": 1.0
+    },
+    "highlighted": {
+      "ratio": 1.0
+    },
+    "xdoclet": {
+      "ratio": 1.0
+    },
+    "regression": {
+      "ratio": 1.0
+    },
+    "ignores": {
+      "ratio": 1.0
+    },
+    "prefilling": {
+      "ratio": 1.0
+    },
+    "folding": {
+      "ratio": 1.0
+    },
+    "documented": {
+      "ratio": 1.0
+    },
+    "renaming": {
+      "ratio": 1.0
+    },
+    "subfolder": {
+      "ratio": 1.0
+    },
+    "whose": {
+      "ratio": 1.0
+    },
+    "dot": {
+      "ratio": 1.0
+    },
+    "template": {
+      "ratio": 1.0
+    },
+    "extesion": {
+      "ratio": 1.0
+    },
+    "deprecated": {
+      "ratio": 1.0
+    },
+    "preset": {
+      "ratio": 1.0
+    },
+    "hide": {
+      "ratio": 1.0
+    },
+    "lost": {
+      "ratio": 1.0
+    },
+    "header": {
+      "ratio": 1.0
+    },
+    "command": {
+      "ratio": 1.0
+    },
+    "jump": {
+      "ratio": 1.0
+    },
+    "local": {
+      "ratio": 1.0
+    },
+    "anchor": {
+      "ratio": 1.0
+    },
+    "adjust": {
+      "ratio": 1.0
+    },
+    "viewport": {
+      "ratio": 1.0
+    },
+    "startup": {
+      "ratio": 1.0
+    },
+    "customizers": {
+      "ratio": 1.0
+    },
+    "border": {
+      "ratio": 1.0
+    },
+    "unmanaged": {
+      "ratio": 1.0
+    },
+    "fragment": {
+      "ratio": 1.0
+    },
+    "included": {
+      "ratio": 1.0
+    },
+    "good": {
+      "ratio": 1.0
+    },
+    "dark": {
+      "ratio": 1.0
+    },
+    "theme": {
+      "ratio": 1.0
+    },
+    "hard": {
+      "ratio": 1.0
+    },
+    "coded": {
+      "ratio": 1.0
+    },
+    "annotated": {
+      "ratio": 1.0
+    },
+    "codegen": {
+      "ratio": 1.0
+    },
+    "level": {
+      "ratio": 1.0
+    },
+    "final": {
+      "ratio": 1.0
+    },
+    "two": {
+      "ratio": 1.0
+    },
+    "readonly": {
+      "ratio": 1.0
+    },
+    "catch": {
+      "ratio": 1.0
+    },
+    "finally": {
+      "ratio": 1.0
+    },
+    "raise": {
+      "ratio": 1.0
+    },
+    "parse": {
+      "ratio": 1.0
+    },
+    "affect": {
+      "ratio": 1.0
+    },
+    "selects": {
+      "ratio": 1.0
+    },
+    "multiline": {
+      "ratio": 1.0
+    },
+    "autocomplete": {
+      "ratio": 1.0
+    },
+    "unnecessary": {
+      "ratio": 1.0
+    },
+    "slash": {
+      "ratio": 1.0
+    },
+    "combo": {
+      "ratio": 1.0
+    },
+    "escape": {
+      "ratio": 1.0
+    },
+    "extarcting": {
+      "ratio": 1.0
+    },
+    "downloads": {
+      "ratio": 1.0
+    },
+    "deleting": {
+      "ratio": 1.0
+    },
+    "site": {
+      "ratio": 1.0
+    },
+    "nothing": {
+      "ratio": 1.0
+    },
+    "prefix": {
+      "ratio": 1.0
+    },
+    "quote": {
+      "ratio": 1.0
+    },
+    "parsing": {
+      "ratio": 1.0
+    },
+    "removed": {
+      "ratio": 1.0
+    },
+    "webtools": {
+      "ratio": 1.0
+    },
+    "consider": {
+      "ratio": 1.0
+    },
+    "latest": {
+      "ratio": 1.0
+    },
+    "jdom": {
+      "ratio": 1.0
+    },
+    "cfg": {
+      "ratio": 1.0
+    },
+    "appears": {
+      "ratio": 1.0
+    },
+    "lot": {
+      "ratio": 1.0
+    },
+    "old": {
+      "ratio": 1.0
+    },
+    "junk": {
+      "ratio": 1.0
+    },
+    "referencing": {
+      "ratio": 1.0
+    },
+    "topology": {
+      "ratio": 1.0
+    },
+    "moved": {
+      "ratio": 1.0
+    },
+    "gulp": {
+      "ratio": 1.0
+    },
+    "contribute": {
+      "ratio": 1.0
+    },
+    "manifest": {
+      "ratio": 1.0
+    },
+    "specfic": {
+      "ratio": 1.0
+    },
+    "dependency": {
+      "ratio": 1.0
+    },
+    "permit": {
+      "ratio": 1.0
+    },
+    "illegal": {
+      "ratio": 1.0
+    },
+    "subsequent": {
+      "ratio": 1.0
+    },
+    "rtexprvalue": {
+      "ratio": 1.0
+    },
+    "undefined": {
+      "ratio": 1.0
+    },
+    "typing": {
+      "ratio": 1.0
+    },
+    "copying": {
+      "ratio": 1.0
+    },
+    "adopter": {
+      "ratio": 1.0
+    },
+    "functionality": {
+      "ratio": 1.0
+    },
+    "cursor": {
+      "ratio": 1.0
+    },
+    "release": {
+      "ratio": 1.0
+    },
+    "note": {
+      "ratio": 1.0
+    },
+    "changed": {
+      "ratio": 1.0
+    },
+    "collapse": {
+      "ratio": 1.0
+    },
+    "fully": {
+      "ratio": 1.0
+    },
+    "jem": {
+      "ratio": 1.0
+    },
+    "utility": {
+      "ratio": 1.0
+    },
+    "treated": {
+      "ratio": 1.0
+    },
+    "exclude": {
+      "ratio": 1.0
+    },
+    "scanner": {
+      "ratio": 1.0
+    },
+    "tracking": {
+      "ratio": 1.0
+    },
+    "instead": {
+      "ratio": 1.0
+    },
+    "occasional": {
+      "ratio": 1.0
+    },
+    "massive": {
+      "ratio": 1.0
+    },
+    "suite": {
+      "ratio": 1.0
+    },
+    "small": {
+      "ratio": 1.0
+    },
+    "silent": {
+      "ratio": 1.0
+    },
+    "publishing": {
+      "ratio": 1.0
+    },
+    "svn": {
+      "ratio": 1.0
+    },
+    "wcprops": {
+      "ratio": 1.0
+    },
+    "ok": {
+      "ratio": 1.0
+    },
+    "want": {
+      "ratio": 1.0
+    },
+    "multi": {
+      "ratio": 1.0
+    },
+    "superclass": {
+      "ratio": 1.0
+    },
+    "folder": {
+      "ratio": 1.0
+    },
+    "click": {
+      "ratio": 1.0
+    },
+    "enter": {
+      "ratio": 1.0
+    },
+    "redundant": {
+      "ratio": 1.0
+    },
+    "vmargs": {
+      "ratio": 1.0
+    },
+    "getting": {
+      "ratio": 1.0
+    },
+    "anonymous": {
+      "ratio": 1.0
+    },
+    "remain": {
+      "ratio": 1.0
+    },
+    "detailed": {
+      "ratio": 1.0
+    },
+    "filter": {
+      "ratio": 1.0
+    },
+    "exposed": {
+      "ratio": 1.0
+    },
+    "jdt": {
+      "ratio": 1.0
+    },
+    "usability": {
+      "ratio": 1.0
+    },
+    "commenting": {
+      "ratio": 1.0
+    },
+    "leave": {
+      "ratio": 1.0
+    },
+    "intact": {
+      "ratio": 1.0
+    },
+    "structured": {
+      "ratio": 1.0
+    },
+    "info": {
+      "ratio": 1.0
+    },
+    "longer": {
+      "ratio": 1.0
+    },
+    "hovers": {
+      "ratio": 1.0
+    },
+    "recording": {
+      "ratio": 1.0
+    },
+    "deployed": {
+      "ratio": 1.0
+    },
+    "generation": {
+      "ratio": 1.0
+    },
+    "diable": {
+      "ratio": 1.0
+    },
+    "deprecation": {
+      "ratio": 1.0
+    },
+    "selected": {
+      "ratio": 1.0
+    },
+    "unused": {
+      "ratio": 1.0
+    },
+    "appear": {
+      "ratio": 1.0
+    },
+    "signature": {
+      "ratio": 1.0
+    },
+    "unavailable": {
+      "ratio": 1.0
+    },
+    "properly": {
+      "ratio": 1.0
+    },
+    "alligned": {
+      "ratio": 1.0
+    },
+    "improper": {
+      "ratio": 1.0
+    },
+    "put": {
+      "ratio": 1.0
+    },
+    "consolelog": {
+      "ratio": 1.0
+    },
+    "memory": {
+      "ratio": 1.0
+    },
+    "leak": {
+      "ratio": 1.0
+    },
+    "facesconfig": {
+      "ratio": 1.0
+    },
+    "deal": {
+      "ratio": 1.0
+    },
+    "meta": {
+      "ratio": 1.0
+    },
+    "inf": {
+      "ratio": 1.0
+    },
+    "dependant": {
+      "ratio": 1.0
+    },
+    "ast": {
+      "ratio": 1.0
+    },
+    "reset": {
+      "ratio": 1.0
+    },
+    "initial": {
+      "ratio": 1.0
+    },
+    "generator": {
+      "ratio": 1.0
+    },
+    "deletion": {
+      "ratio": 1.0
+    },
+    "caught": {
+      "ratio": 1.0
+    },
+    "normal": {
+      "ratio": 1.0
+    },
+    "execution": {
+      "ratio": 1.0
+    },
+    "validators": {
+      "ratio": 1.0
+    },
+    "due": {
+      "ratio": 1.0
+    },
+    "caret": {
+      "ratio": 1.0
+    },
+    "positioning": {
+      "ratio": 1.0
+    },
+    "generating": {
+      "ratio": 1.0
+    },
+    "race": {
+      "ratio": 1.0
+    },
+    "condition": {
+      "ratio": 1.0
+    },
+    "specific": {
+      "ratio": 1.0
+    },
+    "disappearing": {
+      "ratio": 1.0
+    },
+    "processor": {
+      "ratio": 1.0
+    },
+    "turned": {
+      "ratio": 1.0
+    },
+    "compatibility": {
+      "ratio": 1.0
+    },
+    "registry": {
+      "ratio": 1.0
+    },
+    "react": {
+      "ratio": 1.0
+    },
+    "includes": {
+      "ratio": 1.0
+    },
+    "servlets": {
+      "ratio": 1.0
+    },
+    "descriptor": {
+      "ratio": 1.0
+    },
+    "infrastructure": {
+      "ratio": 1.0
+    },
+    "disappear": {
+      "ratio": 1.0
+    },
+    "selecting": {
+      "ratio": 1.0
+    },
+    "standard": {
+      "ratio": 1.0
+    },
+    "tool": {
+      "ratio": 1.0
+    },
+    "syntax": {
+      "ratio": 1.0
+    },
+    "variable": {
+      "ratio": 1.0
+    },
+    "serverdefinitions": {
+      "ratio": 1.0
+    },
+    "websphere": {
+      "ratio": 1.0
+    },
+    "unlabelled": {
+      "ratio": 1.0
+    },
+    "export": {
+      "ratio": 1.0
+    },
+    "arrow": {
+      "ratio": 1.0
+    },
+    "apparently": {
+      "ratio": 1.0
+    },
+    "hung": {
+      "ratio": 1.0
+    },
+    "unit": {
+      "ratio": 1.0
+    },
+    "stop": {
+      "ratio": 1.0
+    },
+    "situation": {
+      "ratio": 1.0
+    },
+    "differently": {
+      "ratio": 1.0
+    },
+    "double": {
+      "ratio": 1.0
+    },
+    "buffering": {
+      "ratio": 1.0
+    },
+    "home": {
+      "ratio": 1.0
+    },
+    "white": {
+      "ratio": 1.0
+    },
+    "javax": {
+      "ratio": 1.0
+    },
+    "corrupted": {
+      "ratio": 1.0
+    },
+    "dependence": {
+      "ratio": 1.0
+    },
+    "refering": {
+      "ratio": 1.0
+    },
+    "entering": {
+      "ratio": 1.0
+    },
+    "nature": {
+      "ratio": 1.0
+    },
+    "sdk": {
+      "ratio": 1.0
+    },
+    "completion": {
+      "ratio": 1.0
+    },
+    "certain": {
+      "ratio": 1.0
+    },
+    "checking": {
+      "ratio": 1.0
+    },
+    "circular": {
+      "ratio": 1.0
+    },
+    "dom": {
+      "ratio": 1.0
+    },
+    "comparing": {
+      "ratio": 1.0
+    },
+    "returning": {
+      "ratio": 1.0
+    },
+    "invocation": {
+      "ratio": 1.0
+    },
+    "literal": {
+      "ratio": 1.0
+    },
+    "split": {
+      "ratio": 1.0
+    },
+    "prevent": {
+      "ratio": 1.0
+    },
+    "jsps": {
+      "ratio": 1.0
+    },
+    "contentassist": {
+      "ratio": 1.0
+    },
+    "usage": {
+      "ratio": 1.0
+    },
+    "scan": {
+      "ratio": 1.0
+    },
+    "apitools": {
+      "ratio": 1.0
+    },
+    "dir": {
+      "ratio": 1.0
+    },
+    "recreates": {
+      "ratio": 1.0
+    },
+    "clicking": {
+      "ratio": 1.0
+    },
+    "email": {
+      "ratio": 1.0
+    },
+    "inbox": {
+      "ratio": 1.0
+    },
+    "workflow": {
+      "ratio": 1.0
+    },
+    "optional": {
+      "ratio": 1.0
+    },
+    "host": {
+      "ratio": 1.0
+    },
+    "region": {
+      "ratio": 1.0
+    },
+    "edited": {
+      "ratio": 1.0
+    },
+    "started": {
+      "ratio": 1.0
+    },
+    "inconsistency": {
+      "ratio": 1.0
+    },
+    "index": {
+      "ratio": 1.0
+    },
+    "accessibility": {
+      "ratio": 1.0
+    },
+    "shortcut": {
+      "ratio": 1.0
+    },
+    "handling": {
+      "ratio": 1.0
+    },
+    "discarding": {
+      "ratio": 1.0
+    },
+    "migration": {
+      "ratio": 1.0
+    },
+    "checked": {
+      "ratio": 1.0
+    },
+    "exported": {
+      "ratio": 1.0
+    },
+    "tld": {
+      "ratio": 1.0
+    },
+    "know": {
+      "ratio": 1.0
+    },
+    "percent": {
+      "ratio": 1.0
+    },
+    "symbol": {
+      "ratio": 1.0
+    },
+    "displayed": {
+      "ratio": 1.0
+    },
+    "synthetic": {
+      "ratio": 1.0
+    },
+    "interface": {
+      "ratio": 1.0
+    },
+    "various": {
+      "ratio": 1.0
+    },
+    "junits": {
+      "ratio": 1.0
+    },
+    "projectnature": {
+      "ratio": 1.0
+    },
+    "feedback": {
+      "ratio": 1.0
+    },
+    "login": {
+      "ratio": 1.0
+    },
+    "number": {
+      "ratio": 1.0
+    },
+    "breakpoint": {
+      "ratio": 1.0
+    },
+    "direct": {
+      "ratio": 1.0
+    },
+    "help": {
+      "ratio": 1.0
+    },
+    "ceresrc": {
+      "ratio": 1.0
+    },
+    "sax": {
+      "ratio": 1.0
+    },
+    "must": {
+      "ratio": 1.0
+    },
+    "terminated": {
+      "ratio": 1.0
+    },
+    "newline": {
+      "ratio": 1.0
+    },
+    "copyright": {
+      "ratio": 1.0
+    },
+    "statement": {
+      "ratio": 1.0
+    },
+    "jax": {
+      "ratio": 1.0
+    },
+    "spacing": {
+      "ratio": 1.0
+    },
+    "xmlns": {
+      "ratio": 1.0
+    },
+    "written": {
+      "ratio": 1.0
+    },
+    "implement": {
+      "ratio": 1.0
+    },
+    "respond": {
+      "ratio": 1.0
+    },
+    "area": {
+      "ratio": 1.0
+    },
+    "complains": {
+      "ratio": 1.0
+    },
+    "raw": {
+      "ratio": 1.0
+    },
+    "parameterized": {
+      "ratio": 1.0
+    },
+    "transient": {
+      "ratio": 1.0
+    },
+    "defined": {
+      "ratio": 1.0
+    },
+    "single": {
+      "ratio": 1.0
+    },
+    "remaining": {
+      "ratio": 1.0
+    },
+    "failes": {
+      "ratio": 1.0
+    },
+    "reintroduce": {
+      "ratio": 1.0
+    },
+    "figure": {
+      "ratio": 1.0
+    },
+    "machine": {
+      "ratio": 1.0
+    },
+    "rhino": {
+      "ratio": 1.0
+    },
+    "colouring": {
+      "ratio": 1.0
+    },
+    "fill": {
+      "ratio": 1.0
+    },
+    "simple": {
+      "ratio": 1.0
+    },
+    "reuse": {
+      "ratio": 1.0
+    },
+    "temporary": {
+      "ratio": 1.0
+    },
+    "anymore": {
+      "ratio": 1.0
+    },
+    "tip": {
+      "ratio": 1.0
+    },
+    "refactoring": {
+      "ratio": 1.0
+    },
+    "adopt": {
+      "ratio": 1.0
+    },
+    "public": {
+      "ratio": 1.0
+    },
+    "downcast": {
+      "ratio": 1.0
+    },
+    "also": {
+      "ratio": 1.0
+    },
+    "previous": {
+      "ratio": 1.0
+    },
+    "scrolling": {
+      "ratio": 1.0
+    },
+    "reverted": {
+      "ratio": 1.0
+    },
+    "seen": {
+      "ratio": 1.0
+    },
+    "emfworkbench": {
+      "ratio": 1.0
+    },
+    "translator": {
+      "ratio": 1.0
+    },
+    "large": {
+      "ratio": 1.0
+    },
+    "never": {
+      "ratio": 1.0
+    },
+    "satisfy": {
+      "ratio": 1.0
+    },
+    "pagedesigner": {
+      "ratio": 1.0
+    },
+    "logo": {
+      "ratio": 1.0
+    },
+    "address": {
+      "ratio": 1.0
+    },
+    "capitalization": {
+      "ratio": 1.0
+    },
+    "populate": {
+      "ratio": 1.0
+    },
+    "connection": {
+      "ratio": 1.0
+    },
+    "generates": {
+      "ratio": 1.0
+    },
+    "workaround": {
+      "ratio": 1.0
+    },
+    "restarting": {
+      "ratio": 1.0
+    },
+    "failed": {
+      "ratio": 1.0
+    },
+    "www": {
+      "ratio": 1.0
+    },
+    "jonas": {
+      "ratio": 1.0
+    },
+    "profile": {
+      "ratio": 1.0
+    },
+    "discovery": {
+      "ratio": 1.0
+    },
+    "downloadable": {
+      "ratio": 1.0
+    },
+    "adapter": {
+      "ratio": 1.0
+    },
+    "disabling": {
+      "ratio": 1.0
+    },
+    "fyi": {
+      "ratio": 1.0
+    },
+    "job": {
+      "ratio": 1.0
+    },
+    "declared": {
+      "ratio": 1.0
+    },
+    "lang": {
+      "ratio": 1.0
+    },
+    "depending": {
+      "ratio": 1.0
+    },
+    "pers": {
+      "ratio": 1.0
+    },
+    "src": {
+      "ratio": 1.0
+    },
+    "recognized": {
+      "ratio": 1.0
+    },
+    "obvious": {
+      "ratio": 1.0
+    },
+    "destination": {
+      "ratio": 1.0
+    },
+    "specify": {
+      "ratio": 1.0
+    },
+    "screen": {
+      "ratio": 1.0
+    },
+    "death": {
+      "ratio": 1.0
+    },
+    "warn": {
+      "ratio": 1.0
+    },
+    "exists": {
+      "ratio": 1.0
+    },
+    "moving": {
+      "ratio": 1.0
+    },
+    "resize": {
+      "ratio": 1.0
+    },
+    "shape": {
+      "ratio": 1.0
+    },
+    "searching": {
+      "ratio": 1.0
+    },
+    "sequence": {
+      "ratio": 1.0
+    },
+    "priority": {
+      "ratio": 1.0
+    },
+    "probably": {
+      "ratio": 1.0
+    },
+    "high": {
+      "ratio": 1.0
+    },
+    "confusing": {
+      "ratio": 1.0
+    },
+    "td": {
+      "ratio": 1.0
+    },
+    "relative": {
+      "ratio": 1.0
+    },
+    "coverage": {
+      "ratio": 1.0
+    },
+    "around": {
+      "ratio": 1.0
+    },
+    "renames": {
+      "ratio": 1.0
+    },
+    "preferred": {
+      "ratio": 1.0
+    },
+    "ddl": {
+      "ratio": 1.0
+    },
+    "jdbc": {
+      "ratio": 1.0
+    },
+    "example": {
+      "ratio": 1.0
+    },
+    "dependent": {
+      "ratio": 1.0
+    },
+    "later": {
+      "ratio": 1.0
+    },
+    "temporal": {
+      "ratio": 1.0
+    },
+    "clipping": {
+      "ratio": 1.0
+    },
+    "tooltips": {
+      "ratio": 1.0
+    },
+    "relevant": {
+      "ratio": 1.0
+    },
+    "http": {
+      "ratio": 1.0
+    },
+    "proxy": {
+      "ratio": 1.0
+    },
+    "multiplicity": {
+      "ratio": 1.0
+    },
+    "parallel": {
+      "ratio": 1.0
+    },
+    "deadlock": {
+      "ratio": 1.0
+    },
+    "programmatically": {
+      "ratio": 1.0
+    },
+    "week": {
+      "ratio": 1.0
+    },
+    "launching": {
+      "ratio": 1.0
+    },
+    "lablels": {
+      "ratio": 1.0
+    },
+    "order": {
+      "ratio": 1.0
+    },
+    "war": {
+      "ratio": 1.0
+    },
+    "remains": {
+      "ratio": 1.0
+    },
+    "keyboard": {
+      "ratio": 1.0
+    },
+    "filename": {
+      "ratio": 1.0
+    },
+    "dropdown": {
+      "ratio": 1.0
+    },
+    "externalizatoin": {
+      "ratio": 1.0
+    },
+    "reflect": {
+      "ratio": 1.0
+    },
+    "overwrite": {
+      "ratio": 1.0
+    },
+    "loggedinto": {
+      "ratio": 1.0
+    },
+    "given": {
+      "ratio": 1.0
+    },
+    "entered": {
+      "ratio": 1.0
+    },
+    "prevents": {
+      "ratio": 1.0
+    },
+    "published": {
+      "ratio": 1.0
+    },
+    "become": {
+      "ratio": 1.0
+    },
+    "inaccessible": {
+      "ratio": 1.0
+    },
+    "bar": {
+      "ratio": 1.0
+    },
+    "sync": {
+      "ratio": 1.0
+    },
+    "binding": {
+      "ratio": 1.0
+    },
+    "formatted": {
+      "ratio": 1.0
+    },
+    "closed": {
+      "ratio": 1.0
+    },
+    "exporting": {
+      "ratio": 1.0
+    },
+    "connector": {
+      "ratio": 1.0
+    },
+    "still": {
+      "ratio": 1.0
+    },
+    "editable": {
+      "ratio": 1.0
+    },
+    "checkbox": {
+      "ratio": 1.0
+    },
+    "unchecked": {
+      "ratio": 1.0
+    },
+    "installed": {
+      "ratio": 1.0
+    },
+    "sometimes": {
+      "ratio": 1.0
+    },
+    "listed": {
+      "ratio": 1.0
+    },
+    "data": {
+      "ratio": 1.0
+    },
+    "graph": {
+      "ratio": 1.0
+    },
+    "hidden": {
+      "ratio": 1.0
+    },
+    "master": {
+      "ratio": 1.0
+    },
+    "scheduling": {
+      "ratio": 1.0
+    },
+    "bump": {
+      "ratio": 1.0
+    },
+    "readable": {
+      "ratio": 1.0
+    },
+    "refreshing": {
+      "ratio": 1.0
+    },
+    "branch": {
+      "ratio": 1.0
+    },
+    "inclusion": {
+      "ratio": 1.0
+    },
+    "restriction": {
+      "ratio": 1.0
+    },
+    "bottom": {
+      "ratio": 1.0
+    },
+    "head": {
+      "ratio": 1.0
+    },
+    "sort": {
+      "ratio": 1.0
+    },
+    "xslt": {
+      "ratio": 1.0
+    },
+    "launcher": {
+      "ratio": 1.0
+    },
+    "initializer": {
+      "ratio": 1.0
+    },
+    "toolbar": {
+      "ratio": 1.0
+    },
+    "consistency": {
+      "ratio": 1.0
+    },
+    "scpview": {
+      "ratio": 1.0
+    },
+    "gif": {
+      "ratio": 1.0
+    },
+    "misc": {
+      "ratio": 1.0
+    },
+    "detect": {
+      "ratio": 1.0
+    },
+    "locked": {
+      "ratio": 1.0
+    },
+    "modification": {
+      "ratio": 1.0
+    },
+    "wait": {
+      "ratio": 1.0
+    },
+    "shutting": {
+      "ratio": 1.0
+    },
+    "produced": {
+      "ratio": 1.0
+    },
+    "byte": {
+      "ratio": 1.0
+    },
+    "optimization": {
+      "ratio": 1.0
+    },
+    "mixing": {
+      "ratio": 1.0
+    },
+    "bower": {
+      "ratio": 1.0
+    },
+    "json": {
+      "ratio": 1.0
+    },
+    "translated": {
+      "ratio": 1.0
+    },
+    "hotbug": {
+      "ratio": 1.0
+    },
+    "parsed": {
+      "ratio": 1.0
+    },
+    "override": {
+      "ratio": 1.0
+    },
+    "install": {
+      "ratio": 1.0
+    },
+    "uninstall": {
+      "ratio": 1.0
+    },
+    "analyze": {
+      "ratio": 1.0
+    },
+    "timeouts": {
+      "ratio": 1.0
+    },
+    "could": {
+      "ratio": 1.0
+    },
+    "improved": {
+      "ratio": 1.0
+    },
+    "specifying": {
+      "ratio": 1.0
+    },
+    "env": {
+      "ratio": 1.0
+    },
+    "params": {
+      "ratio": 1.0
+    },
+    "profiling": {
+      "ratio": 1.0
+    },
+    "defs": {
+      "ratio": 1.0
+    },
+    "legal": {
+      "ratio": 1.0
+    },
+    "copied": {
+      "ratio": 1.0
+    },
+    "revisit": {
+      "ratio": 1.0
+    },
+    "listener": {
+      "ratio": 1.0
+    },
+    "sending": {
+      "ratio": 1.0
+    },
+    "sucessful": {
+      "ratio": 1.0
+    },
+    "tooltip": {
+      "ratio": 1.0
+    },
+    "misleading": {
+      "ratio": 1.0
+    },
+    "invoking": {
+      "ratio": 1.0
+    },
+    "mechanism": {
+      "ratio": 1.0
+    },
+    "surface": {
+      "ratio": 1.0
+    },
+    "scriptlet": {
+      "ratio": 1.0
+    },
+    "delimiters": {
+      "ratio": 1.0
+    },
+    "lazy": {
+      "ratio": 1.0
+    },
+    "initialize": {
+      "ratio": 1.0
+    },
+    "flag": {
+      "ratio": 1.0
+    },
+    "term": {
+      "ratio": 1.0
+    },
+    "onerror": {
+      "ratio": 1.0
+    },
+    "equiv": {
+      "ratio": 1.0
+    },
+    "suggestion": {
+      "ratio": 1.0
+    },
+    "remote": {
+      "ratio": 1.0
+    },
+    "porting": {
+      "ratio": 1.0
+    },
+    "functional": {
+      "ratio": 1.0
+    },
+    "plural": {
+      "ratio": 1.0
+    },
+    "date": {
+      "ratio": 1.0
+    },
+    "hint": {
+      "ratio": 1.0
+    },
+    "closing": {
+      "ratio": 1.0
+    },
+    "full": {
+      "ratio": 1.0
+    },
+    "inherited": {
+      "ratio": 1.0
+    },
+    "reporting": {
+      "ratio": 1.0
+    },
+    "say": {
+      "ratio": 1.0
+    },
+    "punctuation": {
+      "ratio": 1.0
+    },
+    "labeled": {
+      "ratio": 1.0
+    },
+    "quickfix": {
+      "ratio": 1.0
+    },
+    "apache": {
+      "ratio": 1.0
+    },
+    "save": {
+      "ratio": 1.0
+    },
+    "completing": {
+      "ratio": 1.0
+    },
+    "bracket": {
+      "ratio": 1.0
+    },
+    "throwns": {
+      "ratio": 1.0
+    },
+    "toggle": {
+      "ratio": 1.0
+    },
+    "interesting": {
+      "ratio": 1.0
+    },
+    "procedure": {
+      "ratio": 1.0
+    },
+    "constraint": {
+      "ratio": 1.0
+    },
+    "tabbed": {
+      "ratio": 1.0
+    },
+    "artifact": {
+      "ratio": 1.0
+    },
+    "translate": {
+      "ratio": 1.0
+    },
+    "miliseconds": {
+      "ratio": 1.0
+    },
+    "timeout": {
+      "ratio": 1.0
+    },
+    "confuses": {
+      "ratio": 1.0
+    },
+    "product": {
+      "ratio": 1.0
+    },
+    "customization": {
+      "ratio": 1.0
+    },
+    "turn": {
+      "ratio": 1.0
+    },
+    "style": {
+      "ratio": 1.0
+    },
+    "unwanted": {
+      "ratio": 1.0
+    },
+    "xsds": {
+      "ratio": 1.0
+    },
+    "unfinished": {
+      "ratio": 1.0
+    },
+    "eight": {
+      "ratio": 1.0
+    },
+    "customizer": {
+      "ratio": 1.0
+    },
+    "active": {
+      "ratio": 1.0
+    },
+    "font": {
+      "ratio": 1.0
+    },
+    "stdin": {
+      "ratio": 1.0
+    },
+    "suspend": {
+      "ratio": 1.0
+    },
+    "rememebers": {
+      "ratio": 1.0
+    },
+    "insertion": {
+      "ratio": 1.0
+    },
+    "hierarchical": {
+      "ratio": 1.0
+    },
+    "caution": {
+      "ratio": 1.0
+    },
+    "detection": {
+      "ratio": 1.0
+    },
+    "lookup": {
+      "ratio": 1.0
+    },
+    "init": {
+      "ratio": 1.0
+    },
+    "locale": {
+      "ratio": 1.0
+    },
+    "dotless": {
+      "ratio": 1.0
+    },
+    "lowercase": {
+      "ratio": 1.0
+    },
+    "serverdef": {
+      "ratio": 1.0
+    },
+    "complete": {
+      "ratio": 1.0
+    },
+    "stay": {
+      "ratio": 1.0
+    },
+    "computation": {
+      "ratio": 1.0
+    },
+    "typed": {
+      "ratio": 1.0
+    },
+    "primitive": {
+      "ratio": 1.0
+    },
+    "refreshed": {
+      "ratio": 1.0
+    },
+    "please": {
+      "ratio": 1.0
+    },
+    "vjet": {
+      "ratio": 1.0
+    },
+    "incubator": {
+      "ratio": 1.0
+    },
+    "offset": {
+      "ratio": 1.0
+    },
+    "namespace": {
+      "ratio": 1.0
+    },
+    "chooses": {
+      "ratio": 1.0
+    },
+    "uuid": {
+      "ratio": 1.0
+    },
+    "postgres": {
+      "ratio": 1.0
+    },
+    "instantiate": {
+      "ratio": 1.0
+    },
+    "network": {
+      "ratio": 1.0
+    },
+    "reading": {
+      "ratio": 1.0
+    },
+    "thread": {
+      "ratio": 1.0
+    },
+    "var": {
+      "ratio": 1.0
+    },
+    "forgotton": {
+      "ratio": 1.0
+    },
+    "scriplet": {
+      "ratio": 1.0
+    },
+    "referring": {
+      "ratio": 1.0
+    },
+    "indexing": {
+      "ratio": 1.0
+    },
+    "outside": {
+      "ratio": 1.0
+    },
+    "infopop": {
+      "ratio": 1.0
+    },
+    "pushed": {
+      "ratio": 1.0
+    },
+    "annotating": {
+      "ratio": 1.0
+    },
+    "flagging": {
+      "ratio": 1.0
+    },
+    "query": {
+      "ratio": 1.0
+    },
+    "signing": {
+      "ratio": 1.0
+    },
+    "terminates": {
+      "ratio": 1.0
+    },
+    "signed": {
+      "ratio": 1.0
+    },
+    "output": {
+      "ratio": 1.0
+    },
+    "traced": {
+      "ratio": 1.0
+    },
+    "layout": {
+      "ratio": 1.0
+    },
+    "month": {
+      "ratio": 1.0
+    },
+    "calendar": {
+      "ratio": 1.0
+    },
+    "past": {
+      "ratio": 1.0
+    },
+    "printed": {
+      "ratio": 1.0
+    },
+    "tracing": {
+      "ratio": 1.0
+    },
+    "assertion": {
+      "ratio": 1.0
+    },
+    "block": {
+      "ratio": 1.0
+    },
+    "transform": {
+      "ratio": 1.0
+    },
+    "severity": {
+      "ratio": 1.0
+    },
+    "quite": {
+      "ratio": 1.0
+    },
+    "webservice": {
+      "ratio": 1.0
+    },
+    "position": {
+      "ratio": 1.0
+    },
+    "expand": {
+      "ratio": 1.0
+    },
+    "diagram": {
+      "ratio": 1.0
+    },
+    "notice": {
+      "ratio": 1.0
+    },
+    "irrelevant": {
+      "ratio": 1.0
+    },
+    "noteworthy": {
+      "ratio": 1.0
+    },
+    "based": {
+      "ratio": 1.0
+    },
+    "fragile": {
+      "ratio": 1.0
+    },
+    "depends": {
+      "ratio": 1.0
+    },
+    "integrity": {
+      "ratio": 1.0
+    },
+    "ejbdoclet": {
+      "ratio": 1.0
+    },
+    "expandable": {
+      "ratio": 1.0
+    },
+    "navigating": {
+      "ratio": 1.0
+    },
+    "back": {
+      "ratio": 1.0
+    },
+    "forth": {
+      "ratio": 1.0
+    },
+    "appearing": {
+      "ratio": 1.0
+    },
+    "subset": {
+      "ratio": 1.0
+    },
+    "obsolete": {
+      "ratio": 1.0
+    },
+    "actual": {
+      "ratio": 1.0
+    },
+    "defining": {
+      "ratio": 1.0
+    },
+    "virtual": {
+      "ratio": 1.0
+    },
+    "div": {
+      "ratio": 1.0
+    },
+    "doest": {
+      "ratio": 1.0
+    },
+    "cancel": {
+      "ratio": 1.0
+    },
+    "early": {
+      "ratio": 1.0
+    },
+    "continuous": {
+      "ratio": 1.0
+    },
+    "messaage": {
+      "ratio": 1.0
+    },
+    "plan": {
+      "ratio": 1.0
+    },
+    "polish": {
+      "ratio": 1.0
+    },
+    "restarted": {
+      "ratio": 1.0
+    },
+    "modified": {
+      "ratio": 1.0
+    },
+    "saved": {
+      "ratio": 1.0
+    },
+    "rebuilt": {
+      "ratio": 1.0
+    },
+    "overwrites": {
+      "ratio": 1.0
+    },
+    "logic": {
+      "ratio": 1.0
+    },
+    "initially": {
+      "ratio": 1.0
+    },
+    "processed": {
+      "ratio": 1.0
+    },
+    "bvt": {
+      "ratio": 1.0
+    },
+    "fresh": {
+      "ratio": 1.0
+    },
+    "unkown": {
+      "ratio": 1.0
+    },
+    "frequently": {
+      "ratio": 1.0
+    },
+    "utilization": {
+      "ratio": 1.0
+    },
+    "datagrid": {
+      "ratio": 1.0
+    },
+    "recent": {
+      "ratio": 1.0
+    },
+    "repeated": {
+      "ratio": 1.0
+    },
+    "placed": {
+      "ratio": 1.0
+    },
+    "annotate": {
+      "ratio": 1.0
+    },
+    "restart": {
+      "ratio": 1.0
+    },
+    "colour": {
+      "ratio": 1.0
+    },
+    "indicate": {
+      "ratio": 1.0
+    },
+    "prompt": {
+      "ratio": 1.0
+    },
+    "give": {
+      "ratio": 1.0
+    },
+    "meaning": {
+      "ratio": 1.0
+    },
+    "picked": {
+      "ratio": 1.0
+    },
+    "odd": {
+      "ratio": 1.0
+    },
+    "cross": {
+      "ratio": 1.0
+    },
+    "applicable": {
+      "ratio": 1.0
+    },
+    "speed": {
+      "ratio": 1.0
+    },
+    "ambiguous": {
+      "ratio": 1.0
+    },
+    "count": {
+      "ratio": 1.0
+    },
+    "naming": {
+      "ratio": 1.0
+    },
+    "sash": {
+      "ratio": 1.0
+    },
+    "ellipsis": {
+      "ratio": 1.0
+    },
+    "hanlde": {
+      "ratio": 1.0
+    },
+    "disagree": {
+      "ratio": 1.0
+    },
+    "disposed": {
+      "ratio": 1.0
+    },
+    "strange": {
+      "ratio": 1.0
+    },
+    "hovering": {
+      "ratio": 1.0
+    },
+    "something": {
+      "ratio": 1.0
+    },
+    "listen": {
+      "ratio": 1.0
+    },
+    "play": {
+      "ratio": 1.0
+    },
+    "mismatch": {
+      "ratio": 1.0
+    },
+    "rewriting": {
+      "ratio": 1.0
+    },
+    "maintaine": {
+      "ratio": 1.0
+    },
+    "unknown": {
+      "ratio": 1.0
+    },
+    "candidate": {
+      "ratio": 1.0
+    },
+    "subject": {
+      "ratio": 1.0
+    },
+    "combobox": {
+      "ratio": 1.0
+    },
+    "meaningfull": {
+      "ratio": 1.0
+    },
+    "enough": {
+      "ratio": 1.0
+    },
+    "confuse": {
+      "ratio": 1.0
+    },
+    "ol": {
+      "ratio": 1.0
+    },
+    "deploying": {
+      "ratio": 1.0
+    },
+    "executed": {
+      "ratio": 1.0
+    },
+    "occurred": {
+      "ratio": 1.0
+    },
+    "undo": {
+      "ratio": 1.0
+    },
+    "keystroke": {
+      "ratio": 1.0
+    },
+    "undoing": {
+      "ratio": 1.0
+    },
+    "localized": {
+      "ratio": 1.0
+    },
+    "ned": {
+      "ratio": 1.0
+    },
+    "ctrl": {
+      "ratio": 1.0
+    },
+    "pressed": {
+      "ratio": 1.0
+    },
+    "container": {
+      "ratio": 1.0
+    },
+    "sun": {
+      "ratio": 1.0
+    },
+    "yellow": {
+      "ratio": 1.0
+    },
+    "foregroudn": {
+      "ratio": 1.0
+    },
+    "hardly": {
+      "ratio": 1.0
+    },
+    "narrow": {
+      "ratio": 1.0
+    },
+    "parenthesis": {
+      "ratio": 1.0
+    },
+    "contribution": {
+      "ratio": 1.0
+    },
+    "disables": {
+      "ratio": 1.0
+    },
+    "regular": {
+      "ratio": 1.0
+    },
+    "assumes": {
+      "ratio": 1.0
+    },
+    "grammar": {
+      "ratio": 1.0
+    },
+    "cancelling": {
+      "ratio": 1.0
+    },
+    "assigned": {
+      "ratio": 1.0
+    },
+    "jface": {
+      "ratio": 1.0
+    },
+    "managed": {
+      "ratio": 1.0
+    },
+    "configure": {
+      "ratio": 1.0
+    },
+    "opition": {
+      "ratio": 1.0
+    },
+    "probable": {
+      "ratio": 1.0
+    },
+    "faux": {
+      "ratio": 1.0
+    },
+    "hence": {
+      "ratio": 1.0
+    },
+    "resizing": {
+      "ratio": 1.0
+    },
+    "success": {
+      "ratio": 1.0
+    },
+    "management": {
+      "ratio": 1.0
+    },
+    "down": {
+      "ratio": 1.0
+    },
+    "sorted": {
+      "ratio": 1.0
+    },
+    "synchronize": {
+      "ratio": 1.0
+    },
+    "reverse": {
+      "ratio": 1.0
+    },
+    "alphabetical": {
+      "ratio": 1.0
+    },
+    "scroll": {
+      "ratio": 1.0
+    },
+    "visible": {
+      "ratio": 1.0
+    },
+    "util": {
+      "ratio": 1.0
+    },
+    "equality": {
+      "ratio": 1.0
+    },
+    "reacting": {
+      "ratio": 1.0
+    },
+    "produce": {
+      "ratio": 1.0
+    },
+    "cp": {
+      "ratio": 1.0
+    },
+    "decoration": {
+      "ratio": 1.0
+    },
+    "part": {
+      "ratio": 1.0
+    },
+    "rose": {
+      "ratio": 1.0
+    },
+    "decide": {
+      "ratio": 1.0
+    },
+    "whether": {
+      "ratio": 1.0
+    },
+    "contributed": {
+      "ratio": 1.0
+    },
+    "pop": {
+      "ratio": 1.0
+    },
+    "tokenizer": {
+      "ratio": 1.0
+    },
+    "overtop": {
+      "ratio": 1.0
+    },
+    "manually": {
+      "ratio": 1.0
+    },
+    "appropriate": {
+      "ratio": 1.0
+    },
+    "disable": {
+      "ratio": 1.0
+    },
+    "mark": {
+      "ratio": 1.0
+    },
+    "existent": {
+      "ratio": 1.0
+    },
+    "lock": {
+      "ratio": 1.0
+    },
+    "composition": {
+      "ratio": 1.0
+    },
+    "matching": {
+      "ratio": 1.0
+    },
+    "indicator": {
+      "ratio": 1.0
+    },
+    "drawing": {
+      "ratio": 1.0
+    },
+    "loose": {
+      "ratio": 1.0
+    },
+    "callback": {
+      "ratio": 1.0
+    },
+    "strut": {
+      "ratio": 1.0
+    },
+    "appeared": {
+      "ratio": 1.0
+    },
+    "away": {
+      "ratio": 1.0
+    },
+    "canvas": {
+      "ratio": 1.0
+    },
+    "provisional": {
+      "ratio": 1.0
+    },
+    "quick": {
+      "ratio": 1.0
+    },
+    "kind": {
+      "ratio": 1.0
+    },
+    "usable": {
+      "ratio": 1.0
+    },
+    "swallow": {
+      "ratio": 1.0
+    },
+    "trivial": {
+      "ratio": 1.0
+    },
+    "behavior": {
+      "ratio": 1.0
+    },
+    "selector": {
+      "ratio": 1.0
+    },
+    "expose": {
+      "ratio": 1.0
+    },
+    "discover": {
+      "ratio": 1.0
+    },
+    "flat": {
+      "ratio": 1.0
+    },
+    "persisted": {
+      "ratio": 1.0
+    },
+    "unclosed": {
+      "ratio": 1.0
+    },
+    "async": {
+      "ratio": 1.0
+    },
+    "boolean": {
+      "ratio": 1.0
+    },
+    "contextual": {
+      "ratio": 1.0
+    },
+    "performing": {
+      "ratio": 1.0
+    },
+    "inform": {
+      "ratio": 1.0
+    },
+    "unsupported": {
+      "ratio": 1.0
+    },
+    "escapable": {
+      "ratio": 1.0
+    },
+    "dragged": {
+      "ratio": 1.0
+    },
+    "configured": {
+      "ratio": 1.0
+    },
+    "spec": {
+      "ratio": 1.0
+    },
+    "threading": {
+      "ratio": 1.0
+    },
+    "disposes": {
+      "ratio": 1.0
+    },
+    "analyzer": {
+      "ratio": 1.0
+    },
+    "integration": {
+      "ratio": 1.0
+    },
+    "actually": {
+      "ratio": 1.0
+    },
+    "often": {
+      "ratio": 1.0
+    },
+    "prototype": {
+      "ratio": 1.0
+    },
+    "committer": {
+      "ratio": 1.0
+    },
+    "identifier": {
+      "ratio": 1.0
+    },
+    "hierarchy": {
+      "ratio": 1.0
+    },
+    "request": {
+      "ratio": 1.0
+    },
+    "err": {
+      "ratio": 1.0
+    },
+    "hotkey": {
+      "ratio": 1.0
+    },
+    "beaninfo": {
+      "ratio": 1.0
+    },
+    "nulled": {
+      "ratio": 1.0
+    },
+    "lacking": {
+      "ratio": 1.0
+    },
+    "unmapped": {
+      "ratio": 1.0
+    },
+    "bootup": {
+      "ratio": 1.0
+    },
+    "dead": {
+      "ratio": 1.0
+    },
+    "shutdown": {
+      "ratio": 1.0
+    },
+    "capability": {
+      "ratio": 1.0
+    },
+    "misspelled": {
+      "ratio": 1.0
+    },
+    "qualifier": {
+      "ratio": 1.0
+    },
+    "word": {
+      "ratio": 1.0
+    },
+    "download": {
+      "ratio": 1.0
+    },
+    "shift": {
+      "ratio": 1.0
+    },
+    "norwegian": {
+      "ratio": 1.0
+    },
+    "contenttype": {
+      "ratio": 1.0
+    },
+    "delegate": {
+      "ratio": 1.0
+    },
+    "system": {
+      "ratio": 1.0
+    },
+    "accelerator": {
+      "ratio": 1.0
+    },
+    "outdated": {
+      "ratio": 1.0
+    },
+    "jaxws": {
+      "ratio": 1.0
+    },
+    "userdoc": {
+      "ratio": 1.0
+    },
+    "defaulting": {
+      "ratio": 1.0
+    },
+    "selective": {
+      "ratio": 1.0
+    },
+    "clearly": {
+      "ratio": 1.0
+    },
+    "testing": {
+      "ratio": 1.0
+    },
+    "requested": {
+      "ratio": 1.0
+    },
+    "particular": {
+      "ratio": 1.0
+    },
+    "pass": {
+      "ratio": 1.0
+    },
+    "hostname": {
+      "ratio": 1.0
+    },
+    "smarter": {
+      "ratio": 1.0
+    },
+    "suppress": {
+      "ratio": 1.0
+    },
+    "false": {
+      "ratio": 1.0
+    },
+    "usebean": {
+      "ratio": 1.0
+    },
+    "underline": {
+      "ratio": 1.0
+    },
+    "attr": {
+      "ratio": 1.0
+    },
+    "three": {
+      "ratio": 1.0
+    },
+    "apps": {
+      "ratio": 1.0
+    },
+    "txt": {
+      "ratio": 1.0
+    },
+    "checker": {
+      "ratio": 1.0
+    },
+    "mirrored": {
+      "ratio": 1.0
+    },
+    "switch": {
+      "ratio": 1.0
+    },
+    "uppercase": {
+      "ratio": 1.0
+    },
+    "jspel": {
+      "ratio": 1.0
+    },
+    "dependencychecker": {
+      "ratio": 1.0
+    },
+    "combination": {
+      "ratio": 1.0
+    },
+    "folded": {
+      "ratio": 1.0
+    },
+    "wanted": {
+      "ratio": 1.0
+    },
+    "namspace": {
+      "ratio": 1.0
+    },
+    "partition": {
+      "ratio": 1.0
+    },
+    "qualified": {
+      "ratio": 1.0
+    },
+    "suggest": {
+      "ratio": 1.0
+    },
+    "letter": {
+      "ratio": 1.0
+    },
+    "underlined": {
+      "ratio": 1.0
+    },
+    "alt": {
+      "ratio": 1.0
+    },
+    "identifying": {
+      "ratio": 1.0
+    },
+    "identifies": {
+      "ratio": 1.0
+    },
+    "contributor": {
+      "ratio": 1.0
+    },
+    "improperly": {
+      "ratio": 1.0
+    },
+    "rendered": {
+      "ratio": 1.0
+    },
+    "implemenation": {
+      "ratio": 1.0
+    },
+    "waiting": {
+      "ratio": 1.0
+    },
+    "happen": {
+      "ratio": 1.0
+    },
+    "standalone": {
+      "ratio": 1.0
+    },
+    "subtely": {
+      "ratio": 1.0
+    },
+    "marker": {
+      "ratio": 1.0
+    },
+    "loosely": {
+      "ratio": 1.0
+    },
+    "half": {
+      "ratio": 1.0
+    },
+    "dummy": {
+      "ratio": 1.0
+    },
+    "private": {
+      "ratio": 1.0
+    },
+    "member": {
+      "ratio": 1.0
+    },
+    "described": {
+      "ratio": 1.0
+    },
+    "unique": {
+      "ratio": 1.0
+    },
+    "input": {
+      "ratio": 1.0
+    },
+    "across": {
+      "ratio": 1.0
+    },
+    "terminate": {
+      "ratio": 1.0
+    },
+    "desc": {
+      "ratio": 1.0
+    },
+    "synch": {
+      "ratio": 1.0
+    },
+    "spinner": {
+      "ratio": 1.0
+    },
+    "logging": {
+      "ratio": 1.0
+    },
+    "cryptic": {
+      "ratio": 1.0
+    },
+    "attention": {
+      "ratio": 1.0
+    },
+    "setup": {
+      "ratio": 1.0
+    },
+    "consolidate": {
+      "ratio": 1.0
+    },
+    "slider": {
+      "ratio": 1.0
+    },
+    "graphic": {
+      "ratio": 1.0
+    },
+    "conf": {
+      "ratio": 1.0
+    },
+    "ratther": {
+      "ratio": 1.0
+    },
+    "excluded": {
+      "ratio": 1.0
+    },
+    "autostart": {
+      "ratio": 1.0
+    },
+    "manual": {
+      "ratio": 1.0
+    },
+    "extention": {
+      "ratio": 1.0
+    },
+    "uriresolver": {
+      "ratio": 1.0
+    },
+    "branding": {
+      "ratio": 1.0
+    },
+    "redundancy": {
+      "ratio": 1.0
+    },
+    "might": {
+      "ratio": 1.0
+    },
+    "executables": {
+      "ratio": 1.0
+    },
+    "recursive": {
+      "ratio": 1.0
+    },
+    "attempt": {
+      "ratio": 1.0
+    },
+    "unconnection": {
+      "ratio": 1.0
+    },
+    "illegalstateexception": {
+      "ratio": 1.0
+    },
+    "paste": {
+      "ratio": 1.0
+    },
+    "sign": {
+      "ratio": 1.0
+    },
+    "marking": {
+      "ratio": 1.0
+    },
+    "badly": {
+      "ratio": 1.0
+    },
+    "positioned": {
+      "ratio": 1.0
+    },
+    "informational": {
+      "ratio": 1.0
+    },
+    "stack": {
+      "ratio": 1.0
+    },
+    "trace": {
+      "ratio": 1.0
+    },
+    "print": {
+      "ratio": 1.0
+    },
+    "none": {
+      "ratio": 1.0
+    },
+    "mar": {
+      "ratio": 1.0
+    },
+    "easily": {
+      "ratio": 1.0
+    },
+    "archive": {
+      "ratio": 1.0
+    },
+    "webservices": {
+      "ratio": 1.0
+    },
+    "copy": {
+      "ratio": 1.0
+    },
+    "bringing": {
+      "ratio": 1.0
+    },
+    "friend": {
+      "ratio": 1.0
+    },
+    "remember": {
+      "ratio": 1.0
+    },
+    "installation": {
+      "ratio": 1.0
+    },
+    "argument": {
+      "ratio": 1.0
+    },
+    "strip": {
+      "ratio": 1.0
+    },
+    "quickly": {
+      "ratio": 1.0
+    },
+    "charackter": {
+      "ratio": 1.0
+    },
+    "whole": {
+      "ratio": 1.0
+    },
+    "others": {
+      "ratio": 1.0
+    },
+    "switching": {
+      "ratio": 1.0
+    },
+    "corrupts": {
+      "ratio": 1.0
+    },
+    "background": {
+      "ratio": 1.0
+    },
+    "jpt": {
+      "ratio": 1.0
+    },
+    "spelled": {
+      "ratio": 1.0
+    },
+    "incorectly": {
+      "ratio": 1.0
+    },
+    "restrictive": {
+      "ratio": 1.0
+    },
+    "dependancies": {
+      "ratio": 1.0
+    },
+    "participating": {
+      "ratio": 1.0
+    },
+    "relation": {
+      "ratio": 1.0
+    },
+    "signal": {
+      "ratio": 1.0
+    },
+    "tagging": {
+      "ratio": 1.0
+    },
+    "increment": {
+      "ratio": 1.0
+    },
+    "semicolon": {
+      "ratio": 1.0
+    },
+    "synchronizing": {
+      "ratio": 1.0
+    },
+    "heavy": {
+      "ratio": 1.0
+    },
+    "inferred": {
+      "ratio": 1.0
+    },
+    "hun": {
+      "ratio": 1.0
+    },
+    "decision": {
+      "ratio": 1.0
+    },
+    "emits": {
+      "ratio": 1.0
+    },
+    "applet": {
+      "ratio": 1.0
+    },
+    "transparent": {
+      "ratio": 1.0
+    },
+    "unread": {
+      "ratio": 1.0
+    },
+    "omit": {
+      "ratio": 1.0
+    },
+    "frequent": {
+      "ratio": 1.0
+    },
+    "excepitons": {
+      "ratio": 1.0
+    },
+    "individual": {
+      "ratio": 1.0
+    },
+    "skeleton": {
+      "ratio": 1.0
+    },
+    "bring": {
+      "ratio": 1.0
+    },
+    "licence": {
+      "ratio": 1.0
+    },
+    "ahead": {
+      "ratio": 1.0
+    },
+    "commented": {
+      "ratio": 1.0
+    },
+    "replaced": {
+      "ratio": 1.0
+    },
+    "bowerrc": {
+      "ratio": 1.0
+    },
+    "explicit": {
+      "ratio": 1.0
+    },
+    "commit": {
+      "ratio": 1.0
+    },
+    "entire": {
+      "ratio": 1.0
+    },
+    "business": {
+      "ratio": 1.0
+    },
+    "quirk": {
+      "ratio": 1.0
+    },
+    "wsdd": {
+      "ratio": 1.0
+    },
+    "modular": {
+      "ratio": 1.0
+    },
+    "jumping": {
+      "ratio": 1.0
+    },
+    "persist": {
+      "ratio": 1.0
+    },
+    "corrected": {
+      "ratio": 1.0
+    },
+    "happens": {
+      "ratio": 1.0
+    },
+    "occasionally": {
+      "ratio": 1.0
+    },
+    "downloading": {
+      "ratio": 1.0
+    },
+    "xalan": {
+      "ratio": 1.0
+    },
+    "yeilds": {
+      "ratio": 1.0
+    },
+    "occured": {
+      "ratio": 1.0
+    },
+    "body": {
+      "ratio": 1.0
+    },
+    "omitted": {
+      "ratio": 1.0
+    },
+    "comptest": {
+      "ratio": 1.0
+    },
+    "rendering": {
+      "ratio": 1.0
+    },
+    "seem": {
+      "ratio": 1.0
+    },
+    "tell": {
+      "ratio": 1.0
+    },
+    "prereqs": {
+      "ratio": 1.0
+    },
+    "spelt": {
+      "ratio": 1.0
+    },
+    "presets": {
+      "ratio": 1.0
+    },
+    "applied": {
+      "ratio": 1.0
+    },
+    "creator": {
+      "ratio": 1.0
+    },
+    "connect": {
+      "ratio": 1.0
+    },
+    "installing": {
+      "ratio": 1.0
+    },
+    "uninstalling": {
+      "ratio": 1.0
+    },
+    "specification": {
+      "ratio": 1.0
+    },
+    "ecore": {
+      "ratio": 1.0
+    },
+    "lead": {
+      "ratio": 1.0
+    },
+    "dangling": {
+      "ratio": 1.0
+    },
+    "alternative": {
+      "ratio": 1.0
+    },
+    "handled": {
+      "ratio": 1.0
+    },
+    "previewed": {
+      "ratio": 1.0
+    },
+    "transaction": {
+      "ratio": 1.0
+    },
+    "activates": {
+      "ratio": 1.0
+    },
+    "tn": {
+      "ratio": 1.0
+    },
+    "uneeded": {
+      "ratio": 1.0
+    },
+    "future": {
+      "ratio": 1.0
+    },
+    "concatenated": {
+      "ratio": 1.0
+    },
+    "ganymede": {
+      "ratio": 1.0
+    },
+    "review": {
+      "ratio": 1.0
+    },
+    "sorting": {
+      "ratio": 1.0
+    },
+    "earvalidation": {
+      "ratio": 1.0
+    },
+    "npm": {
+      "ratio": 1.0
+    },
+    "wording": {
+      "ratio": 1.0
+    },
+    "reader": {
+      "ratio": 1.0
+    },
+    "db": {
+      "ratio": 1.0
+    },
+    "chooser": {
+      "ratio": 1.0
+    },
+    "strict": {
+      "ratio": 1.0
+    },
+    "little": {
+      "ratio": 1.0
+    },
+    "hiding": {
+      "ratio": 1.0
+    },
+    "replace": {
+      "ratio": 1.0
+    },
+    "breakage": {
+      "ratio": 1.0
+    },
+    "tester": {
+      "ratio": 1.0
+    },
+    "complaint": {
+      "ratio": 1.0
+    },
+    "spell": {
+      "ratio": 1.0
+    },
+    "freeze": {
+      "ratio": 1.0
+    },
+    "jetty": {
+      "ratio": 1.0
+    },
+    "simrel": {
+      "ratio": 1.0
+    },
+    "repository": {
+      "ratio": 1.0
+    },
+    "coding": {
+      "ratio": 1.0
+    },
+    "htm": {
+      "ratio": 1.0
+    },
+    "reentrant": {
+      "ratio": 1.0
+    },
+    "inverse": {
+      "ratio": 1.0
+    },
+    "join": {
+      "ratio": 1.0
+    },
+    "craches": {
+      "ratio": 1.0
+    },
+    "derector": {
+      "ratio": 1.0
+    },
+    "textbox": {
+      "ratio": 1.0
+    },
+    "publication": {
+      "ratio": 1.0
+    },
+    "guard": {
+      "ratio": 1.0
+    },
+    "catagories": {
+      "ratio": 1.0
+    },
+    "metdata": {
+      "ratio": 1.0
+    },
+    "unreadable": {
+      "ratio": 1.0
+    },
+    "bugzilla": {
+      "ratio": 1.0
+    },
+    "third": {
+      "ratio": 1.0
+    },
+    "limited": {
+      "ratio": 1.0
+    },
+    "associate": {
+      "ratio": 1.0
+    },
+    "superfluous": {
+      "ratio": 1.0
+    },
+    "wozard": {
+      "ratio": 1.0
+    },
+    "digest": {
+      "ratio": 1.0
+    },
+    "faceted": {
+      "ratio": 1.0
+    },
+    "wtpmodules": {
+      "ratio": 1.0
+    }
+  }
+}

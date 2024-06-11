@@ -78,7 +78,7 @@ file1 = open("output_demotest.txt", "w")  # write mode
 list_of_random_seeds = []
 
   
-for i in range(0,3):
+for i in range(0,1):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -110,6 +110,7 @@ for i in range(0,3):
     lexicon_preprocess_start_time = helper.cpuexecutiontime()
     
     payload_train = helper.lexicon_preprocess(trainingdataset_length,training_data_df)
+    print("Corpus",payload_train)
     
     lexicon_preprocess_end_time = helper.cpuexecutiontime()
     lexicon_preprocess_execution_time =  lexicon_preprocess_end_time -  lexicon_preprocess_start_time
@@ -119,6 +120,7 @@ for i in range(0,3):
     
     severethreshold, nonseverethreshold = helper.lexicon_learner(payload_train, validation_data)
     winning_threshold = {'severe threshold':severethreshold, 'non severe threshold':nonseverethreshold}
+    print("winning_threshold",winning_threshold)
     
     lexicon_learner_end_time = helper.cpuexecutiontime()
     lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time

@@ -470,36 +470,68 @@ def dictionary_onthresholds(severe_threshold, nonsevere_threshold, payload_train
 
     return severe_dictionary, nonsevere_dictionary, severe_threshold, nonsevere_threshold    
 
-def merge_and_dedupe_lexicons(severe_lexicon, non_severe_lexicon):
+# def merge_and_dedupe_lexicons(severe_lexicon, non_severe_lexicon):
+#     """
+#     Merges severe and non-severe lexicons, keeping only the highest ratio word.
+
+#     Args:
+#       severe_lexicon (dict): The severe lexicon with words as keys and ratios as values.
+#       non_severe_lexicon (dict): The non-severe lexicon with words as keys and ratios as values.
+
+#     Returns:
+#       dict: The merged lexicon with duplicates removed and highest ratios preserved.
+#     """
+#     common_words = set(severe_lexicon.keys()) & set(non_severe_lexicon.keys())
+# #     print("common_words", common_words)
+#     filtered_severe_lexicon = {word: severe_lexicon[word] for word in severe_lexicon if word not in common_words}
+# #     print("filtered_severe_lexicon", filtered_severe_lexicon)
+    
+#     for word in common_words:
+#         if word in severe_lexicon and word in non_severe_lexicon:
+#             ratio_severe = severe_lexicon[word]
+#             ratio_non_severe = non_severe_lexicon[word]
+            
+#             severe_ratio_ = ratio_severe['ratio']
+#             non_severe_ratio_ = ratio_non_severe['ratio']
+
+#         # Access the value (ratio) associated with the word in each dictionary
+#         if severe_ratio_ >= non_severe_ratio_:  # Compare the ratios
+#             filtered_severe_lexicon[word] = ratio_severe
+#         else:
+#             non_severe_lexicon[word] = ratio_non_severe
+#     return {**filtered_severe_lexicon, **non_severe_lexicon}
+
+def dedupe_lexicons(severe_lexicon, non_severe_lexicon):
     """
-    Merges severe and non-severe lexicons, keeping only the highest ratio word.
+    Finds duplicates between severe and non-severe lexicons and keeps the term with the highest ratio within each category.
 
     Args:
-      severe_lexicon (dict): The severe lexicon with words as keys and ratios as values.
-      non_severe_lexicon (dict): The non-severe lexicon with words as keys and ratios as values.
+    severe_lexicon (dict): The severe lexicon with words as keys and ratios as values.
+    non_severe_lexicon (dict): The non-severe lexicon with words as keys and values.
 
     Returns:
-      dict: The merged lexicon with duplicates removed and highest ratios preserved.
+    dict: A dictionary containing two separate keys 'severe' and 'non_severe' with lexicons having duplicates removed and highest ratios preserved.
     """
-    common_words = set(severe_lexicon.keys()) & set(non_severe_lexicon.keys())
-    print("common_words", common_words)
-    filtered_severe_lexicon = {word: severe_lexicon[word] for word in severe_lexicon if word not in common_words}
-    print("filtered_severe_lexicon", filtered_severe_lexicon)
-    
-    for word in common_words:
-        if word in severe_lexicon and word in non_severe_lexicon:
-            ratio_severe = severe_lexicon[word]
-            ratio_non_severe = non_severe_lexicon[word]
-            
-            severe_ratio_ = ratio_severe['ratio']
-            non_severe_ratio_ = ratio_non_severe['ratio']
 
-        # Access the value (ratio) associated with the word in each dictionary
-        if severe_ratio_ >= non_severe_ratio_:  # Compare the ratios
-            filtered_severe_lexicon[word] = ratio_severe
+    filtered_severe_lexicon = {word: severe_lexicon[word] for word in severe_lexicon}
+    filtered_non_severe_lexicon = {word: non_severe_lexicon[word] for word in non_severe_lexicon}
+
+    common_words = set(severe_lexicon.keys()) & set(non_severe_lexicon.keys())
+
+    for word in common_words:
+        ratio_severe = severe_lexicon.get(word, {}).get('ratio')  # Handle potential missing keys
+        ratio_non_severe = non_severe_lexicon.get(word, {}).get('ratio')
+
+        if ratio_severe is not None and ratio_non_severe is not None:
+            if ratio_severe >= ratio_non_severe:
+                filtered_severe_lexicon[word] = severe_lexicon[word]
+                del filtered_non_severe_lexicon[word]  # Remove from non-severe if higher in severe
         else:
-            non_severe_lexicon[word] = ratio_non_severe
-    return {**filtered_severe_lexicon, **non_severe_lexicon}
+            filtered_non_severe_lexicon[word] = non_severe_lexicon[word]
+            del filtered_severe_lexicon[word]  # Remove from severe if higher in non-severe
+
+    return {'severe': filtered_severe_lexicon, 'non_severe': filtered_non_severe_lexicon}
+
 
 
 

@@ -54,7 +54,7 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-# bugs_df = bugs_df.tail(1000)
+bugs_df = bugs_df.tail(2000)
 # print(bugs_df)
 
 #--------------------------------- Firefox Dataset as a testing dataset----------------------------------
@@ -87,11 +87,27 @@ remaining_cols = list(bugs_openoffice_df.columns)
 bugs_openoffice_df.insert(len(remaining_cols) -1, 'Severity', severity_col)
 
 
-# bugs_openoffice_df = bugs_openoffice_df.head(500)
-# print(bugs_openoffice_df)
-# print("total bugs", len(bugs_openoffice_df))
-# severerity = bugs_openoffice_df['Severity'].value_counts()
-# print(severerity)
+# # Select 5 rows from the "Severe" category
+# bugs_openoffice_df_severe = bugs_openoffice_df[bugs_openoffice_df['Severity'] == 'Severe'].head(5)
+
+# # Select 10 rows from the "NonSevere" category
+# bugs_openoffice_df_nonsevere = bugs_openoffice_df[bugs_openoffice_df['Severity'] == 'NonSevere'].head(10)
+
+# # Concatenate the selected dataframes
+# bugs_openoffice_df_ = pd.concat([bugs_openoffice_df_severe, bugs_openoffice_df_nonsevere], ignore_index=True)
+
+# print(bugs_openoffice_df_)
+# print("Total bugs:", len(bugs_openoffice_df_))
+# severity_counts = bugs_openoffice_df_['Severity'].value_counts()
+# print(severity_counts)
+
+
+
+bugs_openoffice_df = bugs_openoffice_df.tail(3000)
+print(bugs_openoffice_df)
+print("total bugs", len(bugs_openoffice_df))
+severerity = bugs_openoffice_df['Severity'].value_counts()
+print(severerity)
 
 
 
@@ -104,7 +120,7 @@ file1 = open("output_Experiment5.txt", "w")  # write mode
 
 list_of_random_seeds = []
 
-for i in range(0,10):
+for i in range(0,2):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -184,8 +200,8 @@ for i in range(0,10):
     static_dict_resp = {'Severe Lexicons': sorted_severe_lexicons, 'NonSevere Lexicon': sorted_nonsevere_lexicons }
 #     print("static_dict_resp",static_dict_resp)
     
-    # Example usage
-    merged_lexicon = helper.merge_and_dedupe_lexicons(sorted_severe_lexicons, sorted_nonsevere_lexicons)
+  
+    merged_lexicon = helper.dedupe_lexicons(sorted_severe_lexicons, sorted_nonsevere_lexicons)
 #     print("Filtered General Lexicon", merged_lexicon)
  
 
@@ -248,18 +264,18 @@ average_ml_json_data = {'Avg Confusionmatrix': model_values_CM, 'Accuracy': aver
 
 
 # store all ML results as JSON
-with open('ml_results5.json', 'w') as json_file:
+with open('ml_results5_test.json', 'w') as json_file:
      json.dump(mlresponse_list, json_file)
 # store average ML results as JSON
-with open('ml_average_results5.json', 'w') as json_file:
+with open('ml_average_results5_test.json', 'w') as json_file:
      json.dump(average_ml_json_data, json_file)
         
 # store a General static dictionary  as json
-with open('static_dictionary_Experiment5.json', 'w') as json_file:
+with open('static_dictionary_Experiment5_test.json', 'w') as json_file:
      json.dump(static_dict_resp, json_file,indent=2) 
         
 # store a General static dictionary  as json
-with open('static_dictionary_Experiment5_Filtered.json', 'w') as json_file:
+with open('static_dictionary_Experiment5_Filtered_test.json', 'w') as json_file:
      json.dump(merged_lexicon, json_file,indent=2) 
 
 # #write response of dictionary and Ml CLassifiers in the txt file
