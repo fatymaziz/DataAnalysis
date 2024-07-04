@@ -76,7 +76,7 @@ for i in range(0,10):
     randomseed = {'random_seeds':rs}
    
     
-    training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=248077)
+    training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
 #     training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
 
 
