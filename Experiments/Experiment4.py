@@ -62,7 +62,7 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-bugs_df = bugs_df.head(500)
+# bugs_df = bugs_df.head(1000)
 
 
 dictionary_list = []
@@ -71,7 +71,7 @@ file1 = open("output_Experiment4.txt", "w")  # write mode
 
 list_of_random_seeds = []
 
-for i in range(0,2):
+for i in range(0,10):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -152,12 +152,12 @@ for i in range(0,2):
  
 
  #--------------------------------ML Models -----------------------------------------------#
-#     mlclassifierresp =  helper.mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data,rs)
+    mlclassifierresp =  helper.mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data,rs)
     
-#     print(mlclassifierresp)
-#     ml_resp_eachiteration = mlclassifierresp
-#     mlresponse_list.append(ml_resp_eachiteration)
-# #     print(mlresponse_list)
+    print(mlclassifierresp)
+    ml_resp_eachiteration = mlclassifierresp
+    mlresponse_list.append(ml_resp_eachiteration)
+#     print(mlresponse_list)
  
     print("********************One Iteration completed***********************")
     
@@ -178,33 +178,33 @@ with open('lexicon_average_results4.json', 'w') as json_file:
     json.dump(average_results_lexicon, json_file)
  
  #--------------------------------Average Results for ML -----------------------------------------------------#    
-# print("************************** Average Result for ML classifier**************************")
+print("************************** Average Result for ML classifier**************************")
 
-# #  Average results and write the response of ML Models in the txt file
-# avg_confusionmatrices,average_accuracy, average_f1score,avg_meanf1score, avg_preprocesscputime,avg_learnercputime,avg_classifiercputime = helper.calculate_average_results_ML(mlresponse_list)
+#  Average results and write the response of ML Models in the txt file
+avg_confusionmatrices,average_accuracy, average_f1score,avg_meanf1score, avg_preprocesscputime,avg_learnercputime,avg_classifiercputime = helper.calculate_average_results_ML(mlresponse_list)
 
-# average_results_ml = {'Avg Confusion Matrix': avg_confusionmatrices,'Avg Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
-
-
-# average_results_ml_df = pd.DataFrame(average_results_ml)
-# print("Average result ML",average_results_ml_df)
+average_results_ml = {'Avg Confusion Matrix': avg_confusionmatrices,'Avg Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
 
 
-# # Initialize an empty dictionary to store the values of confusion matrix for each model
-# model_values_CM = {}
-
-# for model_name, model_array in avg_confusionmatrices.items():
-#     model_values_CM[model_name] = model_array.tolist()
-# # Create a JSON object
-# average_ml_json_data = {'Avg Confusionmatrix': model_values_CM, 'Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
+average_results_ml_df = pd.DataFrame(average_results_ml)
+print("Average result ML",average_results_ml_df)
 
 
-# # store all ML results as JSON
-# with open('ml_results4.json', 'w') as json_file:
-#      json.dump(mlresponse_list, json_file)
-# # store average ML results as JSON
-# with open('ml_average_results4.json', 'w') as json_file:
-#      json.dump(average_ml_json_data, json_file)
+# Initialize an empty dictionary to store the values of confusion matrix for each model
+model_values_CM = {}
+
+for model_name, model_array in avg_confusionmatrices.items():
+    model_values_CM[model_name] = model_array.tolist()
+# Create a JSON object
+average_ml_json_data = {'Avg Confusionmatrix': model_values_CM, 'Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
+
+
+# store all ML results as JSON
+with open('ml_results4.json', 'w') as json_file:
+     json.dump(mlresponse_list, json_file)
+# store average ML results as JSON
+with open('ml_average_results4.json', 'w') as json_file:
+     json.dump(average_ml_json_data, json_file)
         
 # store a General static dictionary with no bugs with status Normal as json
 with open('static_dictionary_General_2.json', 'w') as json_file:
@@ -213,4 +213,4 @@ with open('static_dictionary_General_2.json', 'w') as json_file:
 
 #write response of dictionary and Ml CLassifiers in the txt file
 file1.write(str(average_results_lexicon_df))
-# file1.write(str(average_results_ml_df))
+file1.write(str(average_results_ml_df))

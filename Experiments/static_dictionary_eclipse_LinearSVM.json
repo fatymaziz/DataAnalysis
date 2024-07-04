@@ -1,0 +1,18 @@
+{
+  "Severe Lexicons": {
+    "performance": {
+      "ratio": -0.2949186006228812
+    }
+  },
+  "NonSevere Lexicon": {
+    "able": {
+      "ratio": 0.6340404578792961
+    },
+    "existing": {
+      "ratio": 0.3627989303262804
+    },
+    "xdocletbuilder": {
+      "ratio": 0.42708304976715533
+    }
+  }
+}

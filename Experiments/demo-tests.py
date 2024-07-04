@@ -64,6 +64,8 @@ bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
 bugs_df = bugs_df.head(10)
 print(bugs_df)
+pd.set_option('display.max_colwidth', None)
+print(bugs_df['Summary'])
 
 
 
@@ -86,8 +88,8 @@ for i in range(0,1):
     randomseed = {'random_seeds':rs}
    
     
-    training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
-    training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
+    training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=691921)
+    training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=691921)
 
     print(f"No. of training data: {training_data.shape[0]}")
     print(f"No. of validation data: {validation_data.shape[0]}")
@@ -102,6 +104,15 @@ for i in range(0,1):
     training_data_df=training_data.reset_index()
     validation_data_df=validation_data.reset_index()
     testing_data_df=testing_data.reset_index()
+    
+    print("------------------Training dataset-----------------------")
+    print(training_data['Summary'])
+    print("----------------Validation dataset--------------------------")
+    print(validation_data['Summary'])
+    print("--------------Testing dataset--------------------------")
+    print(testing_data['Summary'])
+    
+    
     print("------interation------", i)
     file1.write("------Interation------")
     
@@ -110,7 +121,7 @@ for i in range(0,1):
     lexicon_preprocess_start_time = helper.cpuexecutiontime()
     
     payload_train = helper.lexicon_preprocess(trainingdataset_length,training_data_df)
-    print("Corpus",payload_train)
+#     print("Corpus",payload_train)
     
     lexicon_preprocess_end_time = helper.cpuexecutiontime()
     lexicon_preprocess_execution_time =  lexicon_preprocess_end_time -  lexicon_preprocess_start_time
@@ -120,7 +131,7 @@ for i in range(0,1):
     
     severethreshold, nonseverethreshold = helper.lexicon_learner(payload_train, validation_data)
     winning_threshold = {'severe threshold':severethreshold, 'non severe threshold':nonseverethreshold}
-    print("winning_threshold",winning_threshold)
+#     print("winning_threshold",winning_threshold)
     
     lexicon_learner_end_time = helper.cpuexecutiontime()
     lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time
@@ -136,7 +147,7 @@ for i in range(0,1):
     
     lexicon_classifier_results = {**dict_resp, **additional_dict, **winning_threshold,**randomseed}
         
-#     print(lexicon_classifier_results)
+    print(lexicon_classifier_results)
 
 #-----------------------List of dictionaries ---------------------------------#
     dictionary_resp_eachiteration = lexicon_classifier_results
