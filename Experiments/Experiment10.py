@@ -51,7 +51,7 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-bugs_df = bugs_df.tail(10000)
+# bugs_df = bugs_df.tail(10000)
 # print(bugs_df)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()
@@ -68,7 +68,7 @@ file1 = open("output_Experiment10.txt", "w")  # write mode
 list_of_random_seeds = []
 
   
-for i in range(0,2):
+for i in range(0,10):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
