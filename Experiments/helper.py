@@ -43,6 +43,10 @@ def linear_svm_features(x, bugs_df):
     # Initialize CountVectorizer and Transform the processed summary column
     cv = CountVectorizer()
     cv.fit(x)
+#     print("vocabulary length")
+#     print(len(cv.vocabulary_))
+#     print("feature names")
+#     print(cv.get_feature_names_out())
 
     X_train = cv.transform(x)
 #     print("X_train after transformed", X_train)
@@ -58,7 +62,7 @@ def linear_svm_features(x, bugs_df):
     coef = svm.coef_.ravel()
 
     # feature names from CountVectorizer
-    feature_names = cv.get_feature_names()
+    feature_names = cv.get_feature_names_out()
 
     # dictionary mapping feature names to coefficients
     word_coefficients = {feature_names[i]: coef[i] for i in range(len(feature_names))}
@@ -66,10 +70,10 @@ def linear_svm_features(x, bugs_df):
     # word list and their coefficients
     for word, coefficient in word_coefficients.items():
 
-        if coefficient < -0.2:   # Please check this logic 
+        if coefficient < 0.2:   # Please check this logic 
             severe_lexicons_linearsvm[word] = {"ratio": coefficient}
           
-        elif coefficient > 0.2: # Please check this logic 
+        elif coefficient > -0.2: # Please check this logic 
             non_severe_lexicons_linearsvm[word] = {"ratio": coefficient}
                        
     return severe_lexicons_linearsvm, non_severe_lexicons_linearsvm

@@ -51,7 +51,7 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-# bugs_df = bugs_df.tail(1500)
+bugs_df = bugs_df.tail(10000)
 # print(bugs_df)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()
@@ -68,7 +68,7 @@ file1 = open("output_Experiment10.txt", "w")  # write mode
 list_of_random_seeds = []
 
   
-for i in range(0,10):
+for i in range(0,2):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -109,6 +109,8 @@ for i in range(0,10):
     
 
     severe_lexicons_linearsvm, non_severe_lexicons_linearsvm = helper.linear_svm_features(training_data['Lowered_Summary'], training_data)
+    print("severe_lexicons_linearsvm", severe_lexicons_linearsvm)
+    print("non_severe_lexicons_linearsvm", non_severe_lexicons_linearsvm)
     
     # Add both severe and non severe dictionaries in a dictionary
     static_dict_resp = {'Severe Lexicons': severe_lexicons_linearsvm, 'NonSevere Lexicon': non_severe_lexicons_linearsvm }
