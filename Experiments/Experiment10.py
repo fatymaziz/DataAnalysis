@@ -113,7 +113,7 @@ for i in range(0,10):
 #     print("non_severe_lexicons_linearsvm", non_severe_lexicons_linearsvm)
     
     # Add both severe and non severe dictionaries in a dictionary
-    static_dict_resp = {'Severe Lexicons': severe_lexicons_linearsvm, 'NonSevere Lexicon': non_severe_lexicons_linearsvm }
+    static_dict_resp = {'Severe Lexicons': severe_lexicons_linearsvm, 'NonSevere Lexicon': non_severe_lexicons_linearsvm}
     
     lexicon_learner_end_time = helper.cpuexecutiontime()
     lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time

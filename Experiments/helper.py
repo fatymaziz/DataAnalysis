@@ -70,10 +70,10 @@ def linear_svm_features(x, bugs_df):
     # word list and their coefficients
     for word, coefficient in word_coefficients.items():
 
-        if coefficient < 0.2:   # Please check this logic 
+        if coefficient < -0.2:   # Please check this logic 
             severe_lexicons_linearsvm[word] = {"ratio": coefficient}
           
-        elif coefficient > -0.2: # Please check this logic 
+        elif coefficient > 0.2: # Please check this logic 
             non_severe_lexicons_linearsvm[word] = {"ratio": coefficient}
                        
     return severe_lexicons_linearsvm, non_severe_lexicons_linearsvm
