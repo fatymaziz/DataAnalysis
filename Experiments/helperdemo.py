@@ -307,7 +307,7 @@ def convert(corpus_trainingdata):
      
     Returns: Splitted words
     """
-#     print("DEMO--------------------------Corpus---------------------------")
+    print("DEMO--------------------------Corpus---------------------------")
 #     print(corpus_trainingdata)
 #     return ([i for item in corpus_trainingdata for i in item.split()])
      
@@ -461,9 +461,9 @@ def severeity_counts(severe_threshold, nonsevere_threshold, dataset, payload_tra
             nonsevere_dictionary[keyy] = payload_train[keyy]
             
     severedictionary_list = list(severe_dictionary.keys())
-#     print(severedictionary_list)
+    print(severedictionary_list)
     nonseveredictionary_list = list(nonsevere_dictionary.keys())
-#     print(nonseveredictionary_list)
+    print(nonseveredictionary_list)
     
     dataset["Summary"]  = dataset["Summary"].apply(lambda x: nlpsteps(x))
     
@@ -503,29 +503,29 @@ def classifier(Summary,severedictionary_list,nonseveredictionary_list):
     mytest_nonsevere = len(set(nonseveredictionary_list).intersection(summaryList))
     
 #     DEMO 
-#     print("---------Intersection logic for a bug with severe and nonsevere Lexicon-------")
-#     print("summaryList", summaryList)
-#     print("severe word counts", mytest_severe)
-#     print("nonsevere word counts", mytest_nonsevere)
+    print("---------Intersection logic for a bug with severe and nonsevere Lexicon-------")
+    print("summaryList", summaryList)
+    print("severe word counts", mytest_severe)
+    print("nonsevere word counts", mytest_nonsevere)
     
     severe_words = set(severedictionary_list).intersection(summaryList)
     nonsevere_words = set(nonseveredictionary_list).intersection(summaryList)
-#     print("Severe Words", severe_words)
-#     print("NonSevere Words", nonsevere_words)
+    print("Severe Words", severe_words)
+    print("NonSevere Words", nonsevere_words)
     
     
     if mytest_severe > mytest_nonsevere:
         tag = "Severe"
-#         print(f"Bug severity: {Summary} {tag}")
+        print(f"Bug severity: {Summary} {tag}")
     elif mytest_severe < mytest_nonsevere:
         tag = "NonSevere"
-#         print(f"Bug severity: {Summary} {tag}")
+        print(f"Bug severity: {Summary} {tag}")
     elif mytest_severe == 0 and mytest_nonsevere == 0:
         tag = zero_equal()                            #returns tag as Severe or NonSevere
-#         print(f"Bug severity: {Summary} {tag}")
+        print(f"Bug severity: {Summary} {tag}")
     elif mytest_severe == mytest_nonsevere:
         tag = nonzero_equal(summaryList, severedictionary_list,nonseveredictionary_list) #retuns tag as Severe or NonSevere
-#         print(f"Bug severity: {Summary} {tag}")
+        print(f"Bug severity: {Summary} {tag}")
     else:
         tag = "Neutral_WithSomethingElse"
         
@@ -573,16 +573,15 @@ def evaluate_lexicon_classifer(dataset, severedictionary_list, nonseveredictiona
     
     dataset["my_tag"] = dataset["Summary"].apply(lambda x: classifier(x,severedictionary_list,nonseveredictionary_list))
     
-#  # DEMO Test Example print in the console
-# #     print("severe_threshold,nonsevere_threshold",severe_threshold,nonsevere_threshold)
-#     print("----------Severe Lexicon----------------------------------")
-#     print(severedictionary_list)
-#     print("---------- Non-Severe Lexicon----------------------------------")
-#     print(nonseveredictionary_list)
-# #     print("---------------Severe & NonSevere Threshold-------------------------------------------")
-# #     print("severe_threshold,nonsevere_threshold",severe_threshold,nonsevere_threshold)
+#     print("severe_threshold,nonsevere_threshold",severe_threshold,nonsevere_threshold)
+    print("----------Severe Lexicon----------------------------------")
+    print(severedictionary_list)
+    print("---------- Non-Severe Lexicon----------------------------------")
+    print(nonseveredictionary_list)
+#     print("---------------Severe & NonSevere Threshold-------------------------------------------")
+#     print("severe_threshold,nonsevere_threshold",severe_threshold,nonsevere_threshold)
     
-#     print(dataset.loc[:, ["Summary","Severity","my_tag"]])  # DEMO Test Example print in the console
+    print(dataset.loc[:, ["Summary","Severity","my_tag"]]) # DEMO Test Example print in the console
     
     
     TP = 0 
