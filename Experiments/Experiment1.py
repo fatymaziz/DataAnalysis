@@ -104,7 +104,7 @@ file1 = open("output_Experiment1.txt", "w")  # write mode
 list_of_random_seeds = []
 
   
-for i in range(0,2):
+for i in range(0,1):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -205,7 +205,7 @@ for i in range(0,2):
 #     print(mlclassifierresp)
     ml_resp_eachiteration = mlclassifierresp
     mlresponse_list.append(ml_resp_eachiteration)
-#     print(mlresponse_list)
+    print(mlresponse_list)
  
     print("********************One Iteration completed***********************")
     

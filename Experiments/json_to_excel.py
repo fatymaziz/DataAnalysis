@@ -2,7 +2,7 @@ import pandas as pd
 import json
 
 # Specify the path to your JSON file
-json_file_path = "merged_lexicon_Exp1_Exp2_Filtered.json"
+json_file_path = "static_dictionary_Firefox_Lsvm11.json"
 
 # Read the JSON data from the file
 with open(json_file_path) as json_file:
@@ -20,7 +20,7 @@ severe_df = pd.DataFrame({"Term": severe_terms, "Ratio": severe_ratios})
 nonsevere_df = pd.DataFrame({"Term": nonsevere_terms, "Ratio": nonsevere_ratios})
 
 # Create Excel writer
-with pd.ExcelWriter("merged_lexicon_Exp1_Exp2_Filtered.xlsx") as writer:
+with pd.ExcelWriter("static_dictionary_Firefox_Lsvm11.xlsx") as writer:
     # Write dataframes to separate sheets
     severe_df.to_excel(writer, sheet_name="Severe Lexicons", index=False)
     nonsevere_df.to_excel(writer, sheet_name="NonSevere Lexicons", index=False)

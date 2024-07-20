@@ -26,8 +26,55 @@ import matplotlib.pyplot as plt
 import json
 from sklearn.svm import LinearSVC
 
+def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
+    """
+    Find the best c parameter for SVM model 
 
-def linear_svm_features(x, bugs_df):
+    Args:
+        X_train: feature from training dataset
+        Y_train: preditive label from training dataset
+        X_validation:feature from validation datsset
+        y_validation: preditive label from validation dataset dataset
+      
+    Returns: c paramater of SVM on which the model has performed the best
+    """
+    C_hyperparameter = [0.1,0.5,1,5,10,20,50,100]
+#     C_hyperparameter = [0.1]
+   
+    SVM_accuracy_list = []
+    SVM_list= []
+    
+    for c in C_hyperparameter:
+       
+        SVM_dict = {}
+
+        svm_model = SVC(C = c, kernel='linear', gamma='auto')
+        svm_model.fit(X_train,Y_train)
+
+        svm_pred = svm_model.predict(X_validation)
+        svm_model = confusion_matrix(y_validation, svm_pred)
+
+        SVM_accuracy_list= accuracy_score(y_validation, svm_pred)
+        f1_score_svm = f1_score(y_validation, svm_pred, average=None)
+        F1ScoreSVM_severe= f1_score_svm[1]
+#         print(c,F1ScoreSVM_severe)
+        
+        SVM_dict = {"C":c,"Accuracy": SVM_accuracy_list, "SVMF1Score": F1ScoreSVM_severe }
+        SVM_list.append(SVM_dict)
+        SVM_list
+        F1Score_df_SVM = pd.DataFrame(SVM_list)
+#         print(F1Score_df_SVM)
+        
+    max_f1Score_svm = F1Score_df_SVM[F1Score_df_SVM['SVMF1Score']==F1Score_df_SVM['SVMF1Score'].max()]
+    
+    best_c_hyperparamter = max_f1Score_svm['C'].values[0]
+#     print("best c", best_c_hyperparamter)
+   
+        
+    return best_c_hyperparamter
+      
+
+def linear_svm_features(summary_training,training_data,summary_validation,validation_data,training_data_df,validation_data_df):
     """
     Create a wordlist and their cofficient from linear SVM.
     Arg: 
@@ -36,27 +83,35 @@ def linear_svm_features(x, bugs_df):
     Returns:
         severe_lexicons_linearsvm, non_severe_lexicons_linearsvm dictionaries
     """
-    
     severe_lexicons_linearsvm = {}  
-    non_severe_lexicons_linearsvm = {}  
+    non_severe_lexicons_linearsvm = {} 
+   
 
     # Initialize CountVectorizer and Transform the processed summary column
     cv = CountVectorizer()
-    cv.fit(x)
-#     print("vocabulary length")
-#     print(len(cv.vocabulary_))
-#     print("feature names")
-#     print(cv.get_feature_names_out())
+    cv.fit(summary_training)
 
-    X_train = cv.transform(x)
-#     print("X_train after transformed", X_train)
+    X_train = cv.transform(summary_training)
+    X_validation = cv.transform(summary_validation)
 
-    target = bugs_df.iloc[:, -2].values  # target column
-#     print("target", target)
+    Y_train = training_data_df.iloc[:, -2].values  # target column
+    y_validation = validation_data_df.iloc[:, -2].values  # target column
+    
+#     print("X_train", X_train)
+#     print("Y_train", Y_train)
+#     print("X_validation", X_validation)
+#     print("y_validation", y_validation)
+   
+    
 
+
+# call function to find the best c parameter
+    C_hyperparameter = get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation)
+#     print("C_hyperparameter",C_hyperparameter)
+   
   #initialize and fit model
-    svm = LinearSVC()
-    svm.fit(X_train, target)
+    svm = LinearSVC(C = C_hyperparameter)
+    svm.fit(X_train, Y_train)
 
     # Get the coefficients from the trained SVM model
     coef = svm.coef_.ravel()
@@ -81,7 +136,7 @@ def linear_svm_features(x, bugs_df):
 #     print("severe_lexicons_linearsvm_before", severe_lexicons_linearsvm)
 #     print("non_severe_lexicons_linearsvms_before", non_severe_lexicons_linearsvm)
                        
-    return severe_lexicons_linearsvm, non_severe_lexicons_linearsvm
+    return severe_lexicons_linearsvm, non_severe_lexicons_linearsvm, C_hyperparameter
     
 
 def zero_equal():
@@ -147,8 +202,8 @@ def nonzero_equal(summary, severe_words, nonsevere_words):
     min_severe = df_severe.min().values[0]
     min_nonsevere = df_nonsevere.min().values[0]
     
-    print("minimum percentage severe", min_severe)
-    print("minimum percentage nonsevere", min_nonsevere)
+#     print("minimum percentage severe", min_severe)
+#     print("minimum percentage nonsevere", min_nonsevere)
 
     # Determine the category with the lower percentage
     if min_severe < min_nonsevere:
@@ -776,53 +831,7 @@ def lexicon_learner(payload_train,validation_data):
 
 ############### outerloop breakdown ends #############
 
-def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
-    """
-    Find the best c parameter for SVM model 
 
-    Args:
-        X_train: feature from training dataset
-        Y_train: preditive label from training dataset
-        X_validation:feature from validation datsset
-        y_validation: preditive label from validation dataset dataset
-      
-    Returns: c paramater of SVM on which the model has performed the best
-    """
-    C_hyperparameter = [0.1,0.5,1,5,10,20,50,100]
-#     C_hyperparameter = [0.1]
-   
-    SVM_accuracy_list = []
-    SVM_list= []
-    
-    for c in C_hyperparameter:
-       
-        SVM_dict = {}
-
-        svm_model = SVC(C = c, kernel='linear', gamma='auto')
-        svm_model.fit(X_train,Y_train)
-
-        svm_pred = svm_model.predict(X_validation)
-        svm_model = confusion_matrix(y_validation, svm_pred)
-
-        SVM_accuracy_list= accuracy_score(y_validation, svm_pred)
-        f1_score_svm = f1_score(y_validation, svm_pred, average=None)
-        F1ScoreSVM_severe= f1_score_svm[1]
-        print(c,F1ScoreSVM_severe)
-        
-        SVM_dict = {"C":c,"Accuracy": SVM_accuracy_list, "SVMF1Score": F1ScoreSVM_severe }
-        SVM_list.append(SVM_dict)
-        SVM_list
-        F1Score_df_SVM = pd.DataFrame(SVM_list)
-        print(F1Score_df_SVM)
-        
-    max_f1Score_svm = F1Score_df_SVM[F1Score_df_SVM['SVMF1Score']==F1Score_df_SVM['SVMF1Score'].max()]
-    
-    best_c_hyperparamter = max_f1Score_svm['C'].values[0]
-    print("best c", best_c_hyperparamter)
-   
-        
-    return best_c_hyperparamter
-      
     
 
 # #---------------------------ML Classifier Starts---------------------------------
@@ -897,18 +906,18 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
 #         #------------ test purpose, remove later------------------------
 #         print("X_train", X_train)
 #         print("Y_train", Y_train)
-#         print("X_validation", X_validation)
-#         print("y_validation", y_validation)
-#         print("X_test", X_test)
-#         print("y_test", y_test)
-# #         ------------ test purpose, remove later------------------------
+#         print("X_validation", X_train)
+#         print("y_validation", Y_train)
+#         print("X_test", y_test)
+#         print("y_test", Y_train)
+        #------------ test purpose, remove later------------------------
         
 
     #------------------------------------SVM------------------------------------------------------------------
         SVM_learner_starttime = cpuexecutiontime()
 
         C_hyperparameter = get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation)
-#         C_hyperparameter = 1
+        C_hyperparameter = 1
 
         SVM_accuracy_list = []
 
