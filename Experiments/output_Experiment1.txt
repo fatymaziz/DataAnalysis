@@ -1,8 +1,0 @@
-------Interation------*******************Dictionary Ends**************************    TP     FP    TN   FN  Precision  Recall   F1Score  ...  F1Score_Average  cputime_preprocess  cputime_learner  cputime_classifer  severe threshold  non severe threshold  random_seeds
-0  1.0  100.0  99.0  0.0   0.009901     1.0  0.019608  ...         0.343137            1.654499        10.586596           0.090909               0.3                   0.6      593553.0
-
-[1 rows x 17 columns]                           Avg Confusion Matrix  Avg Accuracy               Avg F1-Score  Avg Mean F1score  Avg Preprocess CPUTime  Avg Learner CPUTime  Avg Classifer CPUTime
-SVM                 [[179.0, 20.0], [1.0, 0.0]]         0.895  [0.9445910290237467, 0.0]          0.472296                0.128205             0.190774               0.010327
-MultinomialNB       [[148.0, 51.0], [1.0, 0.0]]         0.740  [0.8505747126436781, 0.0]          0.425287                0.128205             0.001580               0.003904
-LogisticRegression   [[196.0, 3.0], [1.0, 0.0]]         0.980  [0.9898989898989898, 0.0]          0.494949                0.128205             0.011206               0.003105
-DummyClassifier      [[199.0, 0.0], [1.0, 0.0]]         0.995  [0.9974937343358395, 0.0]          0.498747                0.128205             0.000171               0.003393

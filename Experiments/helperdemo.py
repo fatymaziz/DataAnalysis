@@ -309,7 +309,7 @@ def convert(corpus_trainingdata):
     """
     print("DEMO--------------------------Corpus---------------------------")
 #     print(corpus_trainingdata)
-#     return ([i for item in corpus_trainingdata for i in item.split()])
+    return ([i for item in corpus_trainingdata for i in item.split()])
      
 
 

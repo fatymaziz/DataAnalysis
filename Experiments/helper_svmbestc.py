@@ -127,10 +127,10 @@ def linear_svm_features(summary_training,training_data,summary_validation,valida
     # word list and their coefficients
     for word, coefficient in word_coefficients.items():
 
-        if coefficient < 0:   
+        if coefficient > 0:   
             severe_lexicons_linearsvm[word] = {"ratio": coefficient}
           
-        elif coefficient > 0:  
+        elif coefficient < 0:  
             non_severe_lexicons_linearsvm[word] = {"ratio": coefficient}
             
 #     print("severe_lexicons_linearsvm_before", severe_lexicons_linearsvm)
@@ -155,9 +155,11 @@ def zero_equal():
     else:
         return "Severe"
     
+import pandas as pd
+
 def nonzero_equal(summary, severe_words, nonsevere_words):
     """
-    Analyzes the the dataitems which are tagged Neutral or non zero equal and calculates their percentage by their index position and tags them Severe or Nonsevere
+    Analyzes the data items which are tagged Neutral or non-zero equal and calculates their percentage by their index position and tags them Severe or Nonsevere
 
     Args:
         summary: A list of words representing the summary text.
@@ -170,15 +172,10 @@ def nonzero_equal(summary, severe_words, nonsevere_words):
     
     sortedwords_severe = sorted(severe_words.items(), key=lambda x: x[1]['ratio'], reverse=True)
     sortedwords_nonsevere = sorted(nonsevere_words.items(), key=lambda x: x[1]['ratio'], reverse=True)
-   
     
-    # Convert severe_words and nonsevere_words to frozensets
-    severe_set = {frozenset({word}): data['ratio'] for word, data in sortedwords_severe}
-    nonsevere_set = {frozenset({word}): data['ratio'] for word, data in sortedwords_nonsevere}
-    
-    
-#     severe_set = set(severe_words)
-#     nonsevere_set = set(nonsevere_words)
+    # Convert severe_words and nonsevere_words to dictionaries
+    severe_dict = {word: data['ratio'] for word, data in sortedwords_severe}
+    nonsevere_dict = {word: data['ratio'] for word, data in sortedwords_nonsevere}
 
     severe_percentages = []
     nonsevere_percentages = []
@@ -186,32 +183,30 @@ def nonzero_equal(summary, severe_words, nonsevere_words):
     for word in summary:
         lower_word = word.lower()  # case-insensitive matching
 
-        if lower_word in severe_set:
-            index = list(severe_words).index(lower_word)
-            severe_percentages.append(index / len(severe_words) * 100)
-
-        if lower_word in nonsevere_set:
-            index = list(nonsevere_words).index(lower_word)
-            nonsevere_percentages.append(index / len(nonsevere_words) * 100)
+        if lower_word in severe_dict:
+            index = list(severe_dict.keys()).index(lower_word)
+            severe_percentages.append(index / len(severe_dict) * 100)
+           
+        if lower_word in nonsevere_dict:
+            index = list(nonsevere_dict.keys()).index(lower_word)
+            nonsevere_percentages.append(index / len(nonsevere_dict) * 100)
 
     # Create separate DataFrames for severe and non-severe percentages
     df_severe = pd.DataFrame({'Severe': severe_percentages})
     df_nonsevere = pd.DataFrame({'Non-severe': nonsevere_percentages})
-
+    
     # Calculate the minimum value for each category
     min_severe = df_severe.min().values[0]
     min_nonsevere = df_nonsevere.min().values[0]
     
-#     print("minimum percentage severe", min_severe)
-#     print("minimum percentage nonsevere", min_nonsevere)
-
+    print("min_severe",min_severe)
+    print("min_nonsevere",min_nonsevere)
+    
     # Determine the category with the lower percentage
-    if min_severe < min_nonsevere:
+    if min_severe <= min_nonsevere:
         return 'Severe'
     else:
         return 'NonSevere'
-
-
 
 #Function that returns the average result for the ML classfiers
 def calculate_average_results_ML(ml_results):
@@ -552,12 +547,13 @@ def classifier(Summary,severedictionary_list,nonseveredictionary_list):
       
     Returns: Tags as severe and nonsevere
     """
-  
+   
     summaryList = Summary.split()
     mytest_severe = len(set(severedictionary_list).intersection(summaryList))
     mytest_nonsevere = len(set(nonseveredictionary_list).intersection(summaryList))
     
-#     DEMO 
+#    ------ -----DEMO ----------
+    
 #     print("---------Intersection logic for a bug with severe and nonsevere Lexicon-------")
 #     print("summaryList", summaryList)
 #     print("severe word counts", mytest_severe)
@@ -579,8 +575,12 @@ def classifier(Summary,severedictionary_list,nonseveredictionary_list):
         tag = zero_equal()                            #returns tag as Severe or NonSevere
 #         print(f"Bug severity: {Summary} {tag}")
     elif mytest_severe == mytest_nonsevere:
-        tag = nonzero_equal(summaryList, severedictionary_list,nonseveredictionary_list) #retuns tag as Severe or NonSevere
-#         print(f"Bug severity: {Summary} {tag}")
+        if isinstance(severedictionary_list, dict) and all('ratio' in word_dict for word_dict in severedictionary_list.values()):
+            tag = nonzero_equal(summaryList, severedictionary_list,nonseveredictionary_list) #retuns tag as Severe or NonSevere
+#             print(f"Bug severity: {Summary} {tag}")
+        else: 
+            tag = zero_equal()
+#             print(f"Bug severity: {Summary} {tag}")
     else:
         tag = "Neutral_WithSomethingElse"
         

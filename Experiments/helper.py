@@ -16,7 +16,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
-from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
+from sklearn.metrics import confusion_matrix, accuracy_score, classification_report,precision_score, recall_score, f1_score
 import pandas as pd
 from sklearn.dummy import DummyClassifier
 from sklearn.metrics import f1_score
@@ -25,8 +25,62 @@ from sklearn import metrics
 import matplotlib.pyplot as plt
 import json
 from sklearn.svm import LinearSVC
+nltk.download('vader_lexicon')
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
+# Function to classify sentiment from Vader Lexicon
+def classify_sentiment(text):
+    """
+    Classify the new bug report using vader lexicon
+    Arg: 
+        text: Summary column of the training dataset
+    Returns:
+        Tags: Severe or NonSevere
+    """
+    analyzer = SentimentIntensityAnalyzer()
+    score = analyzer.polarity_scores(text)
+    if score['compound'] >= 0:
+        return 'NonSevere'
+    elif score['compound'] < 0:
+        return 'Severe'
 
+    
+# Function to evaluate the vader classifier
+def evaluate_vader_classifier(true_labels, predicted_labels):
+    
+    conf_matrix = confusion_matrix(true_labels, predicted_labels, labels=['NonSevere', 'Severe'])
+    accuracy = accuracy_score(true_labels, predicted_labels)
+    f1_weighted = f1_score(true_labels, predicted_labels, average='weighted')
+    f1_per_class = f1_score(true_labels, predicted_labels, average=None, labels=['NonSevere', 'Severe'])
+    
+    vader_dict = {
+        "confusionmatrix": conf_matrix.tolist(),
+        "Accuracy": accuracy,
+        "F1Score": f1_per_class.tolist(),
+        "F1Score_mean": f1_weighted
+    }
+    
+    return vader_dict
+
+# Function to calculates the average evaluation result of vader
+def calculate_average_vader(results):
+   
+    avg_confusionmatrix = np.mean([result['confusionmatrix'] for result in results], axis=0)
+    avg_accuracy = np.mean([result['Accuracy'] for result in results])
+    avg_f1score = np.mean([result['F1Score'] for result in results], axis=0)
+    avg_f1score_mean = np.mean([result['F1Score_mean'] for result in results])
+    avg_cputime = np.mean([result['cputime_classifer'] for result in results])
+    
+    average_result = {
+        'confusionmatrix': avg_confusionmatrix.tolist(),
+        'Accuracy': avg_accuracy,
+        'F1Score': avg_f1score.tolist(),
+        'F1Score_mean': avg_f1score_mean,
+        'cputime_classifer': avg_cputime
+    }
+    
+    return average_result
+    
 def linear_svm_features(x, bugs_df):
     """
     Create a wordlist and their cofficient from linear SVM.
@@ -40,7 +94,7 @@ def linear_svm_features(x, bugs_df):
     severe_lexicons_linearsvm = {}  
     non_severe_lexicons_linearsvm = {}  
 
-    # Initialize CountVectorizer and Transform the processed summary column
+
     cv = CountVectorizer()
     cv.fit(x)
 #     print("vocabulary length")
@@ -49,16 +103,12 @@ def linear_svm_features(x, bugs_df):
 #     print(cv.get_feature_names_out())
 
     X_train = cv.transform(x)
-#     print("X_train after transformed", X_train)
 
     target = bugs_df.iloc[:, -2].values  # target column
-#     print("target", target)
 
-  #initialize and fit model
     svm = LinearSVC()
     svm.fit(X_train, target)
 
-    # Get the coefficients from the trained SVM model
     coef = svm.coef_.ravel()
 
     # feature names from CountVectorizer
@@ -72,10 +122,10 @@ def linear_svm_features(x, bugs_df):
     # word list and their coefficients
     for word, coefficient in word_coefficients.items():
 
-        if coefficient < 0:   
+        if coefficient > 0:   
             severe_lexicons_linearsvm[word] = {"ratio": coefficient}
           
-        elif coefficient > 0:  
+        elif coefficient < 0:  
             non_severe_lexicons_linearsvm[word] = {"ratio": coefficient}
             
 #     print("severe_lexicons_linearsvm_before", severe_lexicons_linearsvm)
@@ -102,7 +152,7 @@ def zero_equal():
     
 def nonzero_equal(summary, severe_words, nonsevere_words):
     """
-    Analyzes the the dataitems which are tagged Neutral or non zero equal and calculates their percentage by their index position and tags them Severe or Nonsevere
+    Analyzes the data items which are tagged Neutral or non-zero equal and calculates their percentage by their index position and tags them Severe or Nonsevere
 
     Args:
         summary: A list of words representing the summary text.
@@ -115,15 +165,10 @@ def nonzero_equal(summary, severe_words, nonsevere_words):
     
     sortedwords_severe = sorted(severe_words.items(), key=lambda x: x[1]['ratio'], reverse=True)
     sortedwords_nonsevere = sorted(nonsevere_words.items(), key=lambda x: x[1]['ratio'], reverse=True)
-   
     
-    # Convert severe_words and nonsevere_words to frozensets
-    severe_set = {frozenset({word}): data['ratio'] for word, data in sortedwords_severe}
-    nonsevere_set = {frozenset({word}): data['ratio'] for word, data in sortedwords_nonsevere}
-    
-    
-#     severe_set = set(severe_words)
-#     nonsevere_set = set(nonsevere_words)
+    # Convert severe_words and nonsevere_words to dictionaries
+    severe_dict = {word: data['ratio'] for word, data in sortedwords_severe}
+    nonsevere_dict = {word: data['ratio'] for word, data in sortedwords_nonsevere}
 
     severe_percentages = []
     nonsevere_percentages = []
@@ -131,32 +176,30 @@ def nonzero_equal(summary, severe_words, nonsevere_words):
     for word in summary:
         lower_word = word.lower()  # case-insensitive matching
 
-        if lower_word in severe_set:
-            index = list(severe_words).index(lower_word)
-            severe_percentages.append(index / len(severe_words) * 100)
-
-        if lower_word in nonsevere_set:
-            index = list(nonsevere_words).index(lower_word)
-            nonsevere_percentages.append(index / len(nonsevere_words) * 100)
+        if lower_word in severe_dict:
+            index = list(severe_dict.keys()).index(lower_word)
+            severe_percentages.append(index / len(severe_dict) * 100)
+           
+        if lower_word in nonsevere_dict:
+            index = list(nonsevere_dict.keys()).index(lower_word)
+            nonsevere_percentages.append(index / len(nonsevere_dict) * 100)
 
     # Create separate DataFrames for severe and non-severe percentages
     df_severe = pd.DataFrame({'Severe': severe_percentages})
     df_nonsevere = pd.DataFrame({'Non-severe': nonsevere_percentages})
-
+    
     # Calculate the minimum value for each category
     min_severe = df_severe.min().values[0]
     min_nonsevere = df_nonsevere.min().values[0]
     
-    print("minimum percentage severe", min_severe)
-    print("minimum percentage nonsevere", min_nonsevere)
-
+    print("min_severe",min_severe)
+    print("min_nonsevere",min_nonsevere)
+    
     # Determine the category with the lower percentage
-    if min_severe < min_nonsevere:
+    if min_severe <= min_nonsevere:
         return 'Severe'
     else:
         return 'NonSevere'
-
-
 
 #Function that returns the average result for the ML classfiers
 def calculate_average_results_ML(ml_results):
@@ -285,10 +328,8 @@ def nlpsteps(x):
     review = review.lower()
     review = review.split()
 
-    # Initialize WordNetLemmatizer
     lemmatizer = WordNetLemmatizer()
 
-    # Remove stopwords and lemmatize words
     all_stopwords = set(stopwords.words('english'))
     all_stopwords.remove('not')
     review = [lemmatizer.lemmatize(word) for word in review if word not in all_stopwords]
@@ -309,7 +350,7 @@ def convert(corpus_trainingdata):
     """
 #     print("DEMO--------------------------Corpus---------------------------")
 #     print(corpus_trainingdata)
-#     return ([i for item in corpus_trainingdata for i in item.split()])
+    return ([i for item in corpus_trainingdata for i in item.split()])
      
 
 
@@ -497,12 +538,13 @@ def classifier(Summary,severedictionary_list,nonseveredictionary_list):
       
     Returns: Tags as severe and nonsevere
     """
-  
+   
     summaryList = Summary.split()
     mytest_severe = len(set(severedictionary_list).intersection(summaryList))
     mytest_nonsevere = len(set(nonseveredictionary_list).intersection(summaryList))
     
-#     DEMO 
+#    ------ -----DEMO ----------
+    
 #     print("---------Intersection logic for a bug with severe and nonsevere Lexicon-------")
 #     print("summaryList", summaryList)
 #     print("severe word counts", mytest_severe)
@@ -510,6 +552,7 @@ def classifier(Summary,severedictionary_list,nonseveredictionary_list):
     
     severe_words = set(severedictionary_list).intersection(summaryList)
     nonsevere_words = set(nonseveredictionary_list).intersection(summaryList)
+    
 #     print("Severe Words", severe_words)
 #     print("NonSevere Words", nonsevere_words)
     
@@ -524,8 +567,12 @@ def classifier(Summary,severedictionary_list,nonseveredictionary_list):
         tag = zero_equal()                            #returns tag as Severe or NonSevere
 #         print(f"Bug severity: {Summary} {tag}")
     elif mytest_severe == mytest_nonsevere:
-        tag = nonzero_equal(summaryList, severedictionary_list,nonseveredictionary_list) #retuns tag as Severe or NonSevere
-#         print(f"Bug severity: {Summary} {tag}")
+        if isinstance(severedictionary_list, dict) and all('ratio' in word_dict for word_dict in severedictionary_list.values()):
+            tag = nonzero_equal(summaryList, severedictionary_list,nonseveredictionary_list) #retuns tag as Severe or NonSevere
+#             print(f"Bug severity: {Summary} {tag}")
+        else: 
+            tag = zero_equal()
+#             print(f"Bug severity: {Summary} {tag}")
     else:
         tag = "Neutral_WithSomethingElse"
         
@@ -559,12 +606,10 @@ def dictionary_onthresholds(severe_threshold, nonsevere_threshold, payload_train
         if 'r2' in payload_train[keyy] and (payload_train[keyy]['r2'] >= nonsevere_threshold).all():
             nonsevere_dictionary[keyy] = {'ratio': payload_train[keyy]['r2']}  # Store value and ratio
             
-#     print("severe_dictionary")
-#     print(severe_dictionary)
-#     print("nonsevere_dictionary")
-#     print(nonsevere_dictionary)
+  
             
-    return severe_dictionary, nonsevere_dictionary, severe_threshold, nonsevere_threshold    
+    return severe_dictionary, nonsevere_dictionary, severe_threshold, nonsevere_threshold  
+
 
 def evaluate_lexicon_classifer(dataset, severedictionary_list, nonseveredictionary_list):
     
@@ -573,14 +618,13 @@ def evaluate_lexicon_classifer(dataset, severedictionary_list, nonseveredictiona
     
     dataset["my_tag"] = dataset["Summary"].apply(lambda x: classifier(x,severedictionary_list,nonseveredictionary_list))
     
-#  # DEMO Test Example print in the console
-# #     print("severe_threshold,nonsevere_threshold",severe_threshold,nonsevere_threshold)
+# #  # DEMO Test Example print in the console
+
 #     print("----------Severe Lexicon----------------------------------")
 #     print(severedictionary_list)
 #     print("---------- Non-Severe Lexicon----------------------------------")
 #     print(nonseveredictionary_list)
 # #     print("---------------Severe & NonSevere Threshold-------------------------------------------")
-# #     print("severe_threshold,nonsevere_threshold",severe_threshold,nonsevere_threshold)
     
 #     print(dataset.loc[:, ["Summary","Severity","my_tag"]])  # DEMO Test Example print in the console
     
@@ -751,7 +795,7 @@ def lexicon_learner(payload_train,validation_data):
         result_dictionary.update(count)
         result_list.append(result_dictionary)
         F1Score_df = pd.DataFrame(result_list)
-        print(F1Score_df)
+#         print(F1Score_df)
         
    #----Function that returns the total counts of bug category wise
     total_bug_counts_category = calculate_total_counts(result_list_test)
@@ -807,18 +851,18 @@ def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
         SVM_accuracy_list= accuracy_score(y_validation, svm_pred)
         f1_score_svm = f1_score(y_validation, svm_pred, average=None)
         F1ScoreSVM_severe= f1_score_svm[1]
-        print(c,F1ScoreSVM_severe)
+#         print(c,F1ScoreSVM_severe)
         
         SVM_dict = {"C":c,"Accuracy": SVM_accuracy_list, "SVMF1Score": F1ScoreSVM_severe }
         SVM_list.append(SVM_dict)
         SVM_list
         F1Score_df_SVM = pd.DataFrame(SVM_list)
-        print(F1Score_df_SVM)
+#         print(F1Score_df_SVM)
         
     max_f1Score_svm = F1Score_df_SVM[F1Score_df_SVM['SVMF1Score']==F1Score_df_SVM['SVMF1Score'].max()]
     
     best_c_hyperparamter = max_f1Score_svm['C'].values[0]
-    print("best c", best_c_hyperparamter)
+#     print("best c", best_c_hyperparamter)
    
         
     return best_c_hyperparamter
@@ -881,13 +925,16 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
 
         cv = CountVectorizer(max_features = i)
         X_train = cv.fit_transform(trainingdata_tokenised).toarray()
-        Y_train = training_data.iloc[:, -2].values
+#         Y_train = training_data.iloc[:, -2].values
+        Y_train = training_data['Severity'].apply(lambda x: 1 if x == 'Severe' else 0)
         testingdata_vector = cv.transform(testingdata_tokenised)
         X_test = testingdata_vector.toarray()
-        y_test = testing_data_df.iloc[:, -2].values
+#         y_test = testing_data_df.iloc[:, -2].values
+        y_test = testing_data_df['Severity'].apply(lambda x: 1 if x == 'Severe' else 0)
         validationdata_vector = cv.transform(validationdata_tokenised)
         X_validation = validationdata_vector.toarray()
-        y_validation = validation_data_df.iloc[:, -2].values
+#         y_validation = validation_data_df.iloc[:, -2].values
+        y_validation = validation_data_df['Severity'].apply(lambda x: 1 if x == 'Severe' else 0)
        
 
         ml_endtime_preprocess = cpuexecutiontime()

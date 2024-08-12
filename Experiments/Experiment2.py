@@ -51,7 +51,7 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-# bugs_df = bugs_df.head(800)
+bugs_df = bugs_df.head(800)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()
 # print(severerity)
@@ -87,7 +87,7 @@ bugs_eclipse.loc[bugs_eclipse["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_eclipse.loc[bugs_eclipse["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_eclipse.loc[bugs_eclipse["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-# bugs_eclipse = bugs_eclipse.head(500)
+bugs_eclipse = bugs_eclipse.head(500)
 # print("total bugs", len(bugs_eclipse))
 # severerity = bugs_eclipse['Severity'].value_counts()
 # print(severerity)
@@ -102,7 +102,7 @@ file1 = open("output_Experiment2.txt", "w")  # write mode
 
 list_of_random_seeds = []
 
-for i in range(0,10):
+for i in range(0,1):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -152,9 +152,16 @@ for i in range(0,10):
     lexicon_learner_end_time = helper.cpuexecutiontime()
     lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time
     
-#-----------------------Lexicon Classifier ---------------------------------#
+#-----------------------Lexicon Classifier ---------------------------------------#
     lexicon_classifer_start_time = helper.cpuexecutiontime()
-    dict_resp = helper.lexicon_classifier(severethreshold,nonseverethreshold,testing_data,payload_train)
+    
+    #create lexicon on the the combined dataset of training and validation dataset on the best threshold -Pending
+    severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helper.dictionary_onthresholds(severethreshold, nonseverethreshold, payload_train)
+    
+    dict_resp = helper.evaluate_lexicon_classifer(testing_data, severedictionary_list, nonseveredictionary_list)
+    
+    
+#     dict_resp = helper.lexicon_classifier(severethreshold,nonseverethreshold,testing_data,payload_train)
     
     lexicon_classifer_end_time = helper.cpuexecutiontime()
     lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
@@ -165,14 +172,15 @@ for i in range(0,10):
         
 #     print(lexicon_classifier_results)
 
-#-----------------------List of dictionaries ---------------------------------#
+#-----------------------List of dictionaries -----------------------------------#
     dictionary_resp_eachiteration = lexicon_classifier_results
     dictionary_list.append(dictionary_resp_eachiteration)
 #     print(dictionary_list)
 
-    #----------------------------Static Dictionary----------------------------------------#
+#----------------------------Static Dictionary----------------------------------------#
 
     lexicon_classifer_start_time = helper.cpuexecutiontime()
+    
     severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helper.dictionary_onthresholds(severethreshold,nonseverethreshold,payload_train)
     
     # Add both severe and non severe lists in a dictionary
@@ -182,6 +190,8 @@ for i in range(0,10):
     lexicon_classifer_end_time = helper.cpuexecutiontime()
     lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
     
+           
+#     print(lexicon_classifier_results)
       
     
     print("*************************Dictionary Ends**************************")

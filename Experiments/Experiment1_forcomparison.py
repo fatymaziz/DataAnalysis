@@ -179,10 +179,10 @@ average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
 print("Average Result Lexicon",average_results_lexicon_df)
 
 # store all lexicon results as JSON
-with open('lexicon_results11.json', 'w') as json_file:
+with open('lexicon_results1_comparison.json', 'w') as json_file:
     json.dump(dictionary_list, json_file)
 # store average lexicon results as JSON
-with open('lexicon_average_results11.json', 'w') as json_file:
+with open('lexicon_average_results1_comparison.json', 'w') as json_file:
     json.dump(average_results_lexicon, json_file)
  
  #--------------------------------Average Results for ML -----------------------------------------------------#    
@@ -208,14 +208,14 @@ average_ml_json_data = {'Avg Confusionmatrix': model_values_CM, 'Accuracy': aver
 
 
 # store all ML results as JSON
-with open('ml_results11.json', 'w') as json_file:
+with open('ml_results1_comparison.json', 'w') as json_file:
      json.dump(mlresponse_list, json_file)
 # store average ML results as JSON
-with open('ml_average_results11.json', 'w') as json_file:
+with open('ml_average_results1_comparison.json', 'w') as json_file:
      json.dump(average_ml_json_data, json_file)
         
 # store static dictionary for Eclispse as json
-with open('static_dictionary_eclipse11.json', 'w') as json_file:
+with open('static_dictionary_eclipse1_comparison.json', 'w') as json_file:
      json.dump(static_dict_resp, json_file,indent=2)
      
         

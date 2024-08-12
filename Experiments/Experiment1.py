@@ -51,7 +51,7 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-bugs_df = bugs_df.tail(300)
+bugs_df = bugs_df.tail(1000)
 # print(bugs_df)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()
@@ -88,7 +88,7 @@ bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "minor", "Severity"] = 'NonSe
 bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-bugs_df_mozilla = bugs_df_mozilla.head(200)
+bugs_df_mozilla = bugs_df_mozilla.head(500)
 # print(bugs_df_mozilla)
 # print("total bugs", len(bugs_df_mozilla))
 # severerity = bugs_df_mozilla['Severity'].value_counts()
@@ -104,7 +104,7 @@ file1 = open("output_Experiment1.txt", "w")  # write mode
 list_of_random_seeds = []
 
   
-for i in range(0,1):
+for i in range(0,2):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -205,7 +205,7 @@ for i in range(0,1):
 #     print(mlclassifierresp)
     ml_resp_eachiteration = mlclassifierresp
     mlresponse_list.append(ml_resp_eachiteration)
-    print(mlresponse_list)
+#     print(mlresponse_list)
  
     print("********************One Iteration completed***********************")
     
