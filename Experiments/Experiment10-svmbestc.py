@@ -1,4 +1,4 @@
-# Experiment 10 with Eclipse dataset and Linear SVM Feature Selection Approach
+# Experiment 10 Linear SVM Approach with Eclipse training dataset and Firefox testing dataset
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -57,6 +57,43 @@ bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 # severerity = bugs_df['Severity'].value_counts()
 # print(severerity)
 
+#--------------------------------- Firefox Dataset as a testing dataset----------------------------------
+bugs_firefox= pd.read_csv("bugs_firefox.csv")
+bugs_calendar= pd.read_csv("bugs_Calendar.csv")
+
+
+bugs_df_mozilla = pd.concat([bugs_firefox,bugs_calendar])
+
+# Dropped rows with severity level '--'
+bugs_df_mozilla = bugs_df_mozilla[bugs_df_mozilla["Severity"].str.contains("--")==False].reset_index()
+
+#Dropped rows with Type "Enhancement" and "Task" because they are not a bug but a new feature
+indexSevere = bugs_df_mozilla[(bugs_df_mozilla['Type'] == 'enhancement') & (bugs_df_mozilla['Type'] == 'enhancement') ].index
+bugs_df_mozilla.drop(indexSevere , inplace=True)
+
+indexSevere = bugs_df_mozilla[ (bugs_df_mozilla['Type'] == 'task') & (bugs_df_mozilla['Type'] == 'task') ].index
+bugs_df_mozilla.drop(indexSevere , inplace=True)
+
+
+#Catagorise the severity level into a Severe and Non Severe to make it a binary problem
+bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "blocker", "Severity"] = 'Severe'
+bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "critical", "Severity"] = 'Severe'
+bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "major", "Severity"] = 'Severe'
+bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "S1", "Severity"] = 'Severe'
+bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "S2", "Severity"] = 'Severe'
+bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "S3", "Severity"] = 'NonSevere'
+bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "normal", "Severity"] = 'NonSevere'
+bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "minor", "Severity"] = 'NonSevere'
+bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "trivial", "Severity"] = 'NonSevere'
+bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "S4", "Severity"] = 'NonSevere'
+
+# bugs_df_mozilla = bugs_df_mozilla.head(300)
+# print(bugs_df_mozilla)
+# print("total bugs", len(bugs_df_mozilla))
+# severerity = bugs_df_mozilla['Severity'].value_counts()
+# print(severerity)
+
+
 
 
 
@@ -76,8 +113,10 @@ for i in range(0,10):
     randomseed = {'random_seeds':rs}
    
    
-    training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
-    training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
+#     training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
+#     training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
+    training_data, validation_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
+    testing_data = bugs_df_mozilla.copy(deep=True)
 
     print(f"No. of training data: {training_data.shape[0]}")
     print(f"No. of validation data: {validation_data.shape[0]}")
@@ -116,7 +155,7 @@ for i in range(0,10):
 
     
     # Add both severe and non severe dictionaries in a dictionary
-    static_dict_resp = {'Severe Lexicons': severe_lexicons_linearsvm, 'NonSevere Lexicon': non_severe_lexicons_linearsvm, 'C_hyperparameter':C_hyperparameter}
+    static_dict_resp = {'Severe Lexicons': severe_lexicons_linearsvm, 'NonSevere Lexicon': non_severe_lexicons_linearsvm, 'bestC_hyperparameter':C_hyperparameter}
     
     lexicon_learner_end_time = helper_svmbestc.cpuexecutiontime()
     lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time

@@ -1,4 +1,4 @@
-#Experiment 12 Firefox dataset with by Bing Liu lexicon approach
+#Experiment 12 Firefox dataset as a testing dataset with by Bing Liu lexicon approach
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split

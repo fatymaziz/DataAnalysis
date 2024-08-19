@@ -1,4 +1,4 @@
-#Experiment 11 Firefox dataset with Linear SVM feature selection approach
+#Experiment 11 Linear SVM feature selection approach Firefox training dataset and Eclipse testing dataset
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -55,6 +55,44 @@ bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 # severerity = bugs_df['Severity'].value_counts()
 # print(severerity)
 
+#--------------------------- Eclipse dataset for training and validation dataset-----------------------------
+bugs_eclipse = pd.read_csv("bugs_eclipse.csv")
+
+
+bugs_eclipse['Type'] = np.where(bugs_eclipse['Severity'] == 'enhancement', "enhancement", "defect")
+
+
+# Dropped rows with severity level '--'
+bugs_eclipse = bugs_eclipse[bugs_eclipse["Severity"].str.contains("--")==False].reset_index()
+
+#Dropped rows with Type "Enhancement" and "Task" because they are not a bug but a new feature
+indexSevere = bugs_eclipse[(bugs_eclipse['Type'] == 'enhancement') & (bugs_eclipse['Type'] == 'enhancement') ].index
+bugs_eclipse.drop(indexSevere , inplace=True)
+
+indexSevere = bugs_eclipse[(bugs_eclipse['Type'] == 'task') & (bugs_eclipse['Type'] == 'task') ].index
+bugs_eclipse.drop(indexSevere , inplace=True)
+
+
+#Catagorise the severity level into a Severe and Non Severe to make it a binary problem
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "blocker", "Severity"] = 'Severe'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "critical", "Severity"] = 'Severe'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "major", "Severity"] = 'Severe'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "S1", "Severity"] = 'Severe'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "S2", "Severity"] = 'Severe'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "S3", "Severity"] = 'NonSevere'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "normal", "Severity"] = 'NonSevere'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "minor", "Severity"] = 'NonSevere'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "trivial", "Severity"] = 'NonSevere'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "S4", "Severity"] = 'NonSevere'
+
+# bugs_eclipse = bugs_eclipse.head(500)
+# print("total bugs", len(bugs_eclipse))
+# severerity = bugs_eclipse['Severity'].value_counts()
+# print(severerity)
+
+# ---------------------- Eclipse dataset for testing ends-----------------------
+
+
 
 dictionary_list = []
 mlresponse_list = []
@@ -71,8 +109,10 @@ for i in range(0,10):
     randomseed = {'random_seeds':rs}
    
    
-    training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
-    training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
+#     training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
+#     training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
+    training_data, validation_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
+    testing_data = bugs_eclipse.copy(deep=True)
 
     print(f"No. of training data: {training_data.shape[0]}")
     print(f"No. of validation data: {validation_data.shape[0]}")
@@ -111,7 +151,7 @@ for i in range(0,10):
     
    
     # Add both severe and non severe dictionaries in a dictionary
-    static_dict_resp = {'Severe Lexicons': severe_lexicons_linearsvm, 'NonSevere Lexicon': non_severe_lexicons_linearsvm, 'c_parameter':C_hyperparameter}
+    static_dict_resp = {'Severe Lexicons': severe_lexicons_linearsvm, 'NonSevere Lexicon': non_severe_lexicons_linearsvm, 'bestC_hyperparameter':C_hyperparameter}
     
     lexicon_learner_end_time = helper_svmbestc.cpuexecutiontime()
     lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time
