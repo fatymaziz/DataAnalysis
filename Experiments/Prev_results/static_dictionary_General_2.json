@@ -1,0 +1,2430 @@
+{
+  "Severe Lexicons": {
+    "leaving": {
+      "ratio": 1.0
+    },
+    "moz": {
+      "ratio": 1.0
+    },
+    "pdf": {
+      "ratio": 1.0
+    },
+    "drained": {
+      "ratio": 1.0
+    },
+    "individual": {
+      "ratio": 1.0
+    },
+    "structure": {
+      "ratio": 1.0
+    },
+    "bookmarkfolder": {
+      "ratio": 1.0
+    },
+    "restoring": {
+      "ratio": 1.0
+    },
+    "poor": {
+      "ratio": 1.0
+    },
+    "quality": {
+      "ratio": 1.0
+    },
+    "live": {
+      "ratio": 1.0
+    },
+    "memory": {
+      "ratio": 1.0
+    },
+    "virtual": {
+      "ratio": 1.0
+    },
+    "slows": {
+      "ratio": 1.0
+    },
+    "computer": {
+      "ratio": 1.0
+    },
+    "potentially": {
+      "ratio": 1.0
+    },
+    "crash": {
+      "ratio": 1.0
+    },
+    "document": {
+      "ratio": 1.0
+    },
+    "proton": {
+      "ratio": 1.0
+    },
+    "disk": {
+      "ratio": 1.0
+    },
+    "write": {
+      "ratio": 1.0
+    },
+    "behaviour": {
+      "ratio": 1.0
+    },
+    "worse": {
+      "ratio": 1.0
+    },
+    "situation": {
+      "ratio": 1.0
+    },
+    "deletes": {
+      "ratio": 1.0
+    },
+    "completed": {
+      "ratio": 1.0
+    },
+    "inspect": {
+      "ratio": 1.0
+    },
+    "sqlite": {
+      "ratio": 1.0
+    },
+    "corrupt": {
+      "ratio": 1.0
+    },
+    "origin": {
+      "ratio": 1.0
+    },
+    "despite": {
+      "ratio": 1.0
+    },
+    "daily": {
+      "ratio": 1.0
+    },
+    "important": {
+      "ratio": 1.0
+    },
+    "disappeared": {
+      "ratio": 1.0
+    },
+    "gui": {
+      "ratio": 1.0
+    },
+    "easy": {
+      "ratio": 1.0
+    },
+    "distinguish": {
+      "ratio": 1.0
+    },
+    "since": {
+      "ratio": 1.0
+    },
+    "activation": {
+      "ratio": 1.0
+    },
+    "disposition": {
+      "ratio": 1.0
+    },
+    "streamed": {
+      "ratio": 1.0
+    },
+    "triggering": {
+      "ratio": 1.0
+    },
+    "enough": {
+      "ratio": 1.0
+    },
+    "better": {
+      "ratio": 1.0
+    },
+    "handling": {
+      "ratio": 1.0
+    }
+  },
+  "NonSevere Lexicon": {
+    "prevent": {
+      "ratio": 1.0
+    },
+    "keyboard": {
+      "ratio": 1.0
+    },
+    "focused": {
+      "ratio": 1.0
+    },
+    "item": {
+      "ratio": 1.0
+    },
+    "overflow": {
+      "ratio": 1.0
+    },
+    "menu": {
+      "ratio": 1.0
+    },
+    "dotted": {
+      "ratio": 1.0
+    },
+    "line": {
+      "ratio": 1.0
+    },
+    "focus": {
+      "ratio": 1.0
+    },
+    "url": {
+      "ratio": 1.0
+    },
+    "autofill": {
+      "ratio": 1.0
+    },
+    "sometimes": {
+      "ratio": 1.0
+    },
+    "flicker": {
+      "ratio": 1.0
+    },
+    "typing": {
+      "ratio": 1.0
+    },
+    "wrong": {
+      "ratio": 1.0
+    },
+    "case": {
+      "ratio": 1.0
+    },
+    "performance": {
+      "ratio": 1.0
+    },
+    "measurement": {
+      "ratio": 1.0
+    },
+    "api": {
+      "ratio": 1.0
+    },
+    "label": {
+      "ratio": 1.0
+    },
+    "screenshot": {
+      "ratio": 1.0
+    },
+    "frame": {
+      "ratio": 1.0
+    },
+    "responsive": {
+      "ratio": 1.0
+    },
+    "design": {
+      "ratio": 1.0
+    },
+    "mode": {
+      "ratio": 1.0
+    },
+    "give": {
+      "ratio": 1.0
+    },
+    "placed": {
+      "ratio": 1.0
+    },
+    "bar": {
+      "ratio": 1.0
+    },
+    "caption": {
+      "ratio": 1.0
+    },
+    "changing": {
+      "ratio": 1.0
+    },
+    "starting": {
+      "ratio": 1.0
+    },
+    "page": {
+      "ratio": 1.0
+    },
+    "upgrade": {
+      "ratio": 1.0
+    },
+    "inconsistent": {
+      "ratio": 1.0
+    },
+    "scrollbars": {
+      "ratio": 1.0
+    },
+    "incorrect": {
+      "ratio": 1.0
+    },
+    "viewing": {
+      "ratio": 1.0
+    },
+    "website": {
+      "ratio": 1.0
+    },
+    "j": {
+      "ratio": 1.0
+    },
+    "steal": {
+      "ratio": 1.0
+    },
+    "outside": {
+      "ratio": 1.0
+    },
+    "window": {
+      "ratio": 1.0
+    },
+    "border": {
+      "ratio": 1.0
+    },
+    "odd": {
+      "ratio": 1.0
+    },
+    "reduced": {
+      "ratio": 1.0
+    },
+    "padding": {
+      "ratio": 1.0
+    },
+    "setting": {
+      "ratio": 1.0
+    },
+    "still": {
+      "ratio": 1.0
+    },
+    "show": {
+      "ratio": 1.0
+    },
+    "animation": {
+      "ratio": 1.0
+    },
+    "turned": {
+      "ratio": 1.0
+    },
+    "false": {
+      "ratio": 1.0
+    },
+    "mouse": {
+      "ratio": 1.0
+    },
+    "moved": {
+      "ratio": 1.0
+    },
+    "away": {
+      "ratio": 1.0
+    },
+    "go": {
+      "ratio": 1.0
+    },
+    "one": {
+      "ratio": 1.0
+    },
+    "email": {
+      "ratio": 1.0
+    },
+    "account": {
+      "ratio": 1.0
+    },
+    "directly": {
+      "ratio": 1.0
+    },
+    "logged": {
+      "ratio": 1.0
+    },
+    "another": {
+      "ratio": 1.0
+    },
+    "private": {
+      "ratio": 1.0
+    },
+    "may": {
+      "ratio": 1.0
+    },
+    "result": {
+      "ratio": 1.0
+    },
+    "unusable": {
+      "ratio": 1.0
+    },
+    "move": {
+      "ratio": 1.0
+    },
+    "navigating": {
+      "ratio": 1.0
+    },
+    "two": {
+      "ratio": 1.0
+    },
+    "warning": {
+      "ratio": 1.0
+    },
+    "improperly": {
+      "ratio": 1.0
+    },
+    "displayed": {
+      "ratio": 1.0
+    },
+    "linux": {
+      "ratio": 1.0
+    },
+    "specific": {
+      "ratio": 1.0
+    },
+    "hard": {
+      "ratio": 1.0
+    },
+    "understand": {
+      "ratio": 1.0
+    },
+    "header": {
+      "ratio": 1.0
+    },
+    "visual": {
+      "ratio": 1.0
+    },
+    "indication": {
+      "ratio": 1.0
+    },
+    "child": {
+      "ratio": 1.0
+    },
+    "jitter": {
+      "ratio": 1.0
+    },
+    "shake": {
+      "ratio": 1.0
+    },
+    "incessantly": {
+      "ratio": 1.0
+    },
+    "dragging": {
+      "ratio": 1.0
+    },
+    "shortcut": {
+      "ratio": 1.0
+    },
+    "external": {
+      "ratio": 1.0
+    },
+    "monitor": {
+      "ratio": 1.0
+    },
+    "tool": {
+      "ratio": 1.0
+    },
+    "sorted": {
+      "ratio": 1.0
+    },
+    "order": {
+      "ratio": 1.0
+    },
+    "icon": {
+      "ratio": 1.0
+    },
+    "weird": {
+      "ratio": 1.0
+    },
+    "number": {
+      "ratio": 1.0
+    },
+    "missing": {
+      "ratio": 1.0
+    },
+    "pixel": {
+      "ratio": 1.0
+    },
+    "corner": {
+      "ratio": 1.0
+    },
+    "maximized": {
+      "ratio": 1.0
+    },
+    "high": {
+      "ratio": 1.0
+    },
+    "density": {
+      "ratio": 1.0
+    },
+    "restore": {
+      "ratio": 1.0
+    },
+    "change": {
+      "ratio": 1.0
+    },
+    "hootsuite": {
+      "ratio": 1.0
+    },
+    "multiple": {
+      "ratio": 1.0
+    },
+    "add": {
+      "ratio": 1.0
+    },
+    "safeguard": {
+      "ratio": 1.0
+    },
+    "malformed": {
+      "ratio": 1.0
+    },
+    "config": {
+      "ratio": 1.0
+    },
+    "permission": {
+      "ratio": 1.0
+    },
+    "prompt": {
+      "ratio": 1.0
+    },
+    "extra": {
+      "ratio": 1.0
+    },
+    "able": {
+      "ratio": 1.0
+    },
+    "toolbar": {
+      "ratio": 1.0
+    },
+    "height": {
+      "ratio": 1.0
+    },
+    "hovering": {
+      "ratio": 1.0
+    },
+    "zoom": {
+      "ratio": 1.0
+    },
+    "edit": {
+      "ratio": 1.0
+    },
+    "control": {
+      "ratio": 1.0
+    },
+    "adding": {
+      "ratio": 1.0
+    },
+    "preference": {
+      "ratio": 1.0
+    },
+    "navigation": {
+      "ratio": 1.0
+    },
+    "application": {
+      "ratio": 1.0
+    },
+    "section": {
+      "ratio": 1.0
+    },
+    "selects": {
+      "ratio": 1.0
+    },
+    "option": {
+      "ratio": 1.0
+    },
+    "jump": {
+      "ratio": 1.0
+    },
+    "next": {
+      "ratio": 1.0
+    },
+    "checkbox": {
+      "ratio": 1.0
+    },
+    "hmm": {
+      "ratio": 1.0
+    },
+    "installation": {
+      "ratio": 1.0
+    },
+    "failed": {
+      "ratio": 1.0
+    },
+    "due": {
+      "ratio": 1.0
+    },
+    "reason": {
+      "ratio": 1.0
+    },
+    "eraser": {
+      "ratio": 1.0
+    },
+    "touchscreen": {
+      "ratio": 1.0
+    },
+    "cause": {
+      "ratio": 1.0
+    },
+    "exit": {
+      "ratio": 1.0
+    },
+    "enable": {
+      "ratio": 1.0
+    },
+    "display": {
+      "ratio": 1.0
+    },
+    "much": {
+      "ratio": 1.0
+    },
+    "color": {
+      "ratio": 1.0
+    },
+    "implicitly": {
+      "ratio": 1.0
+    },
+    "cancelled": {
+      "ratio": 1.0
+    },
+    "begin": {
+      "ratio": 1.0
+    },
+    "address": {
+      "ratio": 1.0
+    },
+    "junk": {
+      "ratio": 1.0
+    },
+    "www": {
+      "ratio": 1.0
+    },
+    "relocation": {
+      "ratio": 1.0
+    },
+    "drop": {
+      "ratio": 1.0
+    },
+    "marker": {
+      "ratio": 1.0
+    },
+    "match": {
+      "ratio": 1.0
+    },
+    "closing": {
+      "ratio": 1.0
+    },
+    "ssh": {
+      "ratio": 1.0
+    },
+    "zanox": {
+      "ratio": 1.0
+    },
+    "win": {
+      "ratio": 1.0
+    },
+    "cursor": {
+      "ratio": 1.0
+    },
+    "choosing": {
+      "ratio": 1.0
+    },
+    "screen": {
+      "ratio": 1.0
+    },
+    "test": {
+      "ratio": 1.0
+    },
+    "oddly": {
+      "ratio": 1.0
+    },
+    "formatted": {
+      "ratio": 1.0
+    },
+    "rendering": {
+      "ratio": 1.0
+    },
+    "performed": {
+      "ratio": 1.0
+    },
+    "resolution": {
+      "ratio": 1.0
+    },
+    "video": {
+      "ratio": 1.0
+    },
+    "fullscreen": {
+      "ratio": 1.0
+    },
+    "kde": {
+      "ratio": 1.0
+    },
+    "downloads": {
+      "ratio": 1.0
+    },
+    "loading": {
+      "ratio": 1.0
+    },
+    "html": {
+      "ratio": 1.0
+    },
+    "character": {
+      "ratio": 1.0
+    },
+    "rendered": {
+      "ratio": 1.0
+    },
+    "without": {
+      "ratio": 1.0
+    },
+    "shown": {
+      "ratio": 1.0
+    },
+    "panel": {
+      "ratio": 1.0
+    },
+    "aligned": {
+      "ratio": 1.0
+    },
+    "footer": {
+      "ratio": 1.0
+    },
+    "experiment": {
+      "ratio": 1.0
+    },
+    "phone": {
+      "ratio": 1.0
+    },
+    "instead": {
+      "ratio": 1.0
+    },
+    "hyperlink": {
+      "ratio": 1.0
+    },
+    "partially": {
+      "ratio": 1.0
+    },
+    "gray": {
+      "ratio": 1.0
+    },
+    "background": {
+      "ratio": 1.0
+    },
+    "placeholder": {
+      "ratio": 1.0
+    },
+    "urlbar": {
+      "ratio": 1.0
+    },
+    "searchbar": {
+      "ratio": 1.0
+    },
+    "different": {
+      "ratio": 1.0
+    },
+    "normal": {
+      "ratio": 1.0
+    },
+    "devedition": {
+      "ratio": 1.0
+    },
+    "theme": {
+      "ratio": 1.0
+    },
+    "refresh": {
+      "ratio": 1.0
+    },
+    "uninstaller": {
+      "ratio": 1.0
+    },
+    "removed": {
+      "ratio": 1.0
+    },
+    "certain": {
+      "ratio": 1.0
+    },
+    "step": {
+      "ratio": 1.0
+    },
+    "arrow": {
+      "ratio": 1.0
+    },
+    "liked": {
+      "ratio": 1.0
+    },
+    "side": {
+      "ratio": 1.0
+    },
+    "misleading": {
+      "ratio": 1.0
+    },
+    "finished": {
+      "ratio": 1.0
+    },
+    "connection": {
+      "ratio": 1.0
+    },
+    "saver": {
+      "ratio": 1.0
+    },
+    "new": {
+      "ratio": 1.0
+    },
+    "user": {
+      "ratio": 1.0
+    },
+    "trough": {
+      "ratio": 1.0
+    },
+    "amo": {
+      "ratio": 1.0
+    },
+    "disabled": {
+      "ratio": 1.0
+    },
+    "clicking": {
+      "ratio": 1.0
+    },
+    "syncs": {
+      "ratio": 1.0
+    },
+    "unmute": {
+      "ratio": 1.0
+    },
+    "sound": {
+      "ratio": 1.0
+    },
+    "playing": {
+      "ratio": 1.0
+    },
+    "university": {
+      "ratio": 1.0
+    },
+    "mail": {
+      "ratio": 1.0
+    },
+    "service": {
+      "ratio": 1.0
+    },
+    "arent": {
+      "ratio": 1.0
+    },
+    "showed": {
+      "ratio": 1.0
+    },
+    "cannot": {
+      "ratio": 1.0
+    },
+    "word": {
+      "ratio": 1.0
+    },
+    "full": {
+      "ratio": 1.0
+    },
+    "top": {
+      "ratio": 1.0
+    },
+    "edge": {
+      "ratio": 1.0
+    },
+    "information": {
+      "ratio": 1.0
+    },
+    "history": {
+      "ratio": 1.0
+    },
+    "hover": {
+      "ratio": 1.0
+    },
+    "table": {
+      "ratio": 1.0
+    },
+    "producing": {
+      "ratio": 1.0
+    },
+    "effect": {
+      "ratio": 1.0
+    },
+    "dark": {
+      "ratio": 1.0
+    },
+    "gap": {
+      "ratio": 1.0
+    },
+    "toolbars": {
+      "ratio": 1.0
+    },
+    "area": {
+      "ratio": 1.0
+    },
+    "bad": {
+      "ratio": 1.0
+    },
+    "whilst": {
+      "ratio": 1.0
+    },
+    "image": {
+      "ratio": 1.0
+    },
+    "middle": {
+      "ratio": 1.0
+    },
+    "find": {
+      "ratio": 1.0
+    },
+    "remember": {
+      "ratio": 1.0
+    },
+    "across": {
+      "ratio": 1.0
+    },
+    "session": {
+      "ratio": 1.0
+    },
+    "would": {
+      "ratio": 1.0
+    },
+    "nice": {
+      "ratio": 1.0
+    },
+    "possible": {
+      "ratio": 1.0
+    },
+    "scroll": {
+      "ratio": 1.0
+    },
+    "key": {
+      "ratio": 1.0
+    },
+    "clear": {
+      "ratio": 1.0
+    },
+    "close": {
+      "ratio": 1.0
+    },
+    "together": {
+      "ratio": 1.0
+    },
+    "big": {
+      "ratio": 1.0
+    },
+    "picture": {
+      "ratio": 1.0
+    },
+    "status": {
+      "ratio": 1.0
+    },
+    "popup": {
+      "ratio": 1.0
+    },
+    "short": {
+      "ratio": 1.0
+    },
+    "opening": {
+      "ratio": 1.0
+    },
+    "pop": {
+      "ratio": 1.0
+    },
+    "correctly": {
+      "ratio": 1.0
+    },
+    "emitted": {
+      "ratio": 1.0
+    },
+    "xhtml": {
+      "ratio": 1.0
+    },
+    "xml": {
+      "ratio": 1.0
+    },
+    "returned": {
+      "ratio": 1.0
+    },
+    "nbsp": {
+      "ratio": 1.0
+    },
+    "blank": {
+      "ratio": 1.0
+    },
+    "block": {
+      "ratio": 1.0
+    },
+    "separator": {
+      "ratio": 1.0
+    },
+    "selected": {
+      "ratio": 1.0
+    },
+    "save": {
+      "ratio": 1.0
+    },
+    "info": {
+      "ratio": 1.0
+    },
+    "gtk": {
+      "ratio": 1.0
+    },
+    "select": {
+      "ratio": 1.0
+    },
+    "library": {
+      "ratio": 1.0
+    },
+    "multi": {
+      "ratio": 1.0
+    },
+    "indicator": {
+      "ratio": 1.0
+    },
+    "size": {
+      "ratio": 1.0
+    },
+    "call": {
+      "ratio": 1.0
+    },
+    "active": {
+      "ratio": 1.0
+    },
+    "ff": {
+      "ratio": 1.0
+    },
+    "addons": {
+      "ratio": 1.0
+    },
+    "want": {
+      "ratio": 1.0
+    },
+    "rotating": {
+      "ratio": 1.0
+    },
+    "wallpaper": {
+      "ratio": 1.0
+    },
+    "lose": {
+      "ratio": 1.0
+    },
+    "rotation": {
+      "ratio": 1.0
+    },
+    "installer": {
+      "ratio": 1.0
+    },
+    "stuck": {
+      "ratio": 1.0
+    },
+    "around": {
+      "ratio": 1.0
+    },
+    "hide": {
+      "ratio": 1.0
+    },
+    "spell": {
+      "ratio": 1.0
+    },
+    "context": {
+      "ratio": 1.0
+    },
+    "login": {
+      "ratio": 1.0
+    },
+    "username": {
+      "ratio": 1.0
+    },
+    "field": {
+      "ratio": 1.0
+    },
+    "disable": {
+      "ratio": 1.0
+    },
+    "spellcheck": {
+      "ratio": 1.0
+    },
+    "configuration": {
+      "ratio": 1.0
+    },
+    "dependent": {
+      "ratio": 1.0
+    },
+    "whether": {
+      "ratio": 1.0
+    },
+    "restored": {
+      "ratio": 1.0
+    },
+    "white": {
+      "ratio": 1.0
+    },
+    "last": {
+      "ratio": 1.0
+    },
+    "time": {
+      "ratio": 1.0
+    },
+    "working": {
+      "ratio": 1.0
+    },
+    "data": {
+      "ratio": 1.0
+    },
+    "type": {
+      "ratio": 1.0
+    },
+    "corrected": {
+      "ratio": 1.0
+    },
+    "hidden": {
+      "ratio": 1.0
+    },
+    "snap": {
+      "ratio": 1.0
+    },
+    "minimize": {
+      "ratio": 1.0
+    },
+    "maximize": {
+      "ratio": 1.0
+    },
+    "dissapearing": {
+      "ratio": 1.0
+    },
+    "issue": {
+      "ratio": 1.0
+    },
+    "raise": {
+      "ratio": 1.0
+    },
+    "defeat": {
+      "ratio": 1.0
+    },
+    "purpose": {
+      "ratio": 1.0
+    },
+    "kiosk": {
+      "ratio": 1.0
+    },
+    "turn": {
+      "ratio": 1.0
+    },
+    "highlight": {
+      "ratio": 1.0
+    },
+    "selection": {
+      "ratio": 1.0
+    },
+    "omitted": {
+      "ratio": 1.0
+    },
+    "view": {
+      "ratio": 1.0
+    },
+    "broken": {
+      "ratio": 1.0
+    },
+    "enabled": {
+      "ratio": 1.0
+    },
+    "inconsistency": {
+      "ratio": 1.0
+    },
+    "textbox": {
+      "ratio": 1.0
+    },
+    "mix": {
+      "ratio": 1.0
+    },
+    "french": {
+      "ratio": 1.0
+    },
+    "flickering": {
+      "ratio": 1.0
+    },
+    "security": {
+      "ratio": 1.0
+    },
+    "showing": {
+      "ratio": 1.0
+    },
+    "properly": {
+      "ratio": 1.0
+    },
+    "text": {
+      "ratio": 1.0
+    },
+    "input": {
+      "ratio": 1.0
+    },
+    "width": {
+      "ratio": 1.0
+    },
+    "font": {
+      "ratio": 1.0
+    },
+    "manager": {
+      "ratio": 1.0
+    },
+    "amount": {
+      "ratio": 1.0
+    },
+    "downloaded": {
+      "ratio": 1.0
+    },
+    "strange": {
+      "ratio": 1.0
+    },
+    "regression": {
+      "ratio": 1.0
+    },
+    "padlock": {
+      "ratio": 1.0
+    },
+    "stable": {
+      "ratio": 1.0
+    },
+    "secure": {
+      "ratio": 1.0
+    },
+    "mixed": {
+      "ratio": 1.0
+    },
+    "password": {
+      "ratio": 1.0
+    },
+    "protection": {
+      "ratio": 1.0
+    },
+    "separate": {
+      "ratio": 1.0
+    },
+    "wide": {
+      "ratio": 1.0
+    },
+    "identical": {
+      "ratio": 1.0
+    },
+    "logging": {
+      "ratio": 1.0
+    },
+    "onto": {
+      "ratio": 1.0
+    },
+    "paypal": {
+      "ratio": 1.0
+    },
+    "redirect": {
+      "ratio": 1.0
+    },
+    "freeze": {
+      "ratio": 1.0
+    },
+    "improve": {
+      "ratio": 1.0
+    },
+    "wording": {
+      "ratio": 1.0
+    },
+    "implement": {
+      "ratio": 1.0
+    },
+    "becomes": {
+      "ratio": 1.0
+    },
+    "unresponsive": {
+      "ratio": 1.0
+    },
+    "kb": {
+      "ratio": 1.0
+    },
+    "mb": {
+      "ratio": 1.0
+    },
+    "existing": {
+      "ratio": 1.0
+    },
+    "already": {
+      "ratio": 1.0
+    },
+    "opened": {
+      "ratio": 1.0
+    },
+    "reflecting": {
+      "ratio": 1.0
+    },
+    "true": {
+      "ratio": 1.0
+    },
+    "affecting": {
+      "ratio": 1.0
+    },
+    "extension": {
+      "ratio": 1.0
+    },
+    "installs": {
+      "ratio": 1.0
+    },
+    "saved": {
+      "ratio": 1.0
+    },
+    "submenu": {
+      "ratio": 1.0
+    },
+    "rounded": {
+      "ratio": 1.0
+    },
+    "part": {
+      "ratio": 1.0
+    },
+    "shadow": {
+      "ratio": 1.0
+    },
+    "handle": {
+      "ratio": 1.0
+    },
+    "component": {
+      "ratio": 1.0
+    },
+    "recipe": {
+      "ratio": 1.0
+    },
+    "impossible": {
+      "ratio": 1.0
+    },
+    "cancel": {
+      "ratio": 1.0
+    },
+    "completion": {
+      "ratio": 1.0
+    },
+    "foreground": {
+      "ratio": 1.0
+    },
+    "location": {
+      "ratio": 1.0
+    },
+    "unconditionally": {
+      "ratio": 1.0
+    },
+    "squash": {
+      "ratio": 1.0
+    },
+    "remaining": {
+      "ratio": 1.0
+    },
+    "ssl": {
+      "ratio": 1.0
+    },
+    "cert": {
+      "ratio": 1.0
+    },
+    "domain": {
+      "ratio": 1.0
+    },
+    "press": {
+      "ratio": 1.0
+    },
+    "making": {
+      "ratio": 1.0
+    },
+    "take": {
+      "ratio": 1.0
+    },
+    "shot": {
+      "ratio": 1.0
+    },
+    "notification": {
+      "ratio": 1.0
+    },
+    "remove": {
+      "ratio": 1.0
+    },
+    "viewport": {
+      "ratio": 1.0
+    },
+    "list": {
+      "ratio": 1.0
+    },
+    "almost": {
+      "ratio": 1.0
+    },
+    "visible": {
+      "ratio": 1.0
+    },
+    "clicked": {
+      "ratio": 1.0
+    },
+    "tag": {
+      "ratio": 1.0
+    },
+    "undefined": {
+      "ratio": 1.0
+    },
+    "dot": {
+      "ratio": 1.0
+    },
+    "lost": {
+      "ratio": 1.0
+    },
+    "maximising": {
+      "ratio": 1.0
+    },
+    "employ": {
+      "ratio": 1.0
+    },
+    "prove": {
+      "ratio": 1.0
+    },
+    "human": {
+      "ratio": 1.0
+    },
+    "never": {
+      "ratio": 1.0
+    },
+    "mac": {
+      "ratio": 1.0
+    },
+    "easily": {
+      "ratio": 1.0
+    },
+    "mistaken": {
+      "ratio": 1.0
+    },
+    "black": {
+      "ratio": 1.0
+    },
+    "action": {
+      "ratio": 1.0
+    },
+    "space": {
+      "ratio": 1.0
+    },
+    "expected": {
+      "ratio": 1.0
+    },
+    "toolbarseparator": {
+      "ratio": 1.0
+    },
+    "device": {
+      "ratio": 1.0
+    },
+    "command": {
+      "ratio": 1.0
+    },
+    "selecting": {
+      "ratio": 1.0
+    },
+    "startup": {
+      "ratio": 1.0
+    },
+    "enabling": {
+      "ratio": 1.0
+    },
+    "override": {
+      "ratio": 1.0
+    },
+    "editing": {
+      "ratio": 1.0
+    },
+    "blink": {
+      "ratio": 1.0
+    },
+    "blue": {
+      "ratio": 1.0
+    },
+    "return": {
+      "ratio": 1.0
+    },
+    "form": {
+      "ratio": 1.0
+    },
+    "ux": {
+      "ratio": 1.0
+    },
+    "enhancement": {
+      "ratio": 1.0
+    },
+    "recently": {
+      "ratio": 1.0
+    },
+    "closed": {
+      "ratio": 1.0
+    },
+    "request": {
+      "ratio": 1.0
+    },
+    "denied": {
+      "ratio": 1.0
+    },
+    "downloading": {
+      "ratio": 1.0
+    },
+    "temporary": {
+      "ratio": 1.0
+    },
+    "improvement": {
+      "ratio": 1.0
+    },
+    "combination": {
+      "ratio": 1.0
+    },
+    "build": {
+      "ratio": 1.0
+    },
+    "master": {
+      "ratio": 1.0
+    },
+    "suggestion": {
+      "ratio": 1.0
+    },
+    "dropdown": {
+      "ratio": 1.0
+    },
+    "overlength": {
+      "ratio": 1.0
+    },
+    "resizing": {
+      "ratio": 1.0
+    },
+    "arm": {
+      "ratio": 1.0
+    },
+    "synchronize": {
+      "ratio": 1.0
+    },
+    "android": {
+      "ratio": 1.0
+    },
+    "desktop": {
+      "ratio": 1.0
+    },
+    "keep": {
+      "ratio": 1.0
+    },
+    "reappearing": {
+      "ratio": 1.0
+    },
+    "removal": {
+      "ratio": 1.0
+    },
+    "inactive": {
+      "ratio": 1.0
+    },
+    "accepts": {
+      "ratio": 1.0
+    },
+    "bringing": {
+      "ratio": 1.0
+    },
+    "cosmetic": {
+      "ratio": 1.0
+    },
+    "large": {
+      "ratio": 1.0
+    },
+    "opacity": {
+      "ratio": 1.0
+    },
+    "newtab": {
+      "ratio": 1.0
+    },
+    "ltr": {
+      "ratio": 1.0
+    },
+    "occasionally": {
+      "ratio": 1.0
+    },
+    "stay": {
+      "ratio": 1.0
+    },
+    "launching": {
+      "ratio": 1.0
+    },
+    "query": {
+      "ratio": 1.0
+    },
+    "string": {
+      "ratio": 1.0
+    },
+    "includes": {
+      "ratio": 1.0
+    },
+    "screenshots": {
+      "ratio": 1.0
+    },
+    "cropped": {
+      "ratio": 1.0
+    },
+    "scale": {
+      "ratio": 1.0
+    },
+    "value": {
+      "ratio": 1.0
+    },
+    "leave": {
+      "ratio": 1.0
+    },
+    "webpage": {
+      "ratio": 1.0
+    },
+    "bug": {
+      "ratio": 1.0
+    },
+    "confirming": {
+      "ratio": 1.0
+    },
+    "destination": {
+      "ratio": 1.0
+    },
+    "pressing": {
+      "ratio": 1.0
+    },
+    "enter": {
+      "ratio": 1.0
+    },
+    "slightly": {
+      "ratio": 1.0
+    },
+    "momentarily": {
+      "ratio": 1.0
+    },
+    "inside": {
+      "ratio": 1.0
+    },
+    "doorhangers": {
+      "ratio": 1.0
+    },
+    "used": {
+      "ratio": 1.0
+    },
+    "make": {
+      "ratio": 1.0
+    },
+    "autocomplete": {
+      "ratio": 1.0
+    },
+    "effective": {
+      "ratio": 1.0
+    },
+    "autoplay": {
+      "ratio": 1.0
+    },
+    "several": {
+      "ratio": 1.0
+    },
+    "profile": {
+      "ratio": 1.0
+    },
+    "choosen": {
+      "ratio": 1.0
+    },
+    "follow": {
+      "ratio": 1.0
+    },
+    "sidebar": {
+      "ratio": 1.0
+    },
+    "chooser": {
+      "ratio": 1.0
+    },
+    "anchor": {
+      "ratio": 1.0
+    },
+    "positioning": {
+      "ratio": 1.0
+    },
+    "invoke": {
+      "ratio": 1.0
+    },
+    "head": {
+      "ratio": 1.0
+    },
+    "accessed": {
+      "ratio": 1.0
+    },
+    "cnn": {
+      "ratio": 1.0
+    },
+    "differs": {
+      "ratio": 1.0
+    },
+    "box": {
+      "ratio": 1.0
+    },
+    "style": {
+      "ratio": 1.0
+    },
+    "fast": {
+      "ratio": 1.0
+    },
+    "unreachable": {
+      "ratio": 1.0
+    },
+    "accesskey": {
+      "ratio": 1.0
+    },
+    "quick": {
+      "ratio": 1.0
+    },
+    "filter": {
+      "ratio": 1.0
+    },
+    "initially": {
+      "ratio": 1.0
+    },
+    "loaded": {
+      "ratio": 1.0
+    },
+    "first": {
+      "ratio": 1.0
+    },
+    "launch": {
+      "ratio": 1.0
+    },
+    "scrolling": {
+      "ratio": 1.0
+    },
+    "wheel": {
+      "ratio": 1.0
+    },
+    "stop": {
+      "ratio": 1.0
+    },
+    "expanded": {
+      "ratio": 1.0
+    },
+    "sub": {
+      "ratio": 1.0
+    },
+    "split": {
+      "ratio": 1.0
+    },
+    "second": {
+      "ratio": 1.0
+    },
+    "shift": {
+      "ratio": 1.0
+    },
+    "depending": {
+      "ratio": 1.0
+    },
+    "handled": {
+      "ratio": 1.0
+    },
+    "feed": {
+      "ratio": 1.0
+    },
+    "updating": {
+      "ratio": 1.0
+    },
+    "highlighted": {
+      "ratio": 1.0
+    },
+    "upon": {
+      "ratio": 1.0
+    },
+    "alt": {
+      "ratio": 1.0
+    },
+    "primary": {
+      "ratio": 1.0
+    },
+    "question": {
+      "ratio": 1.0
+    },
+    "cs": {
+      "ratio": 1.0
+    },
+    "customization": {
+      "ratio": 1.0
+    },
+    "blurry": {
+      "ratio": 1.0
+    },
+    "graphic": {
+      "ratio": 1.0
+    },
+    "generates": {
+      "ratio": 1.0
+    },
+    "rate": {
+      "ratio": 1.0
+    },
+    "explorer": {
+      "ratio": 1.0
+    },
+    "exe": {
+      "ratio": 1.0
+    },
+    "helper": {
+      "ratio": 1.0
+    },
+    "pre": {
+      "ratio": 1.0
+    },
+    "changed": {
+      "ratio": 1.0
+    },
+    "association": {
+      "ratio": 1.0
+    },
+    "max": {
+      "ratio": 1.0
+    },
+    "attribute": {
+      "ratio": 1.0
+    },
+    "ignored": {
+      "ratio": 1.0
+    },
+    "adjust": {
+      "ratio": 1.0
+    },
+    "thickness": {
+      "ratio": 1.0
+    },
+    "selector": {
+      "ratio": 1.0
+    },
+    "custom": {
+      "ratio": 1.0
+    },
+    "detected": {
+      "ratio": 1.0
+    },
+    "styled": {
+      "ratio": 1.0
+    },
+    "bold": {
+      "ratio": 1.0
+    },
+    "larger": {
+      "ratio": 1.0
+    },
+    "non": {
+      "ratio": 1.0
+    },
+    "smaller": {
+      "ratio": 1.0
+    },
+    "tracking": {
+      "ratio": 1.0
+    },
+    "picky": {
+      "ratio": 1.0
+    },
+    "onpopuphiding": {
+      "ratio": 1.0
+    },
+    "menupopup": {
+      "ratio": 1.0
+    },
+    "alert": {
+      "ratio": 1.0
+    },
+    "whole": {
+      "ratio": 1.0
+    },
+    "locked": {
+      "ratio": 1.0
+    },
+    "deactivate": {
+      "ratio": 1.0
+    },
+    "forgotten": {
+      "ratio": 1.0
+    },
+    "asking": {
+      "ratio": 1.0
+    },
+    "allow": {
+      "ratio": 1.0
+    },
+    "bottom": {
+      "ratio": 1.0
+    },
+    "forward": {
+      "ratio": 1.0
+    },
+    "gnomestripe": {
+      "ratio": 1.0
+    },
+    "small": {
+      "ratio": 1.0
+    },
+    "probably": {
+      "ratio": 1.0
+    },
+    "winstripe": {
+      "ratio": 1.0
+    },
+    "erroneously": {
+      "ratio": 1.0
+    },
+    "report": {
+      "ratio": 1.0
+    },
+    "encrypted": {
+      "ratio": 1.0
+    },
+    "href": {
+      "ratio": 1.0
+    },
+    "layout": {
+      "ratio": 1.0
+    },
+    "card": {
+      "ratio": 1.0
+    },
+    "px": {
+      "ratio": 1.0
+    },
+    "artifact": {
+      "ratio": 1.0
+    },
+    "deleted": {
+      "ratio": 1.0
+    },
+    "reload": {
+      "ratio": 1.0
+    },
+    "intuitive": {
+      "ratio": 1.0
+    },
+    "preclude": {
+      "ratio": 1.0
+    },
+    "far": {
+      "ratio": 1.0
+    },
+    "behaves": {
+      "ratio": 1.0
+    },
+    "erratically": {
+      "ratio": 1.0
+    },
+    "also": {
+      "ratio": 1.0
+    },
+    "located": {
+      "ratio": 1.0
+    },
+    "affected": {
+      "ratio": 1.0
+    },
+    "level": {
+      "ratio": 1.0
+    },
+    "synced": {
+      "ratio": 1.0
+    },
+    "toolbarbuttons": {
+      "ratio": 1.0
+    },
+    "might": {
+      "ratio": 1.0
+    },
+    "exist": {
+      "ratio": 1.0
+    },
+    "misaligned": {
+      "ratio": 1.0
+    },
+    "checkboxes": {
+      "ratio": 1.0
+    },
+    "checked": {
+      "ratio": 1.0
+    },
+    "independent": {
+      "ratio": 1.0
+    },
+    "randomly": {
+      "ratio": 1.0
+    },
+    "insterting": {
+      "ratio": 1.0
+    },
+    "incl": {
+      "ratio": 1.0
+    },
+    "undo": {
+      "ratio": 1.0
+    },
+    "restart": {
+      "ratio": 1.0
+    },
+    "aborted": {
+      "ratio": 1.0
+    },
+    "break": {
+      "ratio": 1.0
+    },
+    "anonymity": {
+      "ratio": 1.0
+    },
+    "delay": {
+      "ratio": 1.0
+    },
+    "fails": {
+      "ratio": 1.0
+    },
+    "asks": {
+      "ratio": 1.0
+    },
+    "visually": {
+      "ratio": 1.0
+    },
+    "imperceptible": {
+      "ratio": 1.0
+    },
+    "paste": {
+      "ratio": 1.0
+    },
+    "illustration": {
+      "ratio": 1.0
+    },
+    "half": {
+      "ratio": 1.0
+    },
+    "lvl": {
+      "ratio": 1.0
+    },
+    "doms": {
+      "ratio": 1.0
+    },
+    "double": {
+      "ratio": 1.0
+    },
+    "simple": {
+      "ratio": 1.0
+    },
+    "jar": {
+      "ratio": 1.0
+    },
+    "brings": {
+      "ratio": 1.0
+    },
+    "help": {
+      "ratio": 1.0
+    },
+    "web": {
+      "ratio": 1.0
+    },
+    "rather": {
+      "ratio": 1.0
+    },
+    "platform": {
+      "ratio": 1.0
+    },
+    "standard": {
+      "ratio": 1.0
+    },
+    "highlighting": {
+      "ratio": 1.0
+    },
+    "duplicated": {
+      "ratio": 1.0
+    },
+    "race": {
+      "ratio": 1.0
+    },
+    "begining": {
+      "ratio": 1.0
+    },
+    "awesomebar": {
+      "ratio": 1.0
+    },
+    "swap": {
+      "ratio": 1.0
+    },
+    "intermittent": {
+      "ratio": 1.0
+    },
+    "toolkit": {
+      "ratio": 1.0
+    },
+    "messaging": {
+      "ratio": 1.0
+    },
+    "schema": {
+      "ratio": 1.0
+    },
+    "sma": {
+      "ratio": 1.0
+    },
+    "single": {
+      "ratio": 1.0
+    },
+    "flexible": {
+      "ratio": 1.0
+    },
+    "opaque": {
+      "ratio": 1.0
+    },
+    "console": {
+      "ratio": 1.0
+    },
+    "evaluate": {
+      "ratio": 1.0
+    },
+    "retry": {
+      "ratio": 1.0
+    },
+    "refetching": {
+      "ratio": 1.0
+    },
+    "metadata": {
+      "ratio": 1.0
+    },
+    "retrying": {
+      "ratio": 1.0
+    },
+    "scratch": {
+      "ratio": 1.0
+    },
+    "cmd": {
+      "ratio": 1.0
+    },
+    "previous": {
+      "ratio": 1.0
+    },
+    "spacing": {
+      "ratio": 1.0
+    },
+    "zoomed": {
+      "ratio": 1.0
+    },
+    "null": {
+      "ratio": 1.0
+    },
+    "valid": {
+      "ratio": 1.0
+    },
+    "jsm": {
+      "ratio": 1.0
+    },
+    "self": {
+      "ratio": 1.0
+    },
+    "extracting": {
+      "ratio": 1.0
+    },
+    "archive": {
+      "ratio": 1.0
+    },
+    "fully": {
+      "ratio": 1.0
+    },
+    "localizable": {
+      "ratio": 1.0
+    },
+    "localization": {
+      "ratio": 1.0
+    },
+    "sfx": {
+      "ratio": 1.0
+    },
+    "render": {
+      "ratio": 1.0
+    },
+    "unnecessary": {
+      "ratio": 1.0
+    },
+    "debug": {
+      "ratio": 1.0
+    },
+    "obey": {
+      "ratio": 1.0
+    },
+    "generated": {
+      "ratio": 1.0
+    },
+    "taskbar": {
+      "ratio": 1.0
+    },
+    "bit": {
+      "ratio": 1.0
+    },
+    "length": {
+      "ratio": 1.0
+    },
+    "fit": {
+      "ratio": 1.0
+    },
+    "vertical": {
+      "ratio": 1.0
+    },
+    "axis": {
+      "ratio": 1.0
+    },
+    "reflect": {
+      "ratio": 1.0
+    },
+    "browsing": {
+      "ratio": 1.0
+    },
+    "respect": {
+      "ratio": 1.0
+    },
+    "feature": {
+      "ratio": 1.0
+    },
+    "opt": {
+      "ratio": 1.0
+    },
+    "pref": {
+      "ratio": 1.0
+    },
+    "modal": {
+      "ratio": 1.0
+    },
+    "zooming": {
+      "ratio": 1.0
+    },
+    "scaling": {
+      "ratio": 1.0
+    },
+    "paint": {
+      "ratio": 1.0
+    },
+    "jank": {
+      "ratio": 1.0
+    },
+    "puzzling": {
+      "ratio": 1.0
+    },
+    "yellow": {
+      "ratio": 1.0
+    },
+    "currently": {
+      "ratio": 1.0
+    },
+    "light": {
+      "ratio": 1.0
+    },
+    "displaying": {
+      "ratio": 1.0
+    },
+    "propperly": {
+      "ratio": 1.0
+    },
+    "silently": {
+      "ratio": 1.0
+    },
+    "directory": {
+      "ratio": 1.0
+    },
+    "symlink": {
+      "ratio": 1.0
+    },
+    "source": {
+      "ratio": 1.0
+    },
+    "ugly": {
+      "ratio": 1.0
+    },
+    "addon": {
+      "ratio": 1.0
+    },
+    "indicated": {
+      "ratio": 1.0
+    },
+    "reopen": {
+      "ratio": 1.0
+    },
+    "left": {
+      "ratio": 1.0
+    },
+    "alignment": {
+      "ratio": 1.0
+    },
+    "prevention": {
+      "ratio": 1.0
+    },
+    "safe": {
+      "ratio": 1.0
+    },
+    "ignore": {
+      "ratio": 1.0
+    },
+    "google": {
+      "ratio": 1.0
+    },
+    "refuse": {
+      "ratio": 1.0
+    },
+    "ignores": {
+      "ratio": 1.0
+    },
+    "mime": {
+      "ratio": 1.0
+    },
+    "fine": {
+      "ratio": 1.0
+    },
+    "added": {
+      "ratio": 1.0
+    },
+    "noticable": {
+      "ratio": 1.0
+    },
+    "positioned": {
+      "ratio": 1.0
+    },
+    "included": {
+      "ratio": 1.0
+    },
+    "unexpected": {
+      "ratio": 1.0
+    },
+    "happen": {
+      "ratio": 1.0
+    },
+    "capturing": {
+      "ratio": 1.0
+    },
+    "shared": {
+      "ratio": 1.0
+    },
+    "clipboard": {
+      "ratio": 1.0
+    },
+    "minipicture": {
+      "ratio": 1.0
+    },
+    "pixelated": {
+      "ratio": 1.0
+    },
+    "group": {
+      "ratio": 1.0
+    },
+    "invoked": {
+      "ratio": 1.0
+    },
+    "userid": {
+      "ratio": 1.0
+    },
+    "preview": {
+      "ratio": 1.0
+    },
+    "migrating": {
+      "ratio": 1.0
+    },
+    "trouble": {
+      "ratio": 1.0
+    },
+    "finding": {
+      "ratio": 1.0
+    },
+    "always": {
+      "ratio": 1.0
+    },
+    "accessing": {
+      "ratio": 1.0
+    },
+    "manual": {
+      "ratio": 1.0
+    },
+    "actually": {
+      "ratio": 1.0
+    },
+    "turning": {
+      "ratio": 1.0
+    },
+    "cleanup": {
+      "ratio": 1.0
+    },
+    "redrawn": {
+      "ratio": 1.0
+    },
+    "controlling": {
+      "ratio": 1.0
+    },
+    "visiting": {
+      "ratio": 1.0
+    },
+    "particular": {
+      "ratio": 1.0
+    },
+    "callouts": {
+      "ratio": 1.0
+    },
+    "export": {
+      "ratio": 1.0
+    },
+    "certificate": {
+      "ratio": 1.0
+    },
+    "ask": {
+      "ratio": 1.0
+    },
+    "shaking": {
+      "ratio": 1.0
+    },
+    "pasting": {
+      "ratio": 1.0
+    },
+    "little": {
+      "ratio": 1.0
+    },
+    "overlap": {
+      "ratio": 1.0
+    },
+    "whitespace": {
+      "ratio": 1.0
+    },
+    "stripped": {
+      "ratio": 1.0
+    },
+    "got": {
+      "ratio": 1.0
+    },
+    "entered": {
+      "ratio": 1.0
+    },
+    "possibility": {
+      "ratio": 1.0
+    },
+    "release": {
+      "ratio": 1.0
+    },
+    "disrupt": {
+      "ratio": 1.0
+    },
+    "choose": {
+      "ratio": 1.0
+    },
+    "revert": {
+      "ratio": 1.0
+    },
+    "unchecked": {
+      "ratio": 1.0
+    },
+    "get": {
+      "ratio": 1.0
+    },
+    "see": {
+      "ratio": 1.0
+    },
+    "real": {
+      "ratio": 1.0
+    },
+    "borken": {
+      "ratio": 1.0
+    },
+    "twice": {
+      "ratio": 1.0
+    },
+    "quickly": {
+      "ratio": 1.0
+    },
+    "reproducibly": {
+      "ratio": 1.0
+    },
+    "overhead": {
+      "ratio": 1.0
+    },
+    "hexadecimal": {
+      "ratio": 1.0
+    },
+    "recognized": {
+      "ratio": 1.0
+    },
+    "exception": {
+      "ratio": 1.0
+    },
+    "recovered": {
+      "ratio": 1.0
+    },
+    "related": {
+      "ratio": 1.0
+    },
+    "timestamped": {
+      "ratio": 1.0
+    },
+    "sessionstore": {
+      "ratio": 1.0
+    },
+    "usage": {
+      "ratio": 1.0
+    },
+    "armv": {
+      "ratio": 1.0
+    }
+  }
+}

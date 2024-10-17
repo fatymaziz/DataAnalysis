@@ -1,4 +1,4 @@
-#Experiment 4: Dataset is WITHOUT Bug severity level "Normal"
+#Experiment 4: Combined Dataset and  WITHOUT Bug severity level "Normal"
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -67,7 +67,7 @@ bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
 dictionary_list = []
 mlresponse_list = []
-file1 = open("output_Experiment4.txt", "w")  # write mode
+# file1 = open("output_Experiment4.txt", "w")  # write mode
 
 list_of_random_seeds = []
 
@@ -96,7 +96,7 @@ for i in range(0,10):
     validation_data_df=validation_data.reset_index()
     testing_data_df=testing_data.reset_index()
     print("------interation------", i)
-    file1.write("------Interation------")
+#     file1.write("------Interation------")
     
     
  #----------------------Lexicon Preprocess ------------------------------#
@@ -116,9 +116,16 @@ for i in range(0,10):
     lexicon_learner_end_time = helper.cpuexecutiontime()
     lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time
     
-#-----------------------Lexicon Classifier ---------------------------------#
+#-----------------------Lexicon Classifier ---------------------------------------#
     lexicon_classifer_start_time = helper.cpuexecutiontime()
-    dict_resp = helper.lexicon_classifier(severethreshold,nonseverethreshold,testing_data,payload_train)
+    
+
+    severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helper.dictionary_onthresholds(severethreshold, nonseverethreshold, payload_train)
+    
+    dict_resp = helper.evaluate_lexicon_classifer(testing_data, severedictionary_list, nonseveredictionary_list)
+    
+    
+#     dict_resp = helper.lexicon_classifier(severethreshold,nonseverethreshold,testing_data,payload_train)
     
     lexicon_classifer_end_time = helper.cpuexecutiontime()
     lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
@@ -128,6 +135,7 @@ for i in range(0,10):
     lexicon_classifier_results = {**dict_resp, **additional_dict, **winning_threshold,**randomseed}
         
 #     print(lexicon_classifier_results)
+
 
 #-----------------------List of dictionaries ---------------------------------#
     dictionary_resp_eachiteration = lexicon_classifier_results
@@ -148,7 +156,7 @@ for i in range(0,10):
       
     
     print("*************************Dictionary Ends**************************")
-    file1.write("*******************Dictionary Ends**************************")
+#     file1.write("*******************Dictionary Ends**************************")
  
 
  #--------------------------------ML Models -----------------------------------------------#
@@ -207,10 +215,10 @@ with open('ml_average_results4.json', 'w') as json_file:
      json.dump(average_ml_json_data, json_file)
         
 # store a General static dictionary with no bugs with status Normal as json
-with open('static_dictionary_General_2.json', 'w') as json_file:
+with open('static_dictionary_combined_filtered_normalstatus.json', 'w') as json_file:
      json.dump(static_dict_resp, json_file,indent=2)
         
 
-#write response of dictionary and Ml CLassifiers in the txt file
-file1.write(str(average_results_lexicon_df))
-file1.write(str(average_results_ml_df))
+# #write response of dictionary and Ml CLassifiers in the txt file
+# file1.write(str(average_results_lexicon_df))
+# file1.write(str(average_results_ml_df))

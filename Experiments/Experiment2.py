@@ -51,7 +51,7 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-bugs_df = bugs_df.head(800)
+# bugs_df = bugs_df.head(1000)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()
 # print(severerity)
@@ -87,7 +87,7 @@ bugs_eclipse.loc[bugs_eclipse["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_eclipse.loc[bugs_eclipse["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_eclipse.loc[bugs_eclipse["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-bugs_eclipse = bugs_eclipse.head(500)
+# bugs_eclipse = bugs_eclipse.head(600)
 # print("total bugs", len(bugs_eclipse))
 # severerity = bugs_eclipse['Severity'].value_counts()
 # print(severerity)
@@ -97,12 +97,12 @@ bugs_eclipse = bugs_eclipse.head(500)
 
 dictionary_list = []
 mlresponse_list = []
-file1 = open("output_Experiment2.txt", "w")  # write mode
+# file1 = open("output_Experiment2.txt", "w")  # write mode
 
 
 list_of_random_seeds = []
 
-for i in range(0,1):
+for i in range(0,10):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -132,7 +132,7 @@ for i in range(0,1):
     testing_data_df=testing_data.reset_index()
 
     print("------interation------", i)
-    file1.write("------Interation------")
+#     file1.write("------Interation------")
     
     
 #----------------------Lexicon Preprocess ------------------------------#
@@ -195,7 +195,7 @@ for i in range(0,1):
       
     
     print("*************************Dictionary Ends**************************")
-    file1.write("*******************Dictionary Ends**************************")
+#     file1.write("*******************Dictionary Ends**************************")
  
 
  #--------------------------------ML Models -----------------------------------------------#
@@ -258,6 +258,6 @@ with open('static_dictionary_Firefox.json', 'w') as json_file:
      json.dump(static_dict_resp, json_file,indent=2)
         
 
-# write response of dictionary and Ml CLassifiers in the txt file
-file1.write(str(average_results_lexicon_df))
-file1.write(str(average_results_ml_df))
+# # write response of dictionary and Ml CLassifiers in the txt file
+# file1.write(str(average_results_lexicon_df))
+# file1.write(str(average_results_ml_df))

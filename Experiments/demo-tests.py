@@ -18,57 +18,131 @@ import numpy as np
 from sklearn.dummy import DummyClassifier
 import time
 import json 
-import helper
+import helperdemo
 
 
-#      # Define the bug summaries
+     # Define the bug summaries
 # bug_summaries = [
 #     "The 'Login' button doesn't allow users to log in.",
 #     "The program crashes when dividing two numbers instead of adding them together.",
 #     "After filling out a medical history form, clicking 'Save and Exit' doesn't save the information.",
 #     "A specific function returns incorrect results due to a typo in the code.",
 #     "The application allows unauthorized access to sensitive data."
+    
 # ]
+import pandas as pd
 
-# # Convert the list to a DataFrame
-# bugs_df = pd.DataFrame(bug_summaries, columns=["Summary"])
+# # Define the data
+# Define the data
+training_data = {
+    "Summary": [
+        "Application crashes when attempting to save a file seems this is not reliable.",
+        "Slow performance while loading the sales dashboard across all browsers.",
+        "User authentication fails, unauthorized users are not reliable allowed to login in the system",
+        "Search functionality is not good.",
+        "Typo mistakes in the home page not reliable headline section.",
+        "Data corruption error occurs during not reliable database transactions."
+      
+    ],
+    "Severity": [
+        "Severe",
+        "NonSevere",
+        "Severe",
+        "NonSevere",
+        "NonSevere",
+        "Severe"
+      
+    ]
+}
 
-# Display the DataFrame
-# print(bugs_df)
+testing_data = {
+    "Summary": [
+        "Payment gateway integration fails, blocking users from transactions not reliable.",
+        "Spelling mistakes in the text in the footer section.",
+        "Security vulnerability allowing unauthorized not reliable access to the web application.",
+        "The finance form crashes when discount is given this is not good."
+    ],
+    "Severity": [
+        "Severe",
+        "NonSevere",
+        "Severe",
+        "Severe"
+    ]
+}
 
-bugs_df= pd.read_csv("bugs_Calendar.csv")
+validation_data = {
+    "Summary": [
+        "The web application allows unauthorized not reliable access to sensitive data this is not good.",
+        "On saving a customer profile form, the data is successfully saved, but the processing time is very slow"
+    ],
+    "Severity": [
+       "Severe",
+       "NonSevere"
+        
+    ]
+}
+# training_data = {
+#     "Summary": [
+#         "Application crashes when attempting to save a file.",
+#         "Slow performance while loading the sales dashboard across all browsers.",
+#         "User authentication fails, unauthorized users are allowed to login in the system",
+#         "Search functionality returns incorrect results.",
+#         "Typo mistakes in the home page headline section.",
+#         "Data corruption error occurs during database transactions."
+      
+#     ],
+#     "Severity": [
+#         "Severe",
+#         "NonSevere",
+#         "Severe",
+#         "NonSevere",
+#         "NonSevere",
+#         "Severe"
+      
+#     ]
+# }
 
+# testing_data = {
+#     "Summary": [
+#         "Payment gateway integration fails, blocking users from transactions.",
+#         "Spelling mistakes in the text in the footer section.",
+#         "Security vulnerability allowing unauthorized access to the web application.",
+#         "The finance form crashes when discount is given."
+#     ],
+#     "Severity": [
+#         "Severe",
+#         "NonSevere",
+#         "Severe",
+#         "Severe"
+#     ]
+# }
 
-# Dropped rows with severity level '--'
-bugs_df = bugs_df[bugs_df["Severity"].str.contains("--")==False].reset_index()
+# validation_data = {
+#     "Summary": [
+#         "The web application allows unauthorized access to sensitive data.",
+#         "On saving a customer profile form, the data is successfully saved, but the processing time is very slow"
+#     ],
+#     "Severity": [
+#        "Severe",
+#        "NonSevere"
+        
+#     ]
+# }
+# Create the DataFrame
+training_data = pd.DataFrame(training_data)
+validation_data = pd.DataFrame(validation_data)
+testing_data = pd.DataFrame(testing_data)
 
-#Dropped rows with Type "Enhancement" and "Task" because they are not a bug but a new feature
-indexSevere = bugs_df[ (bugs_df['Type'] == 'enhancement') & (bugs_df['Type'] == 'enhancement') ].index
-bugs_df.drop(indexSevere , inplace=True)
-
-indexSevere = bugs_df[(bugs_df['Type'] == 'task') & (bugs_df['Type'] == 'task') ].index
-bugs_df.drop(indexSevere , inplace=True)
-
-
-#Catagorise the severity level into a Severe and Non Severe to make it a binary problem
-bugs_df.loc[bugs_df["Severity"] == "blocker", "Severity"] = 'Severe'
-bugs_df.loc[bugs_df["Severity"] == "critical", "Severity"] = 'Severe'
-bugs_df.loc[bugs_df["Severity"] == "major", "Severity"] = 'Severe'
-bugs_df.loc[bugs_df["Severity"] == "S1", "Severity"] = 'Severe'
-bugs_df.loc[bugs_df["Severity"] == "S2", "Severity"] = 'Severe'
-bugs_df.loc[bugs_df["Severity"] == "S3", "Severity"] = 'NonSevere'
-bugs_df.loc[bugs_df["Severity"] == "normal", "Severity"] = 'NonSevere'
-bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
-bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
-bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
-
-bugs_df = bugs_df.head(10)
-print(bugs_df)
 pd.set_option('display.max_colwidth', None)
-print(bugs_df['Summary'])
+print("training_data")
+print(training_data)
+# Display the DataFrame
+print("validation_data")
+print(validation_data)
+print("testing_data")
+print(testing_data)
 
-
-
+bugs_df = pd.concat([training_data, validation_data, testing_data], ignore_index=True)
 print("total bugs", len(bugs_df))
 severerity = bugs_df['Severity'].value_counts()
 print(severerity)
@@ -88,8 +162,8 @@ for i in range(0,1):
     randomseed = {'random_seeds':rs}
    
     
-    training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=691921)
-    training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=691921)
+#     training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
+#     training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
 
     print(f"No. of training data: {training_data.shape[0]}")
     print(f"No. of validation data: {validation_data.shape[0]}")
@@ -117,64 +191,55 @@ for i in range(0,1):
     file1.write("------Interation------")
     
     
- #----------------------Lexicon Preprocess ------------------------------#
-    lexicon_preprocess_start_time = helper.cpuexecutiontime()
+  #----------------------Lexicon Preprocess ------------------------------#
+    lexicon_preprocess_start_time = helperdemo.cpuexecutiontime()
     
-    payload_train = helper.lexicon_preprocess(trainingdataset_length,training_data_df)
-#     print("Corpus",payload_train)
+    payload_train = helperdemo.lexicon_preprocess(trainingdataset_length,training_data_df)
     
-    lexicon_preprocess_end_time = helper.cpuexecutiontime()
+    lexicon_preprocess_end_time = helperdemo.cpuexecutiontime()
     lexicon_preprocess_execution_time =  lexicon_preprocess_end_time -  lexicon_preprocess_start_time
     
 #-----------------------Lexicon Learner --------------------------------#
-    lexicon_learner_start_time = helper.cpuexecutiontime()
+    lexicon_learner_start_time = helperdemo.cpuexecutiontime()
     
-    severethreshold, nonseverethreshold = helper.lexicon_learner(payload_train, validation_data)
+    severethreshold, nonseverethreshold = helperdemo.lexicon_learner(payload_train, validation_data)
     winning_threshold = {'severe threshold':severethreshold, 'non severe threshold':nonseverethreshold}
-#     print("winning_threshold",winning_threshold)
     
-    lexicon_learner_end_time = helper.cpuexecutiontime()
+    lexicon_learner_end_time = helperdemo.cpuexecutiontime()
     lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time
     
-#-----------------------Lexicon Classifier ---------------------------------#
-    lexicon_classifer_start_time = helper.cpuexecutiontime()
-    dict_resp = helper.lexicon_classifier(severethreshold,nonseverethreshold,testing_data,payload_train)
+#-----------------------Lexicon Classifier ---------------------------------------#
+    lexicon_classifer_start_time = helperdemo.cpuexecutiontime()
     
-    lexicon_classifer_end_time = helper.cpuexecutiontime()
+    #create lexicon on the the combined dataset of training and validation dataset on the best threshold -Pending
+    severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helperdemo.dictionary_onthresholds(severethreshold, nonseverethreshold, payload_train)
+    
+    dict_resp = helperdemo.evaluate_lexicon_classifer(testing_data, severedictionary_list, nonseveredictionary_list)
+    
+    
+    lexicon_classifer_end_time = helperdemo.cpuexecutiontime()
     lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
     
     additional_dict = {'cputime_preprocess': lexicon_preprocess_execution_time,'cputime_learner': lexicon_learner_execution_time,'cputime_classifer': lexicon_classifer_execution_time}
     
     lexicon_classifier_results = {**dict_resp, **additional_dict, **winning_threshold,**randomseed}
         
-    print(lexicon_classifier_results)
+#     print(lexicon_classifier_results)
 
-#-----------------------List of dictionaries ---------------------------------#
+#-----------------------List of dictionaries -----------------------------------#
     dictionary_resp_eachiteration = lexicon_classifier_results
     dictionary_list.append(dictionary_resp_eachiteration)
 #     print(dictionary_list)
-    
       
     
     print("*************************Dictionary Ends**************************")
     file1.write("*******************Dictionary Ends**************************")
- 
-
- #--------------------------------ML Models -----------------------------------------------#
-    mlclassifierresp =  helper.mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data,rs)
-    
-#     print(mlclassifierresp)
-    ml_resp_eachiteration = mlclassifierresp
-    mlresponse_list.append(ml_resp_eachiteration)
-#     print(mlresponse_list)
- 
-    print("********************One Iteration completed***********************")
-    
+     
     
     
 #--------------------------------Average Results of Lexicon -----------------------------------------------#  
 print("************************** Average Result for Lexicon classifier**************************")
-average_results_lexicon = helper.calculate_average_results_lexicon(dictionary_list)
+average_results_lexicon = helperdemo.calculate_average_results_lexicon(dictionary_list)
 average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
 
 print("Average Result Lexicon",average_results_lexicon_df)
@@ -186,36 +251,6 @@ with open('demo_lexicon_results1.json', 'w') as json_file:
 with open('demo_lexicon_average_results1.json', 'w') as json_file:
     json.dump(average_results_lexicon, json_file)
  
- #--------------------------------Average Results for ML -----------------------------------------------------#    
-print("************************** Average Result for ML classifier**************************")
-
-#  Average results and write the response of ML Models in the txt file
-avg_confusionmatrices,average_accuracy, average_f1score,avg_meanf1score, avg_preprocesscputime,avg_learnercputime,avg_classifiercputime = helper.calculate_average_results_ML(mlresponse_list)
-
-average_results_ml = {'Avg Confusion Matrix': avg_confusionmatrices,'Avg Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
 
 
-average_results_ml_df = pd.DataFrame(average_results_ml)
-print("Average result ML",average_results_ml_df)
 
-
-# Initialize an empty dictionary to store the values of confusion matrix for each model
-model_values_CM = {}
-
-for model_name, model_array in avg_confusionmatrices.items():
-    model_values_CM[model_name] = model_array.tolist()
-# Create a JSON object
-average_ml_json_data = {'Avg Confusionmatrix': model_values_CM, 'Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
-
-
-# store all ML results as JSON
-with open('demo_ml_results1.json', 'w') as json_file:
-     json.dump(mlresponse_list, json_file)
-# store average ML results as JSON
-with open('demo_ml_average_results1.json', 'w') as json_file:
-     json.dump(average_ml_json_data, json_file)
-        
-
-#write response of dictionary and Ml CLassifiers in the txt file
-file1.write(str(average_results_lexicon_df))
-file1.write(str(average_results_ml_df))

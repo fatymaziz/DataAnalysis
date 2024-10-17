@@ -29,7 +29,7 @@ nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 # Function to classify sentiment from Vader Lexicon
-def classify_sentiment(text):
+def classify_sentiment(texts):
     """
     Classify the new bug report using vader lexicon
     Arg: 
@@ -38,26 +38,29 @@ def classify_sentiment(text):
         Tags: Severe or NonSevere
     """
     analyzer = SentimentIntensityAnalyzer()
-    score = analyzer.polarity_scores(text)
+    score = analyzer.polarity_scores(texts)
     if score['compound'] >= 0:
+#         print("Bug is NonSevere", texts,score)
         return 'NonSevere'
-    elif score['compound'] < 0:
+        
+    else:
+#         print("Bug is Severe", texts,score)
         return 'Severe'
-
     
 # Function to evaluate the vader classifier
 def evaluate_vader_classifier(true_labels, predicted_labels):
     
     conf_matrix = confusion_matrix(true_labels, predicted_labels, labels=['NonSevere', 'Severe'])
     accuracy = accuracy_score(true_labels, predicted_labels)
-    f1_weighted = f1_score(true_labels, predicted_labels, average='weighted')
     f1_per_class = f1_score(true_labels, predicted_labels, average=None, labels=['NonSevere', 'Severe'])
+    f1_mean = sum(f1_per_class) / len(f1_per_class)
+#     print("f1_per_class and their mean",f1_per_class,f1_mean)
     
     vader_dict = {
         "confusionmatrix": conf_matrix.tolist(),
         "Accuracy": accuracy,
         "F1Score": f1_per_class.tolist(),
-        "F1Score_mean": f1_weighted
+        "F1Score_mean": f1_mean
     }
     
     return vader_dict
@@ -80,8 +83,55 @@ def calculate_average_vader(results):
     }
     
     return average_result
+def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
+    """
+    Find the best c parameter for SVM model 
+
+    Args:
+        X_train: feature from training dataset
+        Y_train: preditive label from training dataset
+        X_validation:feature from validation datsset
+        y_validation: preditive label from validation dataset dataset
+      
+    Returns: c paramater of SVM on which the model has performed the best
+    """
+    C_hyperparameter = [0.1,0.5,1,5,10,20,50,100]
+#     C_hyperparameter = [0.1]
+   
+    SVM_accuracy_list = []
+    SVM_list= []
     
-def linear_svm_features(x, bugs_df):
+    for c in C_hyperparameter:
+       
+        SVM_dict = {}
+
+        svm_model = SVC(C = c, kernel='linear', gamma='auto')
+        svm_model.fit(X_train,Y_train)
+
+        svm_pred = svm_model.predict(X_validation)
+        svm_model = confusion_matrix(y_validation, svm_pred)
+
+        SVM_accuracy_list= accuracy_score(y_validation, svm_pred)
+        f1_score_svm = f1_score(y_validation, svm_pred, average=None)
+        F1ScoreSVM_severe= f1_score_svm[1]
+#         print(c,F1ScoreSVM_severe)
+        
+        SVM_dict = {"C":c,"Accuracy": SVM_accuracy_list, "SVMF1Score": F1ScoreSVM_severe }
+        SVM_list.append(SVM_dict)
+        SVM_list
+        F1Score_df_SVM = pd.DataFrame(SVM_list)
+#         print(F1Score_df_SVM)
+        
+    max_f1Score_svm = F1Score_df_SVM[F1Score_df_SVM['SVMF1Score']==F1Score_df_SVM['SVMF1Score'].max()]
+    
+    best_c_hyperparamter = max_f1Score_svm['C'].values[0]
+#     print("best c", best_c_hyperparamter)
+   
+        
+    return best_c_hyperparamter
+      
+
+def linear_svm_features(summary_training,training_data,summary_validation,validation_data,training_data_df,validation_data_df):
     """
     Create a wordlist and their cofficient from linear SVM.
     Arg: 
@@ -90,25 +140,30 @@ def linear_svm_features(x, bugs_df):
     Returns:
         severe_lexicons_linearsvm, non_severe_lexicons_linearsvm dictionaries
     """
-    
     severe_lexicons_linearsvm = {}  
-    non_severe_lexicons_linearsvm = {}  
+    non_severe_lexicons_linearsvm = {} 
+   
 
-
+    # Initialize CountVectorizer and Transform the processed summary column
     cv = CountVectorizer()
-    cv.fit(x)
-#     print("vocabulary length")
-#     print(len(cv.vocabulary_))
-#     print("feature names")
-#     print(cv.get_feature_names_out())
+    cv.fit(summary_training)
 
-    X_train = cv.transform(x)
+    X_train = cv.transform(summary_training)
+    X_validation = cv.transform(summary_validation)
 
-    target = bugs_df.iloc[:, -2].values  # target column
+    Y_train = training_data_df.iloc[:, -2].values  # target column
+    y_validation = validation_data_df.iloc[:, -2].values  # target column
+    
 
-    svm = LinearSVC()
-    svm.fit(X_train, target)
+# call function to find the best c parameter
+    C_hyperparameter = get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation)
+#     print("C_hyperparameter",C_hyperparameter)
+   
+  #initialize and fit model
+    svm = LinearSVC(C = C_hyperparameter)
+    svm.fit(X_train, Y_train)
 
+    # Get the coefficients from the trained SVM model
     coef = svm.coef_.ravel()
 
     # feature names from CountVectorizer
@@ -131,7 +186,59 @@ def linear_svm_features(x, bugs_df):
 #     print("severe_lexicons_linearsvm_before", severe_lexicons_linearsvm)
 #     print("non_severe_lexicons_linearsvms_before", non_severe_lexicons_linearsvm)
                        
-    return severe_lexicons_linearsvm, non_severe_lexicons_linearsvm
+    return severe_lexicons_linearsvm, non_severe_lexicons_linearsvm, C_hyperparameter
+
+# def linear_svm_features(x, bugs_df):
+#     """
+#     Create a wordlist and their cofficient from linear SVM.
+#     Arg: 
+#         x: Summary column of the training dataset
+#         bug_df: training dataset
+#     Returns:
+#         severe_lexicons_linearsvm, non_severe_lexicons_linearsvm dictionaries
+#     """
+    
+#     severe_lexicons_linearsvm = {}  
+#     non_severe_lexicons_linearsvm = {}  
+
+
+#     cv = CountVectorizer()
+#     cv.fit(x)
+# #     print("vocabulary length")
+# #     print(len(cv.vocabulary_))
+# #     print("feature names")
+# #     print(cv.get_feature_names_out())
+
+#     X_train = cv.transform(x)
+
+#     target = bugs_df.iloc[:, -2].values  # target column
+
+#     svm = LinearSVC()
+#     svm.fit(X_train, target)
+
+#     coef = svm.coef_.ravel()
+
+#     # feature names from CountVectorizer
+#     feature_names = cv.get_feature_names_out()
+
+#     # dictionary mapping feature names to coefficients
+#     word_coefficients = {feature_names[i]: coef[i] for i in range(len(feature_names))}
+    
+#     word_coefficients
+
+#     # word list and their coefficients
+#     for word, coefficient in word_coefficients.items():
+
+#         if coefficient > 0:   
+#             severe_lexicons_linearsvm[word] = {"ratio": coefficient}
+          
+#         elif coefficient < 0:  
+#             non_severe_lexicons_linearsvm[word] = {"ratio": coefficient}
+            
+# #     print("severe_lexicons_linearsvm_before", severe_lexicons_linearsvm)
+# #     print("non_severe_lexicons_linearsvms_before", non_severe_lexicons_linearsvm)
+                       
+#     return severe_lexicons_linearsvm, non_severe_lexicons_linearsvm
     
 
 def zero_equal():
@@ -192,8 +299,8 @@ def nonzero_equal(summary, severe_words, nonsevere_words):
     min_severe = df_severe.min().values[0]
     min_nonsevere = df_nonsevere.min().values[0]
     
-    print("min_severe",min_severe)
-    print("min_nonsevere",min_nonsevere)
+#     print("min_severe",min_severe)
+#     print("min_nonsevere",min_nonsevere)
     
     # Determine the category with the lower percentage
     if min_severe <= min_nonsevere:
@@ -310,7 +417,6 @@ def cpuexecutiontime():
     return current_time
    
 
-#Tokenise the Summary text
 def nlpsteps(x):
     """
     Tokenizes and preprocesses a summary of a bug.
@@ -332,13 +438,25 @@ def nlpsteps(x):
 
     all_stopwords = set(stopwords.words('english'))
     all_stopwords.remove('not')
-    review = [lemmatizer.lemmatize(word) for word in review if word not in all_stopwords]
+    
+    # Concatenate 'not' with the next word
+    processed_review = []
+    i = 0
+    while i < len(review):
+        if review[i] == 'not' and i + 1 < len(review):
+            processed_review.append('not_' + review[i + 1])
+            i += 2  # Skip the next word as it has been concatenated
+        else:
+            if review[i] not in all_stopwords:
+                processed_review.append(lemmatizer.lemmatize(review[i]))
+            i += 1
 
     # Join the processed words back into a sentence
-    review = ' '.join(review)
+    review = ' '.join(processed_review)
+#     print("review",review)
     return review
 
-#Corpus data splitted into separate words
+
 def convert(corpus_trainingdata):
     """
     Data after preprocessing splitting into separate words
@@ -352,8 +470,6 @@ def convert(corpus_trainingdata):
 #     print(corpus_trainingdata)
     return ([i for item in corpus_trainingdata for i in item.split()])
      
-
-
 # Counts of each words in the corpus
 def getwordcounts(splittedWords):
     occurrences = collections.Counter(splittedWords)
@@ -371,6 +487,7 @@ def get_distribution(val,training_data_df):
       
     Returns: Splitted words
     """
+    training_data_df['Summary'] = training_data_df['Summary'].apply(lambda x: nlpsteps(x))
     records = training_data_df[
         training_data_df["Summary"].str.contains(val)
     ]
@@ -607,7 +724,9 @@ def dictionary_onthresholds(severe_threshold, nonsevere_threshold, payload_train
             nonsevere_dictionary[keyy] = {'ratio': payload_train[keyy]['r2']}  # Store value and ratio
             
   
-            
+#     print("severe_dictionary",severe_dictionary)
+#     print("severe_dictionary",nonsevere_dictionary)
+
     return severe_dictionary, nonsevere_dictionary, severe_threshold, nonsevere_threshold  
 
 
@@ -695,6 +814,7 @@ def lexicon_preprocess(trainingdataset_length,training_data_df):
 
     #Split words from the corpus
     splittedWords = convert(corpus_trainingdata)
+#     print("splittedWords---------------", splittedWords)
     
     splitted_words=getwordcounts(splittedWords)
 
@@ -820,52 +940,52 @@ def lexicon_learner(payload_train,validation_data):
 
 ############### outerloop breakdown ends #############
 
-def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
-    """
-    Find the best c parameter for SVM model 
+# def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
+#     """
+#     Find the best c parameter for SVM model 
 
-    Args:
-        X_train: feature from training dataset
-        Y_train: preditive label from training dataset
-        X_validation:feature from validation datsset
-        y_validation: preditive label from validation dataset dataset
+#     Args:
+#         X_train: feature from training dataset
+#         Y_train: preditive label from training dataset
+#         X_validation:feature from validation datsset
+#         y_validation: preditive label from validation dataset dataset
       
-    Returns: c paramater of SVM on which the model has performed the best
-    """
-    C_hyperparameter = [0.1,0.5,1,5,10,20,50,100]
-#     C_hyperparameter = [0.1]
+#     Returns: c paramater of SVM on which the model has performed the best
+#     """
+#     C_hyperparameter = [0.1,0.5,1,5,10,20,50,100]
+# #     C_hyperparameter = [0.1]
    
-    SVM_accuracy_list = []
-    SVM_list= []
+#     SVM_accuracy_list = []
+#     SVM_list= []
     
-    for c in C_hyperparameter:
+#     for c in C_hyperparameter:
        
-        SVM_dict = {}
+#         SVM_dict = {}
 
-        svm_model = SVC(C = c, kernel='linear', gamma='auto')
-        svm_model.fit(X_train,Y_train)
+#         svm_model = SVC(C = c, kernel='linear', gamma='auto')
+#         svm_model.fit(X_train,Y_train)
 
-        svm_pred = svm_model.predict(X_validation)
-        svm_model = confusion_matrix(y_validation, svm_pred)
+#         svm_pred = svm_model.predict(X_validation)
+#         svm_model = confusion_matrix(y_validation, svm_pred)
 
-        SVM_accuracy_list= accuracy_score(y_validation, svm_pred)
-        f1_score_svm = f1_score(y_validation, svm_pred, average=None)
-        F1ScoreSVM_severe= f1_score_svm[1]
-#         print(c,F1ScoreSVM_severe)
+#         SVM_accuracy_list= accuracy_score(y_validation, svm_pred)
+#         f1_score_svm = f1_score(y_validation, svm_pred, average=None)
+#         F1ScoreSVM_severe= f1_score_svm[1]
+# #         print(c,F1ScoreSVM_severe)
         
-        SVM_dict = {"C":c,"Accuracy": SVM_accuracy_list, "SVMF1Score": F1ScoreSVM_severe }
-        SVM_list.append(SVM_dict)
-        SVM_list
-        F1Score_df_SVM = pd.DataFrame(SVM_list)
-#         print(F1Score_df_SVM)
+#         SVM_dict = {"C":c,"Accuracy": SVM_accuracy_list, "SVMF1Score": F1ScoreSVM_severe }
+#         SVM_list.append(SVM_dict)
+#         SVM_list
+#         F1Score_df_SVM = pd.DataFrame(SVM_list)
+# #         print(F1Score_df_SVM)
         
-    max_f1Score_svm = F1Score_df_SVM[F1Score_df_SVM['SVMF1Score']==F1Score_df_SVM['SVMF1Score'].max()]
+#     max_f1Score_svm = F1Score_df_SVM[F1Score_df_SVM['SVMF1Score']==F1Score_df_SVM['SVMF1Score'].max()]
     
-    best_c_hyperparamter = max_f1Score_svm['C'].values[0]
-#     print("best c", best_c_hyperparamter)
+#     best_c_hyperparamter = max_f1Score_svm['C'].values[0]
+# #     print("best c", best_c_hyperparamter)
    
         
-    return best_c_hyperparamter
+#     return best_c_hyperparamter
       
     
 
@@ -896,6 +1016,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
     for i in range(0,trainingdataset_length):
         review_train = nlpsteps(str(training_data_df['Summary'][i]))
         trainingdata_tokenised.append(review_train)
+        
         
 
     #Tokenised the testing data
@@ -954,8 +1075,8 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
     #------------------------------------SVM------------------------------------------------------------------
         SVM_learner_starttime = cpuexecutiontime()
 
-        C_hyperparameter = get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation)
-#         C_hyperparameter = 1
+#         C_hyperparameter = get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation)
+        C_hyperparameter = 1.0
 
         SVM_accuracy_list = []
 

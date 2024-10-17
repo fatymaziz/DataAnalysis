@@ -43,10 +43,10 @@ def merge_json_lexicons(file1, file2):
 
 
 # Example usage
-merged_lexicon = merge_json_lexicons('static_dictionary_eclipse.json', 'static_dictionary_Firefox.json')
+merged_lexicon = merge_json_lexicons('static_dictionary_Firefox_Lsvm11_bestc.json', 'static_dictionary_eclipse_LinearSVM_bestc.json')
 
 # Write merged lexicon to a new file (optional)
-with open('merged_lexicon_Exp1_Exp2.json', 'w') as f:
+with open('merged_lexicon_Exp10_Exp11.json', 'w') as f:
     json.dump(merged_lexicon, f, indent=2)
 
 

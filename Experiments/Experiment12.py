@@ -66,12 +66,12 @@ bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
 dictionary_list = []
 mlresponse_list = []
-file1 = open("output_Experiment12.txt", "w")  # write mode
+# file1 = open("output_Experiment12.txt", "w")  # write mode
 
 
 list_of_random_seeds = []
 
-for i in range(0,10):
+for i in range(0,1):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -107,22 +107,22 @@ for i in range(0,10):
 #-----------------------List of dictionaries -----------------------------------#
     dictionary_resp_eachiteration = lexicon_classifier_results
     dictionary_list.append(dictionary_resp_eachiteration)
-#     print(dictionary_list)
+    print(dictionary_list)
 
     
     
 #--------------------------------Average Results of Lexicon -----------------------------------------------#  
-print("************************** Average Result for Lexicon classifier**************************")
-average_results_lexicon = helper.calculate_average_results_lexicon(dictionary_list)
-average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
+# print("************************** Average Result for Lexicon classifier**************************")
+# average_results_lexicon = helper.calculate_average_results_lexicon(dictionary_list)
+# average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
 
-print("Average Result Lexicon",average_results_lexicon_df)
+# print("Average Result Lexicon",average_results_lexicon_df)
 
 # store all lexicon results as JSON
 with open('lexicon_results12_bingliu.json', 'w') as json_file:
     json.dump(dictionary_list, json_file)
 # store average lexicon results as JSON
-with open('lexicon_average_results12_bingliu.json', 'w') as json_file:
-    json.dump(average_results_lexicon, json_file)
+# with open('lexicon_average_results12_bingliu.json', 'w') as json_file:
+#     json.dump(average_results_lexicon, json_file)
         
         

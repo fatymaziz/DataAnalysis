@@ -29,7 +29,7 @@ with open('negative-words.txt', 'r') as f:
     negative_words = set(f.read().splitlines())
 
 
-#--------------------------- Eclipse dataset for training and validation dataset-----------------------------
+#--------------------------- Eclipse dataset for testing dataset-----------------------------
 bugs_eclipse = pd.read_csv("bugs_eclipse.csv")
 
 
@@ -60,7 +60,7 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-# bugs_df = bugs_df.head(500)
+# bugs_df = bugs_df.head(20)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()
 # print(severerity)
@@ -68,12 +68,12 @@ bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
 dictionary_list = []
 mlresponse_list = []
-file1 = open("output_Experiment13.txt", "w")  # write mode
+# file1 = open("output_Experiment13.txt", "w")  # write mode
 
 
 list_of_random_seeds = []
 
-for i in range(0,10):
+for i in range(0,1):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -94,7 +94,7 @@ for i in range(0,10):
     
 #-----------------------Lexicon Classifier ---------------------------------#
     lexicon_classifer_start_time = helper.cpuexecutiontime()
-
+    print("bugs_df",bugs_df)
     dict_resp = helper.evaluate_lexicon_classifer(bugs_df, negative_words, positive_words)
     
     lexicon_classifer_end_time = helper.cpuexecutiontime()
@@ -109,22 +109,22 @@ for i in range(0,10):
 #-----------------------List of dictionaries -----------------------------------#
     dictionary_resp_eachiteration = lexicon_classifier_results
     dictionary_list.append(dictionary_resp_eachiteration)
-#     print(dictionary_list)
+    print(dictionary_list)
 
     
     
-#--------------------------------Average Results of Lexicon -----------------------------------------------#  
-print("************************** Average Result for Lexicon classifier**************************")
-average_results_lexicon = helper.calculate_average_results_lexicon(dictionary_list)
-average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
+# #--------------------------------Average Results of Lexicon -----------------------------------------------#  
+# print("************************** Average Result for Lexicon classifier**************************")
+# average_results_lexicon = helper.calculate_average_results_lexicon(dictionary_list)
+# average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
 
-print("Average Result Lexicon",average_results_lexicon_df)
+# print("Average Result Lexicon",average_results_lexicon_df)
 
 # store all lexicon results as JSON
 with open('lexicon_results13_bingliu.json', 'w') as json_file:
     json.dump(dictionary_list, json_file)
 # store average lexicon results as JSON
-with open('lexicon_average_results_bingliu13.json', 'w') as json_file:
-    json.dump(average_results_lexicon, json_file)
+# with open('lexicon_average_results_bingliu13.json', 'w') as json_file:
+#     json.dump(average_results_lexicon, json_file)
         
         

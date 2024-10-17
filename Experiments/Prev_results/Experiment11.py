@@ -1,4 +1,4 @@
-#Experiment 11 Firefox dataset with Linear SVM feature selection approach
+#Experiment 11 Firefox dataset with Linear SVM feature selection approach and Eclipse as a testing dataset
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -51,7 +51,7 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-# bugs_df = bugs_df.head(1000)
+bugs_df = bugs_df.head(1000)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()
 # print(severerity)
@@ -59,7 +59,7 @@ bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
 dictionary_list = []
 mlresponse_list = []
-file1 = open("output_Experiment11.txt", "w")  # write mode
+# file1 = open("output_Experiment11.txt", "w")  # write mode
 
 
 list_of_random_seeds = []

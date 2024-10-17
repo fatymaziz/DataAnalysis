@@ -97,13 +97,6 @@ def linear_svm_features(summary_training,training_data,summary_validation,valida
     Y_train = training_data_df.iloc[:, -2].values  # target column
     y_validation = validation_data_df.iloc[:, -2].values  # target column
     
-#     print("X_train", X_train)
-#     print("Y_train", Y_train)
-#     print("X_validation", X_validation)
-#     print("y_validation", y_validation)
-   
-    
-
 
 # call function to find the best c parameter
     C_hyperparameter = get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation)

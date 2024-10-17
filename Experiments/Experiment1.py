@@ -51,11 +51,11 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-bugs_df = bugs_df.tail(1000)
+# bugs_df = bugs_df.tail(1000)
 # print(bugs_df)
-# print("total bugs", len(bugs_df))
-# severerity = bugs_df['Severity'].value_counts()
-# print(severerity)
+print("total bugs", len(bugs_df))
+severerity = bugs_df['Severity'].value_counts()
+print(severerity)
 
 
 #--------------------------------- Firefox Dataset as a testing dataset----------------------------------
@@ -88,23 +88,23 @@ bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "minor", "Severity"] = 'NonSe
 bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-bugs_df_mozilla = bugs_df_mozilla.head(500)
+# bugs_df_mozilla = bugs_df_mozilla.head(600)
 # print(bugs_df_mozilla)
-# print("total bugs", len(bugs_df_mozilla))
-# severerity = bugs_df_mozilla['Severity'].value_counts()
-# print(severerity)
+print("total bugs", len(bugs_df_mozilla))
+severerity = bugs_df_mozilla['Severity'].value_counts()
+print(severerity)
 
 
 
 
 dictionary_list = []
 mlresponse_list = []
-file1 = open("output_Experiment1.txt", "w")  # write mode
+# file1 = open("output_Experiment1.txt", "w")  # write mode
 
 list_of_random_seeds = []
 
   
-for i in range(0,2):
+for i in range(0,10):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -133,7 +133,7 @@ for i in range(0,2):
     validation_data_df=validation_data.reset_index()
     testing_data_df=testing_data.reset_index()
     print("------interation------", i)
-    file1.write("------Interation------")
+#     file1.write("------Interation------")
     
     
  #----------------------Lexicon Preprocess ------------------------------#
@@ -196,7 +196,7 @@ for i in range(0,2):
       
     
     print("*************************Dictionary Ends**************************")
-    file1.write("*******************Dictionary Ends**************************")
+#     file1.write("*******************Dictionary Ends**************************")
  
 
  #--------------------------------ML Models -----------------------------------------------#
@@ -260,6 +260,6 @@ with open('static_dictionary_eclipse.json', 'w') as json_file:
      
         
 
-#write response of dictionary and Ml CLassifiers in the txt file
-file1.write(str(average_results_lexicon_df))
-file1.write(str(average_results_ml_df))
+# #write response of dictionary and Ml CLassifiers in the txt file
+# file1.write(str(average_results_lexicon_df))
+# file1.write(str(average_results_ml_df))

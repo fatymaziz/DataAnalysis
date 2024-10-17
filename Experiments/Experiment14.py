@@ -50,19 +50,19 @@ bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
 
-# bugs_df = bugs_df.head(100)
+# bugs_df = bugs_df.head(50)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()
 # print(severerity)
 
 
 dictionary_list = []
-file1 = open("output_Experiment14.txt", "w")  # write mode
+# file1 = open("output_Experiment14.txt", "w")  # write mode
 
 
 list_of_random_seeds = []
 
-for i in range(0,10):
+for i in range(0,1):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
@@ -73,16 +73,14 @@ for i in range(0,10):
     
 #-----------------------Lexicon Classifier ---------------------------------#
     lexicon_classifer_start_time = helper.cpuexecutiontime()
-    
-    texts = bugs_df['Summary']
-    
-#     predicted_labels = [classify_sentiment(text) for text in bugs_df]    
-#     predicted_labels = bugs_df['Summary'].apply(lambda x: x.helper.classify_sentiment())
-
-    bugs_df['Predicted_Severity'] = bugs_df['Summary'].apply(helper.classify_sentiment)
-   
+            
+    bugs_df['Predicted_Severity'] = bugs_df['Summary'].apply(lambda x: helper.classify_sentiment(x))
+    print(bugs_df['Predicted_Severity'])
+      
     dict_resp = helper.evaluate_vader_classifier(bugs_df['Severity'], bugs_df['Predicted_Severity'])
     
+    print("dict_resp",dict_resp)
+      
     lexicon_classifer_end_time = helper.cpuexecutiontime()
     lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
     
@@ -102,15 +100,15 @@ for i in range(0,10):
 #--------------------------------Average Results of Lexicon -----------------------------------------------#  
 print("************************** Average Result for Lexicon classifier**************************")
 
-average_results_lexicon = helper.calculate_average_vader(dictionary_list)
+# average_results_lexicon = helper.calculate_average_vader(dictionary_list)
 
-print("Average Result Lexicon",average_results_lexicon)
+# print("Average Result Lexicon",average_results_lexicon)
 
 # store all lexicon results as JSON
 with open('lexicon_results14_vader.json', 'w') as json_file:
     json.dump(dictionary_list, json_file)
 # store average lexicon results as JSON
-with open('lexicon_average_results14_vader.json', 'w') as json_file:
-    json.dump(average_results_lexicon, json_file)
+# with open('lexicon_average_results14_vader.json', 'w') as json_file:
+#     json.dump(average_results_lexicon, json_file)
         
         

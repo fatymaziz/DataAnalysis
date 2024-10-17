@@ -18,7 +18,7 @@ import numpy as np
 from sklearn.dummy import DummyClassifier
 import time
 import json 
-import helper_svmbestc  
+import helper 
 
 
 bugs_calendar= pd.read_csv("bugs_Calendar.csv")
@@ -96,7 +96,7 @@ bugs_eclipse.loc[bugs_eclipse["Severity"] == "S4", "Severity"] = 'NonSevere'
 
 dictionary_list = []
 mlresponse_list = []
-file1 = open("output_Experiment11.txt", "w")  # write mode
+# file1 = open("output_Experiment11.txt", "w")  # write mode
 
 
 list_of_random_seeds = []
@@ -128,40 +128,40 @@ for i in range(0,10):
     validation_data_df=validation_data.reset_index()
     testing_data_df=testing_data.reset_index()
     print("------interation------", i)
-    file1.write("------Interation------")
+#     file1.write("------Interation------")
     
     
  #----------------------Lexicon Preprocess ------------------------------#
-    lexicon_preprocess_start_time = helper_svmbestc.cpuexecutiontime()
+    lexicon_preprocess_start_time = helper.cpuexecutiontime()
     
-    training_data['Processed_Summary'] = training_data['Summary'].apply(lambda x: helper_svmbestc.nlpsteps(x))
+    training_data['Processed_Summary'] = training_data['Summary'].apply(lambda x: helper.nlpsteps(x))
     training_data['Lowered_Summary'] = training_data['Processed_Summary'].apply(lambda x: x.lower())
     
-    lexicon_preprocess_end_time = helper_svmbestc.cpuexecutiontime()
+    lexicon_preprocess_end_time = helper.cpuexecutiontime()
     lexicon_preprocess_execution_time =  lexicon_preprocess_end_time -  lexicon_preprocess_start_time
     
 #-----------------------Lexicon Learner --------------------------------#
-    lexicon_learner_start_time = helper_svmbestc.cpuexecutiontime()
+    lexicon_learner_start_time = helper.cpuexecutiontime()
     
-    validation_data['Processed_Summary_v'] = validation_data['Summary'].apply(lambda y: helper_svmbestc.nlpsteps(y))
+    validation_data['Processed_Summary_v'] = validation_data['Summary'].apply(lambda y: helper.nlpsteps(y))
     validation_data['Lowered_Summary_v'] = validation_data['Processed_Summary_v'].apply(lambda y: y.lower())
     
 
-    severe_lexicons_linearsvm, non_severe_lexicons_linearsvm, C_hyperparameter = helper_svmbestc.linear_svm_features(training_data['Lowered_Summary'],training_data,validation_data['Lowered_Summary_v'],validation_data,training_data_df,validation_data_df)
+    severe_lexicons_linearsvm, non_severe_lexicons_linearsvm, C_hyperparameter = helper.linear_svm_features(training_data['Lowered_Summary'],training_data,validation_data['Lowered_Summary_v'],validation_data,training_data_df,validation_data_df)
     
    
     # Add both severe and non severe dictionaries in a dictionary
     static_dict_resp = {'Severe Lexicons': severe_lexicons_linearsvm, 'NonSevere Lexicon': non_severe_lexicons_linearsvm, 'bestC_hyperparameter':C_hyperparameter}
     
-    lexicon_learner_end_time = helper_svmbestc.cpuexecutiontime()
+    lexicon_learner_end_time = helper.cpuexecutiontime()
     lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time
     
 #-----------------------Lexicon Classifier ---------------------------------#
-    lexicon_classifer_start_time = helper_svmbestc.cpuexecutiontime()
+    lexicon_classifer_start_time = helper.cpuexecutiontime()
 
-    dict_resp = helper_svmbestc.evaluate_lexicon_classifer(testing_data ,severe_lexicons_linearsvm, non_severe_lexicons_linearsvm)
+    dict_resp = helper.evaluate_lexicon_classifer(testing_data ,severe_lexicons_linearsvm, non_severe_lexicons_linearsvm)
     
-    lexicon_classifer_end_time = helper_svmbestc.cpuexecutiontime()
+    lexicon_classifer_end_time = helper.cpuexecutiontime()
     lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
     
     additional_dict = {'cputime_preprocess': lexicon_preprocess_execution_time,'cputime_learner': lexicon_learner_execution_time,'cputime_classifer': lexicon_classifer_execution_time,  "best_C_hyperparameter": C_hyperparameter}
@@ -179,7 +179,7 @@ for i in range(0,10):
     
 #--------------------------------Average Results of Lexicon -----------------------------------------------#  
 print("************************** Average Result for Lexicon classifier**************************")
-average_results_lexicon = helper_svmbestc.calculate_average_results_lexicon(dictionary_list)
+average_results_lexicon = helper.calculate_average_results_lexicon(dictionary_list)
 average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
 
 print("Average Result Lexicon",average_results_lexicon_df)
