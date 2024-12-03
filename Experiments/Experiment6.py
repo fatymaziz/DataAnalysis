@@ -1,4 +1,4 @@
-#Experiment 2 Train with Firefox Mozilla dataset 
+#Experiment 2 Train with Firefox Mozilla dataset and test with eclipse dataset
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -57,42 +57,42 @@ bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 # print(severerity)
 
 
-# #--------------------------- Eclipse dataset for training and validation dataset-----------------------------
-# bugs_eclipse = pd.read_csv("bugs_eclipse.csv")
+#--------------------------- Eclipse dataset for training and validation dataset-----------------------------
+bugs_eclipse = pd.read_csv("bugs_eclipse.csv")
 
 
-# bugs_eclipse['Type'] = np.where(bugs_eclipse['Severity'] == 'enhancement', "enhancement", "defect")
+bugs_eclipse['Type'] = np.where(bugs_eclipse['Severity'] == 'enhancement', "enhancement", "defect")
 
 
-# # Dropped rows with severity level '--'
-# bugs_eclipse = bugs_eclipse[bugs_eclipse["Severity"].str.contains("--")==False].reset_index()
+# Dropped rows with severity level '--'
+bugs_eclipse = bugs_eclipse[bugs_eclipse["Severity"].str.contains("--")==False].reset_index()
 
-# #Dropped rows with Type "Enhancement" and "Task" because they are not a bug but a new feature
-# indexSevere = bugs_eclipse[(bugs_eclipse['Type'] == 'enhancement') & (bugs_eclipse['Type'] == 'enhancement') ].index
-# bugs_eclipse.drop(indexSevere , inplace=True)
+#Dropped rows with Type "Enhancement" and "Task" because they are not a bug but a new feature
+indexSevere = bugs_eclipse[(bugs_eclipse['Type'] == 'enhancement') & (bugs_eclipse['Type'] == 'enhancement') ].index
+bugs_eclipse.drop(indexSevere , inplace=True)
 
-# indexSevere = bugs_eclipse[(bugs_eclipse['Type'] == 'task') & (bugs_eclipse['Type'] == 'task') ].index
-# bugs_eclipse.drop(indexSevere , inplace=True)
+indexSevere = bugs_eclipse[(bugs_eclipse['Type'] == 'task') & (bugs_eclipse['Type'] == 'task') ].index
+bugs_eclipse.drop(indexSevere , inplace=True)
 
 
-# #Catagorise the severity level into a Severe and Non Severe to make it a binary problem
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "blocker", "Severity"] = 'Severe'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "critical", "Severity"] = 'Severe'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "major", "Severity"] = 'Severe'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "S1", "Severity"] = 'Severe'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "S2", "Severity"] = 'Severe'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "S3", "Severity"] = 'NonSevere'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "normal", "Severity"] = 'NonSevere'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "minor", "Severity"] = 'NonSevere'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "trivial", "Severity"] = 'NonSevere'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "S4", "Severity"] = 'NonSevere'
+#Catagorise the severity level into a Severe and Non Severe to make it a binary problem
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "blocker", "Severity"] = 'Severe'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "critical", "Severity"] = 'Severe'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "major", "Severity"] = 'Severe'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "S1", "Severity"] = 'Severe'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "S2", "Severity"] = 'Severe'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "S3", "Severity"] = 'NonSevere'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "normal", "Severity"] = 'NonSevere'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "minor", "Severity"] = 'NonSevere'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "trivial", "Severity"] = 'NonSevere'
+bugs_eclipse.loc[bugs_eclipse["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-# # bugs_eclipse = bugs_eclipse.head(600)
-# # print("total bugs", len(bugs_eclipse))
-# # severerity = bugs_eclipse['Severity'].value_counts()
-# # print(severerity)
+# bugs_eclipse = bugs_eclipse.head(600)
+# print("total bugs", len(bugs_eclipse))
+# severerity = bugs_eclipse['Severity'].value_counts()
+# print(severerity)
 
-# # ---------------------- Eclipse dataset for testing ends-----------------------
+# ---------------------- Eclipse dataset for testing ends-----------------------
 
 
 dictionary_list = []
@@ -110,11 +110,11 @@ for i in range(0,10):
     randomseed = {'random_seeds':rs}
    
     
-    training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
-    training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
+#     training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
+#     training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
 
-#     training_data, validation_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
-#     testing_data = bugs_eclipse.copy(deep=True)
+    training_data, validation_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
+    testing_data = bugs_eclipse.copy(deep=True)
     
     
     print(f"No. of training data: {training_data.shape[0]}")
@@ -194,8 +194,8 @@ for i in range(0,10):
 # #     print(lexicon_classifier_results)
       
     
-#     print("*************************Dictionary Ends**************************")
-# #     file1.write("*******************Dictionary Ends**************************")
+    print("*************************Dictionary Ends**************************")
+#     file1.write("*******************Dictionary Ends**************************")
  
 
  #--------------------------------ML Models -----------------------------------------------#
@@ -247,14 +247,14 @@ average_ml_json_data = {'Avg Confusionmatrix': model_values_CM, 'Accuracy': aver
 
 
 # store all ML results as JSON
-with open('ml_results2.json', 'w') as json_file:
+with open('ml_results6.json', 'w') as json_file:
      json.dump(mlresponse_list, json_file)
 # store average ML results as JSON
-with open('ml_average_results2.json', 'w') as json_file:
+with open('ml_average_results6.json', 'w') as json_file:
      json.dump(average_ml_json_data, json_file)
         
 # # store static dictionary for Firefox as json
-# with open('static_dictionary_Firefox_THR.json', 'w') as json_file:
+# with open('static_dictionary_Firefox.json', 'w') as json_file:
 #      json.dump(static_dict_resp, json_file,indent=2)
         
 

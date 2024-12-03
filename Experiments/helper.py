@@ -165,7 +165,7 @@ def linear_svm_features(summary_training,training_data,summary_validation,valida
 
     # Get the coefficients from the trained SVM model
     coef = svm.coef_.ravel()
-
+    print("coef",coef)
     # feature names from CountVectorizer
     feature_names = cv.get_feature_names_out()
 
@@ -416,6 +416,45 @@ def cpuexecutiontime():
     current_time = time.time()
     return current_time
    
+#function handles not
+# def nlpsteps(x):
+#     """
+#     Tokenizes and preprocesses a summary of a bug.
+
+#     Args:
+#         x (str): The summary text to be processed.
+
+#     Returns:
+#         str: The processed text after removing non-alphabetic characters, converting to lowercase,
+#              lemmatizing words, and removing stopwords.
+#     """
+    
+#     # Remove non-alphabetic characters
+#     review = re.sub('[^a-zA-Z]', ' ', str(x))
+#     review = review.lower()
+#     review = review.split()
+
+#     lemmatizer = WordNetLemmatizer()
+
+#     all_stopwords = set(stopwords.words('english'))
+#     all_stopwords.remove('not')
+    
+#     # Concatenate 'not' with the next word
+#     processed_review = []
+#     i = 0
+#     while i < len(review):
+#         if review[i] == 'not' and i + 1 < len(review):
+#             processed_review.append('not_' + review[i + 1])
+#             i += 2  # Skip the next word as it has been concatenated
+#         else:
+#             if review[i] not in all_stopwords:
+#                 processed_review.append(lemmatizer.lemmatize(review[i]))
+#             i += 1
+
+#     # Join the processed words back into a sentence
+#     review = ' '.join(processed_review)
+# #     print("review",review)
+#     return review
 
 def nlpsteps(x):
     """
@@ -434,28 +473,17 @@ def nlpsteps(x):
     review = review.lower()
     review = review.split()
 
+    # Initialize WordNetLemmatizer
     lemmatizer = WordNetLemmatizer()
 
+    # Remove stopwords and lemmatize words
     all_stopwords = set(stopwords.words('english'))
     all_stopwords.remove('not')
-    
-    # Concatenate 'not' with the next word
-    processed_review = []
-    i = 0
-    while i < len(review):
-        if review[i] == 'not' and i + 1 < len(review):
-            processed_review.append('not_' + review[i + 1])
-            i += 2  # Skip the next word as it has been concatenated
-        else:
-            if review[i] not in all_stopwords:
-                processed_review.append(lemmatizer.lemmatize(review[i]))
-            i += 1
+    review = [lemmatizer.lemmatize(word) for word in review if word not in all_stopwords]
 
     # Join the processed words back into a sentence
-    review = ' '.join(processed_review)
-#     print("review",review)
+    review = ' '.join(review)
     return review
-
 
 def convert(corpus_trainingdata):
     """
@@ -1016,7 +1044,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
     for i in range(0,trainingdataset_length):
         review_train = nlpsteps(str(training_data_df['Summary'][i]))
         trainingdata_tokenised.append(review_train)
-        
+#         print("trainingdata_tokenised",trainingdata_tokenised)
         
 
     #Tokenised the testing data
@@ -1044,7 +1072,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
 
     for i in features:
 
-        cv = CountVectorizer(max_features = i)
+        cv = CountVectorizer()
         X_train = cv.fit_transform(trainingdata_tokenised).toarray()
 #         Y_train = training_data.iloc[:, -2].values
         Y_train = training_data['Severity'].apply(lambda x: 1 if x == 'Severe' else 0)
@@ -1063,6 +1091,14 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
         
         
 #         #------------ test purpose, remove later------------------------
+
+        # Display feature names and document-term matrix for verification
+#         feature_names = cv.get_feature_names_out() 
+#         df = pd.DataFrame(X_train, columns=feature_names)
+#         print("Feature Names:", feature_names) 
+#         pd.set_option('display.max_columns', None)
+#         print(df)
+
 #         print("X_train", X_train)
 #         print("Y_train", Y_train)
 #         print("X_validation", X_validation)

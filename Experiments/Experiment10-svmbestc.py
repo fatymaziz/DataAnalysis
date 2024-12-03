@@ -51,7 +51,7 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-# bugs_df = bugs_df.head(500)
+bugs_df = bugs_df.head(500)
 # print(bugs_df)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()
@@ -87,7 +87,7 @@ bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "minor", "Severity"] = 'NonSe
 bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df_mozilla.loc[bugs_df_mozilla["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-# bugs_df_mozilla = bugs_df_mozilla.head(300)
+bugs_df_mozilla = bugs_df_mozilla.head(300)
 # print(bugs_df_mozilla)
 # print("total bugs", len(bugs_df_mozilla))
 # severerity = bugs_df_mozilla['Severity'].value_counts()
@@ -100,7 +100,7 @@ mlresponse_list = []
 list_of_random_seeds = []
 
   
-for i in range(0,10):
+for i in range(0,1):
     TEST_SIZE = 0.2
     
     rs=random.randint(0, 1000000)
