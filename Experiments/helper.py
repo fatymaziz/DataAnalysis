@@ -1072,7 +1072,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
 
     for i in features:
 
-        cv = CountVectorizer()
+        cv = CountVectorizer(max_features = i)
         X_train = cv.fit_transform(trainingdata_tokenised).toarray()
 #         Y_train = training_data.iloc[:, -2].values
         Y_train = training_data['Severity'].apply(lambda x: 1 if x == 'Severe' else 0)
