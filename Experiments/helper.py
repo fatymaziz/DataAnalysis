@@ -416,7 +416,7 @@ def cpuexecutiontime():
     current_time = time.time()
     return current_time
    
-#function handles not
+# #function handles not
 # def nlpsteps(x):
 #     """
 #     Tokenizes and preprocesses a summary of a bug.
@@ -443,8 +443,8 @@ def cpuexecutiontime():
 #     processed_review = []
 #     i = 0
 #     while i < len(review):
-#         if review[i] == 'not' and i + 1 < len(review):
-#             processed_review.append('not_' + review[i + 1])
+#         if review[i] == 'not_' and i + 1 < len(review):
+#             processed_review.append('not' + review[i + 1])
 #             i += 2  # Skip the next word as it has been concatenated
 #         else:
 #             if review[i] not in all_stopwords:
@@ -453,7 +453,7 @@ def cpuexecutiontime():
 
 #     # Join the processed words back into a sentence
 #     review = ' '.join(processed_review)
-# #     print("review",review)
+#     # print("review",review)
 #     return review
 
 def nlpsteps(x):
@@ -1044,7 +1044,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
     for i in range(0,trainingdataset_length):
         review_train = nlpsteps(str(training_data_df['Summary'][i]))
         trainingdata_tokenised.append(review_train)
-#         print("trainingdata_tokenised",trainingdata_tokenised)
+        # print("trainingdata_tokenised",trainingdata_tokenised)
         
 
     #Tokenised the testing data
@@ -1052,12 +1052,14 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
     for i in range(0,testingdataset_length):
         review_test = nlpsteps(str(testing_data_df['Summary'][i]))
         testingdata_tokenised.append(review_test)
+        # print("testingdata_tokenised",testingdata_tokenised)
 
     #Tokenised the validation data
     validationdata_tokenised = []
     for i in range(0,validationdataset_length):
         review_validation = nlpsteps(str(validation_data_df['Summary'][i]))
         validationdata_tokenised.append(review_validation)
+        # print("validationdata_tokenised",validationdata_tokenised)
    
 
 
