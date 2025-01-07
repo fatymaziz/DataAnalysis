@@ -21,11 +21,11 @@ import json
 import helper
 
 #--------------------------- Eclipse dataset for training and validation dataset-----------------------------
-bugs_eclipse = pd.read_csv("bugs_eclipse.csv")
+bugs_firefox= pd.read_csv("bugs_firefox.csv")
+bugs_calendar= pd.read_csv("bugs_Calendar.csv")
 
 
-bugs_eclipse['Type'] = np.where(bugs_eclipse['Severity'] == 'enhancement', "enhancement", "defect")
-bugs_df = pd.concat([bugs_eclipse])
+bugs_df = pd.concat([bugs_firefox,bugs_calendar])
 
 # Dropped rows with severity level '--'
 bugs_df = bugs_df[bugs_df["Severity"].str.contains("--")==False].reset_index()
@@ -36,7 +36,6 @@ bugs_df.drop(indexSevere , inplace=True)
 
 indexSevere = bugs_df[ (bugs_df['Type'] == 'task') & (bugs_df['Type'] == 'task') ].index
 bugs_df.drop(indexSevere , inplace=True)
-
 
 
 #Catagorise the severity level into a Severe and Non Severe to make it a binary problem
@@ -51,7 +50,7 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-# bugs_df = bugs_df.tail(1000)
+# bugs_df = bugs_df.tail(20)
 # print(bugs_df)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()
@@ -224,6 +223,6 @@ for i in range(0,1):
 #      json.dump(payload_train, json_file,indent=2)
 
 # wordlist_dict = wordlists.to_dict(orient='records') 
-with open('Worlist_frequentword_eclipse_THR_BEFORE_negation.json', 'w') as json_file: 
+with open('Worlist_frequentword_Firefox_THR_BEFORE_negation.json', 'w') as json_file: 
     json.dump(wordlists, json_file, indent=2)
         

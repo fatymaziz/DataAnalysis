@@ -821,71 +821,110 @@ def evaluate_lexicon_classifer(dataset, severedictionary_list, nonseveredictiona
 
 ################# outerloop breakdown##########################################################################
 # Function that returns the worlists for severe and non severe 
-def lexicon_preprocess(trainingdataset_length,training_data_df):
+# def lexicon_preprocess(trainingdataset_length,training_data_df):
+#     """
+#     Create wordlists for severe and non severe from the preprocessed training dataset 
+
+#     Args:
+#         trainingdataset_length: size of training dataset
+#         training_data_df: training dataset dataframe
+      
+#     Returns: a wordlist that has words from training dataset with its counts for severe and nonsevere
+#     """
+
+#     corpus_trainingdata = []
+#     all_data_df_ = []
+       
+#     for i in range(0,trainingdataset_length):
+#         review = nlpsteps(str(training_data_df['Summary'][i]))
+#         corpus_trainingdata.append(review)
+   
+
+#     #Split words from the corpus
+#     splittedWords = convert(corpus_trainingdata)
+# #     print("splittedWords---------------", splittedWords)
+    
+#     splitted_words=getwordcounts(splittedWords)
+
+#     #Converted collection.counter into dictionary
+#     splitted_words_dict = dict(splitted_words)
+
+#     keys = splitted_words_dict.keys()
+    
+#     all_data = {}
+#     for key in keys:
+#         res = get_distribution(key,training_data_df)
+#         if res:
+#             all_data[key] = res
+#             all_data
+#             all_data_df = pd.DataFrame(all_data)
+       
+# #             print("--------------wordlists for severe and non-severe------------------------")
+         
+# #             pd.set_option('display.max_columns', None)
+# #             print(all_data_df)
+        
+#     payload_train = {}
+#     for key, value in all_data.items():
+#         ns = value.get('NonSevere', 0)
+#         s = value.get('Severe',0)
+
+#         r1 = get_r1(ns, s)
+#         r2 = get_r2(ns, s)
+
+#         payload_train[key]= {
+#             'r1': r1,
+#             'r2': r2
+#         }
+#         payload_train
+#         payload_train_df = pd.DataFrame(payload_train)
+        
+# #         print("-------Wordlist with Ratios----------------------------------------")
+# #         pd.set_option('display.max_columns', None)
+# #         print(payload_train_df)
+        
+
+#     return payload_train 
+
+
+def lexicon_preprocess(trainingdataset_length, training_data_df):
     """
-    Create wordlists for severe and non severe from the preprocessed training dataset 
+    Create wordlists for severe and nonsevere from the preprocessed training dataset.
 
     Args:
         trainingdataset_length: size of training dataset
         training_data_df: training dataset dataframe
-      
-    Returns: a wordlist that has words from training dataset with its counts for severe and nonsevere
-    """
 
+    Returns: Two lists of dictionaries: one for Severe and one for NonSevere word counts.
+    """
     corpus_trainingdata = []
-    all_data_df_ = []
-       
-    for i in range(0,trainingdataset_length):
+    severe_data = []
+    nonsevere_data = []
+
+    for i in range(trainingdataset_length):
         review = nlpsteps(str(training_data_df['Summary'][i]))
         corpus_trainingdata.append(review)
-   
 
-    #Split words from the corpus
+    # Split words from the corpus
     splittedWords = convert(corpus_trainingdata)
-#     print("splittedWords---------------", splittedWords)
-    
-    splitted_words=getwordcounts(splittedWords)
 
-    #Converted collection.counter into dictionary
+    # Count each word's occurrences in the corpus
+    splitted_words = getwordcounts(splittedWords)
+
+    # Convert Counter object into dictionary
     splitted_words_dict = dict(splitted_words)
 
-    keys = splitted_words_dict.keys()
-    
-    all_data = {}
-    for key in keys:
-        res = get_distribution(key,training_data_df)
+    for key in splitted_words_dict.keys():
+        res = get_distribution(key, training_data_df)
         if res:
-            all_data[key] = res
-            all_data
-            all_data_df = pd.DataFrame(all_data)
-       
-#             print("--------------wordlists for severe and non-severe------------------------")
-         
-#             pd.set_option('display.max_columns', None)
-#             print(all_data_df)
-        
-    payload_train = {}
-    for key, value in all_data.items():
-        ns = value.get('NonSevere', 0)
-        s = value.get('Severe',0)
+            severe_count = int(res.get('Severe', 0))
+            nonsevere_count = int(res.get('NonSevere', 0))
+            if severe_count > 0:
+                severe_data.append({'Word': key, 'Count': severe_count})
+            if nonsevere_count > 0:
+                nonsevere_data.append({'Word': key, 'Count': nonsevere_count})
 
-        r1 = get_r1(ns, s)
-        r2 = get_r2(ns, s)
-
-        payload_train[key]= {
-            'r1': r1,
-            'r2': r2
-        }
-        payload_train
-        payload_train_df = pd.DataFrame(payload_train)
-        
-#         print("-------Wordlist with Ratios----------------------------------------")
-#         pd.set_option('display.max_columns', None)
-#         print(payload_train_df)
-        
-
-    return payload_train 
-
+    return severe_data, nonsevere_data
 
 # Function that returns the created dictionaries on possible combination of the severe and non severe threshold and returns best thresholds
 def lexicon_learner(payload_train,validation_data):
