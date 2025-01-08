@@ -18,7 +18,7 @@ import numpy as np
 from sklearn.dummy import DummyClassifier
 import time
 import json 
-import helper
+import helpernegation
 
 #--------------------------- Eclipse dataset for training and validation dataset-----------------------------
 bugs_eclipse = pd.read_csv("bugs_eclipse.csv")
@@ -100,9 +100,9 @@ for i in range(0,1):
  #----------------------Lexicon Preprocess ------------------------------#
     lexicon_preprocess_start_time = helper.cpuexecutiontime()
     
-    severe_list, nonsevere_list = helper.lexicon_preprocess(trainingdataset_length,training_data_df)
+    severe_list, nonsevere_list = helpernegation.lexicon_preprocess(trainingdataset_length,training_data_df)
     
-    lexicon_preprocess_end_time = helper.cpuexecutiontime()
+    lexicon_preprocess_end_time = helpernegation.cpuexecutiontime()
     lexicon_preprocess_execution_time =  lexicon_preprocess_end_time -  lexicon_preprocess_start_time
 
     wordlists = {'Severe': severe_list, 'NonSevere': nonsevere_list}
