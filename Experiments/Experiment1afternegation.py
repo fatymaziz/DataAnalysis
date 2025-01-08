@@ -98,7 +98,7 @@ for i in range(0,1):
     
     
  #----------------------Lexicon Preprocess ------------------------------#
-    lexicon_preprocess_start_time = helper.cpuexecutiontime()
+    lexicon_preprocess_start_time = helpernegation.cpuexecutiontime()
     
     severe_list, nonsevere_list = helpernegation.lexicon_preprocess(trainingdataset_length,training_data_df)
     
