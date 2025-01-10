@@ -2,7 +2,7 @@ import pandas as pd
 import json
 
 # Specify the path to your JSON file
-json_file_path = "Worlist_frequentword_eclipse_THR_AFTER_negationhandled2.json"
+json_file_path = "Worlist_frequentword_Firefox_THR_BEFORE_negation.json"
 
 # Read the JSON data from the file
 with open(json_file_path) as json_file:
@@ -13,12 +13,12 @@ severe_df = pd.DataFrame(data["Severe"])
 nonsevere_df = pd.DataFrame(data["NonSevere"])
 
 # Create a Pandas Excel writer using xlsxwriter as the engine
-with pd.ExcelWriter("Worlist_frequentword_eclipse_THR_AFTER_negation.xlsx", engine="xlsxwriter") as writer:
+with pd.ExcelWriter("Worlist_frequentword_Firefox_THR_BEFORE_negation.xlsx", engine="xlsxwriter") as writer:
     # Write DataFrames to separate sheets
     severe_df.to_excel(writer, sheet_name="Severe", index=False)
     nonsevere_df.to_excel(writer, sheet_name="NonSevere", index=False)
 
-print("Excel file 'Worlist_frequentword_eclipse_THR_After_negation.xlsx' created successfully!")
+print("Excel file 'WWorlist_frequentword_Firefox_THR_BEFORE_negation.xlsx' created successfully!")
 
 
 

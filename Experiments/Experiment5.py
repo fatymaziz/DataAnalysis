@@ -219,10 +219,10 @@ average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
 print("Average Result Lexicon",average_results_lexicon_df)
 
 # store all lexicon results as JSON
-with open('lexicon_results1.json', 'w') as json_file:
+with open('lexicon_results5.json', 'w') as json_file:
     json.dump(dictionary_list, json_file)
 # store average lexicon results as JSON
-with open('lexicon_average_results1.json', 'w') as json_file:
+with open('lexicon_average_results5.json', 'w') as json_file:
     json.dump(average_results_lexicon, json_file)
  
  #--------------------------------Average Results for ML -----------------------------------------------------#    

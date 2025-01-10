@@ -4,11 +4,8 @@ from sklearn.model_selection import train_test_split
 import re
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
 import nltk
-nltk.download('wordnet')
-import nltk
-nltk.download('stopwords')
-nltk.download('omw-1.4')
 import collections
 import random
 import itertools
@@ -25,8 +22,17 @@ from sklearn import metrics
 import matplotlib.pyplot as plt
 import json
 from sklearn.svm import LinearSVC
-nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+
+# Download necessary resources
+nltk.download('wordnet')
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('omw-1.4')
+nltk.download('vader_lexicon')
+
+
 
 # Function to classify sentiment from Vader Lexicon
 def classify_sentiment(texts):
@@ -187,59 +193,6 @@ def linear_svm_features(summary_training,training_data,summary_validation,valida
 #     print("non_severe_lexicons_linearsvms_before", non_severe_lexicons_linearsvm)
                        
     return severe_lexicons_linearsvm, non_severe_lexicons_linearsvm, C_hyperparameter
-
-# def linear_svm_features(x, bugs_df):
-#     """
-#     Create a wordlist and their cofficient from linear SVM.
-#     Arg: 
-#         x: Summary column of the training dataset
-#         bug_df: training dataset
-#     Returns:
-#         severe_lexicons_linearsvm, non_severe_lexicons_linearsvm dictionaries
-#     """
-    
-#     severe_lexicons_linearsvm = {}  
-#     non_severe_lexicons_linearsvm = {}  
-
-
-#     cv = CountVectorizer()
-#     cv.fit(x)
-# #     print("vocabulary length")
-# #     print(len(cv.vocabulary_))
-# #     print("feature names")
-# #     print(cv.get_feature_names_out())
-
-#     X_train = cv.transform(x)
-
-#     target = bugs_df.iloc[:, -2].values  # target column
-
-#     svm = LinearSVC()
-#     svm.fit(X_train, target)
-
-#     coef = svm.coef_.ravel()
-
-#     # feature names from CountVectorizer
-#     feature_names = cv.get_feature_names_out()
-
-#     # dictionary mapping feature names to coefficients
-#     word_coefficients = {feature_names[i]: coef[i] for i in range(len(feature_names))}
-    
-#     word_coefficients
-
-#     # word list and their coefficients
-#     for word, coefficient in word_coefficients.items():
-
-#         if coefficient > 0:   
-#             severe_lexicons_linearsvm[word] = {"ratio": coefficient}
-          
-#         elif coefficient < 0:  
-#             non_severe_lexicons_linearsvm[word] = {"ratio": coefficient}
-            
-# #     print("severe_lexicons_linearsvm_before", severe_lexicons_linearsvm)
-# #     print("non_severe_lexicons_linearsvms_before", non_severe_lexicons_linearsvm)
-                       
-#     return severe_lexicons_linearsvm, non_severe_lexicons_linearsvm
-    
 
 def zero_equal():
     """
@@ -416,74 +369,71 @@ def cpuexecutiontime():
     current_time = time.time()
     return current_time
    
-#function handles not
-def nlpsteps(x):
+
+
+# def nlpsteps(text):
+
+#     # Remove punctuation
+#     removed_punctuation = re.sub('[^a-zA-Z]', ' ', str(text))
+#     removed_punctuation = removed_punctuation.lower()
+#     tokens = removed_punctuation.split()
+
+#     print("tokenizaton through split", tokens)
+    
+#     # # Tokenize
+#     # tokens = word_tokenize(text)
+    
+#     # Remove stopwords and 'not' is preserved
+#     all_stopwords = set(stopwords.words('english'))
+#     all_stopwords.remove('not')
+#     filtered_tokens = [token for token in tokens if token.lower() not in all_stopwords]
+#     print("filtered_tokens", filtered_tokens)
+    
+#     # Lemmatization
+#     lemmatizer = WordNetLemmatizer()
+#     lemmatized_tokens = [lemmatizer.lemmatize(token, pos='v') for token in filtered_tokens]  # Use 'v' for verbs
+#     print("lemmatized_tokens", lemmatized_tokens)
+    
+#     return ' '.join(lemmatized_tokens)
+
+
+def nlpsteps(text):
     """
-    Tokenizes and preprocesses a summary of a bug.
+    Preprocesses text by handling negation, tokenizing, removing stopwords, and lemmatizing.
 
     Args:
-        x (str): The summary text to be processed.
+        text (str): The text to be processed.
 
     Returns:
-        str: The processed text after removing non-alphabetic characters, converting to lowercase,
-             lemmatizing words, and removing stopwords.
+        str: The processed text after tokenizing, removing stopwords, and lemmatizing.
     """
     
-    # Remove non-alphabetic characters
-    review = re.sub('[^a-zA-Z]', ' ', str(x))
-    review = review.lower()
-    review = review.split()
+    # Remove punctuation and convert to lowercase
+    text = re.sub('[^a-zA-Z]', ' ', str(text))
+    text = text.lower()
+    tokens = text.split()
 
+    # Initialize WordNetLemmatizer
     lemmatizer = WordNetLemmatizer()
 
+    # Remove stopwords and preserve 'not'
     all_stopwords = set(stopwords.words('english'))
     all_stopwords.remove('not')
     
-    # Concatenate 'not' with the next word
-    processed_review = []
+    # Handle negation and remove stopwords
+    processed_tokens = []
     i = 0
-    while i < len(review):
-        if review[i] == 'not' and i + 1 < len(review):
-            processed_review.append('not' + review[i + 1])
+    while i < len(tokens):
+        if tokens[i] == 'not' and i + 1 < len(tokens) and tokens[i + 1] not in all_stopwords:
+            processed_tokens.append('not_' + tokens[i + 1])
             i += 2  # Skip the next word as it has been concatenated
         else:
-            if review[i] not in all_stopwords:
-                processed_review.append(lemmatizer.lemmatize(review[i]))
+            if tokens[i] not in all_stopwords:
+                processed_tokens.append(lemmatizer.lemmatize(tokens[i], pos='v'))
             i += 1
 
-    # Join the processed words back into a sentence
-    review = ' '.join(processed_review)
-    # print("review",review)
-    return review
+    return ' '.join(processed_tokens)
 
-# def nlpsteps(x):
-#     """
-#     Tokenizes and preprocesses a summary of a bug.
-
-#     Args:
-#         x (str): The summary text to be processed.
-
-#     Returns:
-#         str: The processed text after removing non-alphabetic characters, converting to lowercase,
-#              lemmatizing words, and removing stopwords.
-#     """
-    
-#     # Remove non-alphabetic characters
-#     review = re.sub('[^a-zA-Z]', ' ', str(x))
-#     review = review.lower()
-#     review = review.split()
-
-#     # Initialize WordNetLemmatizer
-#     lemmatizer = WordNetLemmatizer()
-
-#     # Remove stopwords and lemmatize words
-#     all_stopwords = set(stopwords.words('english'))
-#     all_stopwords.remove('not')
-#     review = [lemmatizer.lemmatize(word) for word in review if word not in all_stopwords]
-
-#     # Join the processed words back into a sentence
-#     review = ' '.join(review)
-#     return review
 
 def convert(corpus_trainingdata):
     """
@@ -505,27 +455,55 @@ def getwordcounts(splittedWords):
 
 
 #Function that returns the counts for each words that falls in Severe or Non Severe category
-def get_distribution(val,training_data_df):
+
+# def get_distribution(val,training_data_df):
+#     """
+#     Data after preprocessing splitting into separate words
+
+#     Args:
+#         val: Preprocessed data of the training dataset
+#         training_data_df: training dataset dataframe
+      
+#     Returns: the counts for each words that falls in Severe or Non Severe category
+#     """
+#     val = val.lower() 
+    
+#     training_data_df['Summary'] = training_data_df['Summary'].apply(lambda x: nlpsteps(x))
+#     records = training_data_df[
+#         training_data_df["Summary"].str.contains(val)
+#     ]
+    
+#     if len(records) > 0:
+#         res = training_data_df[
+#             training_data_df["Summary"].str.contains(val)
+#         ]["Severity"].value_counts(dropna=False)
+#         return dict(res)
+#     return None
+
+
+
+def get_distribution(val, training_data_df):
     """
     Data after preprocessing splitting into separate words
 
     Args:
         val: Preprocessed data of the training dataset
         training_data_df: training dataset dataframe
-      
+
     Returns: Splitted words
     """
     training_data_df['Summary'] = training_data_df['Summary'].apply(lambda x: nlpsteps(x))
+    pattern = re.compile(r'\b{}\b'.format(re.escape(val)))
+    
     records = training_data_df[
-        training_data_df["Summary"].str.contains(val)
+        training_data_df["Summary"].apply(lambda x: bool(pattern.search(x)))
     ]
     
     if len(records) > 0:
-        res = training_data_df[
-            training_data_df["Summary"].str.contains(val)
-        ]["Severity"].value_counts(dropna=False)
+        res = records["Severity"].value_counts(dropna=False)
         return dict(res)
     return None
+
     
     
 # Function that returns Severe ratio
@@ -886,6 +864,44 @@ def evaluate_lexicon_classifer(dataset, severedictionary_list, nonseveredictiona
 
 #     return payload_train 
 
+# def lexicon_preprocess(trainingdataset_length, training_data_df):
+#     """
+#     Create wordlists for severe and nonsevere from the preprocessed training dataset.
+
+#     Args:
+#         trainingdataset_length: size of training dataset
+#         training_data_df: training dataset dataframe
+
+#     Returns: a wordlist that has words from training dataset with its counts for severe and nonsevere
+#     """
+
+#     corpus_trainingdata = []
+#     all_data_list = []
+
+#     for i in range(trainingdataset_length):
+#         review = nlpsteps(str(training_data_df['Summary'][i]))
+#         corpus_trainingdata.append(review)
+
+#     # Split words from the corpus
+#     splittedWords = convert(corpus_trainingdata)
+
+#     # Count each word's occurrences in the corpus
+#     splitted_words = getwordcounts(splittedWords)
+
+#     # Convert Counter object into dictionary
+#     splitted_words_dict = dict(splitted_words)
+
+#     all_data = {}
+#     for key in splitted_words_dict.keys():
+#         res = get_distribution(key, training_data_df)
+#         if res:
+#             all_data[key] = res
+    
+#     # Convert the dictionary to DataFrame
+#     all_data_df = pd.DataFrame(all_data).transpose().reset_index()
+#     all_data_df.columns = ['Word', 'Severe', 'NonSevere']
+
+#     return all_data_df
 
 def lexicon_preprocess(trainingdataset_length, training_data_df):
     """
@@ -925,6 +941,8 @@ def lexicon_preprocess(trainingdataset_length, training_data_df):
                 nonsevere_data.append({'Word': key, 'Count': nonsevere_count})
 
     return severe_data, nonsevere_data
+
+
 
 # Function that returns the created dictionaries on possible combination of the severe and non severe threshold and returns best thresholds
 def lexicon_learner(payload_train,validation_data):

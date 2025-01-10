@@ -50,7 +50,7 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-# bugs_df = bugs_df.tail(20)
+# bugs_df = bugs_df.tail(50)
 # print(bugs_df)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()
@@ -72,26 +72,27 @@ for i in range(0,1):
     randomseed = {'random_seeds':rs}
    
     
-    training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
-    training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
+    # training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
+    # training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
+    training_data = bugs_df
 
 #     training_data, validation_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
 #     testing_data = bugs_df_mozilla.copy(deep=True)
    
 
     print(f"No. of training data: {training_data.shape[0]}")
-    print(f"No. of validation data: {validation_data.shape[0]}")
-    print(f"No. of testing data: {testing_data.shape[0]}")
+    # print(f"No. of validation data: {validation_data.shape[0]}")
+    # print(f"No. of testing data: {testing_data.shape[0]}")
     
     print("dataset random seed:" + str(rs))
 
     trainingdataset_length = len(training_data)
-    testingdataset_length = len(testing_data) 
-    validationdataset_length = len(validation_data)
+    # testingdataset_length = len(testing_data) 
+    # validationdataset_length = len(validation_data)
 
     training_data_df=training_data.reset_index()
-    validation_data_df=validation_data.reset_index()
-    testing_data_df=testing_data.reset_index()
+    # validation_data_df=validation_data.reset_index()
+    # testing_data_df=testing_data.reset_index()
     print("------interation------", i)
 #     file1.write("------Interation------")
     
