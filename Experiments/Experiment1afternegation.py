@@ -51,7 +51,7 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-bugs_df = bugs_df.head(50)
+bugs_df = bugs_df.head(2000)
 # print(bugs_df)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()
@@ -73,30 +73,30 @@ for i in range(0,1):
     randomseed = {'random_seeds':rs}
    
     
-    # training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
-    # training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
-    training_data = bugs_df
-    print("training_data", training_data)
-    print(training_data['Summary'])
+    training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=453911)
+    training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=453911)
+    # training_data = bugs_df
+    # print("training_data", training_data)
+    # print(training_data['Summary'])
 
 #     training_data, validation_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
 #     testing_data = bugs_df_mozilla.copy(deep=True)
    
 
     print(f"No. of training data: {training_data.shape[0]}")
-    # print(f"No. of validation data: {validation_data.shape[0]}")
-    # print(f"No. of testing data: {testing_data.shape[0]}")
+    print(f"No. of validation data: {validation_data.shape[0]}")
+    print(f"No. of testing data: {testing_data.shape[0]}")
     
     print("dataset random seed:" + str(rs))
 
     trainingdataset_length = len(training_data)
-    # testingdataset_length = len(testing_data) 
-    # validationdataset_length = len(validation_data)
+    testingdataset_length = len(testing_data) 
+    validationdataset_length = len(validation_data)
 
 
     training_data_df=training_data.reset_index()
-    # validation_data_df=validation_data.reset_index()
-    # testing_data_df=testing_data.reset_index()
+    validation_data_df=validation_data.reset_index()
+    testing_data_df=testing_data.reset_index()
     print("------interation------", i)
 #     file1.write("------Interation------")
     
@@ -104,130 +104,145 @@ for i in range(0,1):
  #----------------------Lexicon Preprocess ------------------------------#
     lexicon_preprocess_start_time = helpernegation.cpuexecutiontime()
     
-    severe_list, nonsevere_list = helpernegation.lexicon_preprocess(trainingdataset_length,training_data_df)
+    # severe_list, nonsevere_list = helper.lexicon_preprocess(trainingdataset_length,training_data_df)
+    # wordlist = helper.get_distribution(training_data_df)
+    
+    # df = bugs_df[['Summary', 'Severity']]
+    # print(df)
+    
+    # Get word counts
+    severe_word_counts, nonsevere_word_counts = helpernegation.get_distribution(training_data)
+    # print("severe_word_counts", severe_word_counts)
+    # print("nonsevere_word_counts", nonsevere_word_counts)
+    
+    # Calculate ratios
+    payload_train = helpernegation.lexicon_preprocess(severe_word_counts, nonsevere_word_counts)
+    # print("Wordlist with Ratios:")
+    # pd.set_option('display.max_columns', None)
+    # print(payload_train_df)
+    
     
     lexicon_preprocess_end_time = helpernegation.cpuexecutiontime()
     lexicon_preprocess_execution_time =  lexicon_preprocess_end_time -  lexicon_preprocess_start_time
 
-    wordlists = {'Severe': severe_list, 'NonSevere': nonsevere_list}
+
+    # print(payload_train)
+
+    # wordlists = {'Severe': severe_word_counts, 'NonSevere': nonsevere_word_counts}
     # print(wordlists)
     
     
 # #-----------------------Lexicon Learner --------------------------------#
-#     lexicon_learner_start_time = helper.cpuexecutiontime()
+    lexicon_learner_start_time = helpernegation.cpuexecutiontime()
     
-#     severethreshold, nonseverethreshold = helper.lexicon_learner(payload_train, validation_data)
-#     winning_threshold = {'severe threshold':severethreshold, 'non severe threshold':nonseverethreshold}
+    severethreshold, nonseverethreshold = helpernegation.lexicon_learner(payload_train, validation_data)
+    winning_threshold = {'severe threshold':severethreshold, 'non severe threshold':nonseverethreshold}
     
-#     lexicon_learner_end_time = helper.cpuexecutiontime()
-#     lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time
+    lexicon_learner_end_time = helpernegation.cpuexecutiontime()
+    lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time
     
-# #-----------------------Lexicon Classifier ---------------------------------------#
-#     lexicon_classifer_start_time = helper.cpuexecutiontime()
+#-----------------------Lexicon Classifier ---------------------------------------#
+    lexicon_classifer_start_time = helpernegation.cpuexecutiontime()
     
-#     #create lexicon on the the combined dataset of training and validation dataset on the best threshold -Pending
-#     severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helper.dictionary_onthresholds(severethreshold, nonseverethreshold, payload_train)
+    #create lexicon on the the combined dataset of training and validation dataset on the best threshold -Pending
+    severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helpernegation.dictionary_onthresholds(severethreshold, nonseverethreshold, payload_train)
     
-#     dict_resp = helper.evaluate_lexicon_classifer(testing_data, severedictionary_list, nonseveredictionary_list)
+    dict_resp = helpernegation.evaluate_lexicon_classifer(testing_data, severedictionary_list, nonseveredictionary_list)
     
     
-# #     dict_resp = helper.lexicon_classifier(severethreshold,nonseverethreshold,testing_data,payload_train)
+#     dict_resp = helper.lexicon_classifier(severethreshold,nonseverethreshold,testing_data,payload_train)
     
-#     lexicon_classifer_end_time = helper.cpuexecutiontime()
-#     lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
+    lexicon_classifer_end_time = helpernegation.cpuexecutiontime()
+    lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
     
-#     additional_dict = {'cputime_preprocess': lexicon_preprocess_execution_time,'cputime_learner': lexicon_learner_execution_time,'cputime_classifer': lexicon_classifer_execution_time}
+    additional_dict = {'cputime_preprocess': lexicon_preprocess_execution_time,'cputime_learner': lexicon_learner_execution_time,'cputime_classifer': lexicon_classifer_execution_time}
     
-#     lexicon_classifier_results = {**dict_resp, **additional_dict, **winning_threshold,**randomseed}
+    lexicon_classifier_results = {**dict_resp, **additional_dict, **winning_threshold,**randomseed}
         
-# #     print(lexicon_classifier_results)
+#     print(lexicon_classifier_results)
 
-# #-----------------------List of dictionaries -----------------------------------#
-#     dictionary_resp_eachiteration = lexicon_classifier_results
-#     dictionary_list.append(dictionary_resp_eachiteration)
-# #     print(dictionary_list)
+#-----------------------List of dictionaries -----------------------------------#
+    dictionary_resp_eachiteration = lexicon_classifier_results
+    dictionary_list.append(dictionary_resp_eachiteration)
+#     print(dictionary_list)
 
 
 # #----------------------------Static Dictionary----------------------------------------#
 
-#     lexicon_classifer_start_time = helper.cpuexecutiontime()
+    lexicon_classifer_start_time = helpernegation.cpuexecutiontime()
     
-#     severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helper.dictionary_onthresholds(severethreshold,nonseverethreshold,payload_train)
+    severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helpernegation.dictionary_onthresholds(severethreshold,nonseverethreshold,payload_train)
     
-#     # Add both severe and non severe lists in a dictionary
-#     static_dict_resp = {'Severe Lexicons': severedictionary_list, 'NonSevere Lexicon': nonseveredictionary_list }
- 
+    # Add both severe and non severe lists in a dictionary
+    static_dict_resp = {'Severe Lexicons': severedictionary_list, 'NonSevere Lexicon': nonseveredictionary_list }
+    print("static_dict_resp",static_dict_resp)
 
-#     lexicon_classifer_end_time = helper.cpuexecutiontime()
-#     lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
+    lexicon_classifer_end_time = helpernegation.cpuexecutiontime()
+    lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
     
            
-#     print(lexicon_classifier_results)
+    print(lexicon_classifier_results)
     
     print("*************************Dictionary Ends**************************")
 #     file1.write("*******************Dictionary Ends**************************")
  
 
-#  #--------------------------------ML Models -----------------------------------------------#
-#     mlclassifierresp =  helper.mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data,rs)
+ #--------------------------------ML Models -----------------------------------------------#
+    mlclassifierresp =  helpernegation.mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validationdataset_length,training_data_df,validation_data_df,testing_data_df,training_data,rs)
     
-# #     print(mlclassifierresp)
-#     ml_resp_eachiteration = mlclassifierresp
-#     mlresponse_list.append(ml_resp_eachiteration)
-# #     print(mlresponse_list)
+#     print(mlclassifierresp)
+    ml_resp_eachiteration = mlclassifierresp
+    mlresponse_list.append(ml_resp_eachiteration)
+#     print(mlresponse_list)
  
     print("********************One Iteration completed***********************")
     
     
     
 #--------------------------------Average Results of Lexicon -----------------------------------------------#  
-# print("************************** Average Result for Lexicon classifier**************************")
-# average_results_lexicon = helper.calculate_average_results_lexicon(dictionary_list)
-# average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
+print("************************** Average Result for Lexicon classifier**************************")
+average_results_lexicon = helpernegation.calculate_average_results_lexicon(dictionary_list)
+average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
 
-# print("Average Result Lexicon",average_results_lexicon_df)
+print("Average Result Lexicon",average_results_lexicon_df)
 
-# # store all lexicon results as JSON
-# with open('lexicon_results1_before_negationhandled.json', 'w') as json_file:
-#     json.dump(dictionary_list, json_file)
-# # store average lexicon results as JSON
-# with open('lexicon_average_results1_before_negationhandled.json', 'w') as json_file:
-#     json.dump(average_results_lexicon, json_file)
+# store all lexicon results as JSON
+with open('lexicon_results1_After_negationhandled.json', 'w') as json_file:
+    json.dump(dictionary_list, json_file)
+# store average lexicon results as JSON
+with open('lexicon_average_results1_After_negationhandled.json', 'w') as json_file:
+    json.dump(average_results_lexicon, json_file)
  
 #  #--------------------------------Average Results for ML -----------------------------------------------------#    
 # print("************************** Average Result for ML classifier**************************")
 
 # #  Average results and write the response of ML Models in the txt file
-# avg_confusionmatrices,average_accuracy, average_f1score,avg_meanf1score, avg_preprocesscputime,avg_learnercputime,avg_classifiercputime = helper.calculate_average_results_ML(mlresponse_list)
+avg_confusionmatrices,average_accuracy, average_f1score,avg_meanf1score, avg_preprocesscputime,avg_learnercputime,avg_classifiercputime = helpernegation.calculate_average_results_ML(mlresponse_list)
 
-# average_results_ml = {'Avg Confusion Matrix': avg_confusionmatrices,'Avg Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
-
-
-# average_results_ml_df = pd.DataFrame(average_results_ml)
-# print("Average result ML",average_results_ml_df)
+average_results_ml = {'Avg Confusion Matrix': avg_confusionmatrices,'Avg Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
 
 
-# # Initialize an empty dictionary to store the values of confusion matrix for each model
-# model_values_CM = {}
-
-# for model_name, model_array in avg_confusionmatrices.items():
-#     model_values_CM[model_name] = model_array.tolist()
-# # Create a JSON object
-# average_ml_json_data = {'Avg Confusionmatrix': model_values_CM, 'Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
+average_results_ml_df = pd.DataFrame(average_results_ml)
+print("Average result ML",average_results_ml_df)
 
 
-# # store all ML results as JSON
-# with open('ml_results1_after_before_negationhandled.json', 'w') as json_file:
-#      json.dump(mlresponse_list, json_file)
-# # store average ML results as JSON
-# with open('ml_average_results1_after_before_negationhandled.json', 'w') as json_file:
-#      json.dump(average_ml_json_data, json_file)
+# Initialize an empty dictionary to store the values of confusion matrix for each model
+model_values_CM = {}
 
-# store static dictionary for Eclispse as json
-# with open('Worlist_frequentword_eclipse_THR_before_negationhandled.json', 'w') as json_file:
-#      json.dump(payload_train, json_file,indent=2)
+for model_name, model_array in avg_confusionmatrices.items():
+    model_values_CM[model_name] = model_array.tolist()
+# Create a JSON object
+average_ml_json_data = {'Avg Confusionmatrix': model_values_CM, 'Accuracy': average_accuracy,'Avg F1-Score': average_f1score,'Avg Mean F1score':avg_meanf1score,'Avg Preprocess CPUTime': avg_preprocesscputime, 'Avg Learner CPUTime': avg_learnercputime,'Avg Classifer CPUTime': avg_classifiercputime}
+
+
+# store all ML results as JSON
+with open('ml_results1_after_negationhandled.json', 'w') as json_file:
+     json.dump(mlresponse_list, json_file)
+# store average ML results as JSON
+with open('ml_average_results1_after_negationhandled.json', 'w') as json_file:
+     json.dump(average_ml_json_data, json_file)
 
 # wordlist_dict = wordlists.to_dict(orient='records') 
-with open('Worlist_frequentword_eclipse_THR_AFTER_negation_test.json', 'w') as json_file: 
-    json.dump(wordlists, json_file, indent=2)
+with open('static_lexicon_eclipse_After_negation.json', 'w') as json_file: 
+    json.dump(static_dict_resp, json_file, indent=2)
         

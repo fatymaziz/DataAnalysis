@@ -15,10 +15,8 @@ def run_experiment(script_name):
 
 if __name__ == "__main__":
     scripts = [
-        'Experiment1.py',
-        'Experiment1afternegation.py',
-        'Experiment_Firefox_Before.py',
-        'Experiment_Firefox_Afternegation.py'
+        'Experiment1beforenegation.py',
+        'Experiment1afternegation.py'
     ]
 
     for script in scripts:

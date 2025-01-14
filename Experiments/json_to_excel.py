@@ -2,23 +2,58 @@ import pandas as pd
 import json
 
 # Specify the path to your JSON file
-json_file_path = "Worlist_frequentword_Firefox_THR_BEFORE_negation.json"
+json_file_path = "Worlist_frequentword_Firefox_THR_AFTER_negationhandled_complete.json"
 
 # Read the JSON data from the file
 with open(json_file_path) as json_file:
     data = json.load(json_file)
 
-# Convert JSON data to DataFrames
-severe_df = pd.DataFrame(data["Severe"])
-nonsevere_df = pd.DataFrame(data["NonSevere"])
+# Function to restructure the data for DataFrame creation
+def restructure_data(data):
+    restructured_data = []
+    for word, count in data.items():
+        restructured_data.append({"Word": word, "Count": count})
+    return restructured_data
+
+# Restructure the JSON data
+severe_data = restructure_data(data["Severe"])
+nonsevere_data = restructure_data(data["NonSevere"])
+
+# Convert restructured data to DataFrames
+severe_df = pd.DataFrame(severe_data)
+nonsevere_df = pd.DataFrame(nonsevere_data)
 
 # Create a Pandas Excel writer using xlsxwriter as the engine
-with pd.ExcelWriter("Worlist_frequentword_Firefox_THR_BEFORE_negation.xlsx", engine="xlsxwriter") as writer:
+with pd.ExcelWriter("Worlist_frequentword_Firefox_THR_AFTER_negationhandled_complete.xlsx", engine="xlsxwriter") as writer:
     # Write DataFrames to separate sheets
     severe_df.to_excel(writer, sheet_name="Severe", index=False)
     nonsevere_df.to_excel(writer, sheet_name="NonSevere", index=False)
 
-print("Excel file 'WWorlist_frequentword_Firefox_THR_BEFORE_negation.xlsx' created successfully!")
+print("Excel file created successfully!")
+
+
+
+# import pandas as pd
+# import json
+
+# # Specify the path to your JSON file
+# json_file_path = "Worlist_frequentword_eclipse_THR_BEFORE_negation_11012025.json"
+
+# # Read the JSON data from the file
+# with open(json_file_path) as json_file:
+#     data = json.load(json_file)
+
+# # Convert JSON data to DataFrames
+# severe_df = pd.DataFrame(data["Severe"])
+# nonsevere_df = pd.DataFrame(data["NonSevere"])
+
+# # Create a Pandas Excel writer using xlsxwriter as the engine
+# with pd.ExcelWriter("orlist_frequentword_eclipse_THR_BEFORE_negation_complete.xlsx", engine="xlsxwriter") as writer:
+#     # Write DataFrames to separate sheets
+#     severe_df.to_excel(writer, sheet_name="Severe", index=False)
+#     nonsevere_df.to_excel(writer, sheet_name="NonSevere", index=False)
+
+# print("Excel file created successfully!")
 
 
 

@@ -51,49 +51,11 @@ bugs_df.loc[bugs_df["Severity"] == "minor", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
-# bugs_df = bugs_df.head(1000)
+# bugs_df = bugs_df.tail(2000)
+# print(bugs_df)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()
 # print(severerity)
-
-
-# #--------------------------- Eclipse dataset for training and validation dataset-----------------------------
-# bugs_eclipse = pd.read_csv("bugs_eclipse.csv")
-
-
-# bugs_eclipse['Type'] = np.where(bugs_eclipse['Severity'] == 'enhancement', "enhancement", "defect")
-
-
-# # Dropped rows with severity level '--'
-# bugs_eclipse = bugs_eclipse[bugs_eclipse["Severity"].str.contains("--")==False].reset_index()
-
-# #Dropped rows with Type "Enhancement" and "Task" because they are not a bug but a new feature
-# indexSevere = bugs_eclipse[(bugs_eclipse['Type'] == 'enhancement') & (bugs_eclipse['Type'] == 'enhancement') ].index
-# bugs_eclipse.drop(indexSevere , inplace=True)
-
-# indexSevere = bugs_eclipse[(bugs_eclipse['Type'] == 'task') & (bugs_eclipse['Type'] == 'task') ].index
-# bugs_eclipse.drop(indexSevere , inplace=True)
-
-
-# #Catagorise the severity level into a Severe and Non Severe to make it a binary problem
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "blocker", "Severity"] = 'Severe'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "critical", "Severity"] = 'Severe'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "major", "Severity"] = 'Severe'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "S1", "Severity"] = 'Severe'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "S2", "Severity"] = 'Severe'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "S3", "Severity"] = 'NonSevere'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "normal", "Severity"] = 'NonSevere'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "minor", "Severity"] = 'NonSevere'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "trivial", "Severity"] = 'NonSevere'
-# bugs_eclipse.loc[bugs_eclipse["Severity"] == "S4", "Severity"] = 'NonSevere'
-
-# # bugs_eclipse = bugs_eclipse.head(600)
-# # print("total bugs", len(bugs_eclipse))
-# # severerity = bugs_eclipse['Severity'].value_counts()
-# # print(severerity)
-
-# # ---------------------- Eclipse dataset for testing ends-----------------------
-
 
 dictionary_list = []
 mlresponse_list = []
@@ -112,11 +74,7 @@ for i in range(0,10):
     
     training_data, testing_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
     training_data, validation_data = train_test_split(training_data, test_size=TEST_SIZE, random_state=rs)
-
-#     training_data, validation_data = train_test_split(bugs_df, test_size=TEST_SIZE, random_state=rs)
-#     testing_data = bugs_eclipse.copy(deep=True)
-    
-    
+ 
     print(f"No. of training data: {training_data.shape[0]}")
     print(f"No. of validation data: {validation_data.shape[0]}")
     print(f"No. of testing data: {testing_data.shape[0]}")
@@ -135,67 +93,67 @@ for i in range(0,10):
 #     file1.write("------Interation------")
     
     
-# #----------------------Lexicon Preprocess ------------------------------#
-#     lexicon_preprocess_start_time = helper.cpuexecutiontime()
+#----------------------Lexicon Preprocess ------------------------------#
+    lexicon_preprocess_start_time = helper.cpuexecutiontime()
     
-#     payload_train = helper.lexicon_preprocess(trainingdataset_length,training_data_df)
+    # payload_train = helper.lexicon_preprocess(trainingdataset_length,training_data_df)
+
+    severe_word_counts, nonsevere_word_counts = helper.get_distribution(training_data)
     
-#     lexicon_preprocess_end_time = helper.cpuexecutiontime()
-#     lexicon_preprocess_execution_time =  lexicon_preprocess_end_time -  lexicon_preprocess_start_time
+    # Calculate ratios
+    payload_train = helper.lexicon_preprocess(severe_word_counts, nonsevere_word_counts)
+    # print(payload_train)
     
-# #-----------------------Lexicon Learner --------------------------------#
-#     lexicon_learner_start_time = helper.cpuexecutiontime()
+    lexicon_preprocess_end_time = helper.cpuexecutiontime()
+    lexicon_preprocess_execution_time =  lexicon_preprocess_end_time -  lexicon_preprocess_start_time
     
-#     severethreshold, nonseverethreshold = helper.lexicon_learner(payload_train, validation_data)
-#     winning_threshold = {'severe threshold':severethreshold, 'non severe threshold':nonseverethreshold}
+#-----------------------Lexicon Learner --------------------------------#
+    lexicon_learner_start_time = helper.cpuexecutiontime()
     
-#     lexicon_learner_end_time = helper.cpuexecutiontime()
-#     lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time
+    severethreshold, nonseverethreshold = helper.lexicon_learner(payload_train, validation_data)
+    winning_threshold = {'severe threshold':severethreshold, 'non severe threshold':nonseverethreshold}
     
-# #-----------------------Lexicon Classifier ---------------------------------------#
-#     lexicon_classifer_start_time = helper.cpuexecutiontime()
+    lexicon_learner_end_time = helper.cpuexecutiontime()
+    lexicon_learner_execution_time =  lexicon_learner_end_time -  lexicon_learner_start_time
     
-#     #create lexicon on the the combined dataset of training and validation dataset on the best threshold -Pending
-#     severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helper.dictionary_onthresholds(severethreshold, nonseverethreshold, payload_train)
+#-----------------------Lexicon Classifier ---------------------------------------#
+    lexicon_classifer_start_time = helper.cpuexecutiontime()
     
-#     dict_resp = helper.evaluate_lexicon_classifer(testing_data, severedictionary_list, nonseveredictionary_list)
+    #create lexicon on the the combined dataset of training and validation dataset on the best threshold -Pending
+    combined_train_validation_dataset = pd.concat([training_data_df, validation_data_df], ignore_index=True)
+    # print(len(combined_train_validation_dataset))
+          
+    severe_word_counts, nonsevere_word_counts = helper.get_distribution(combined_train_validation_dataset)
+
+    payload_train = helper.lexicon_preprocess(severe_word_counts, nonsevere_word_counts)
+    # print(payload_train)
+   
+    severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helper.dictionary_onthresholds(severethreshold, nonseverethreshold, payload_train)
+    
+    dict_resp = helper.evaluate_lexicon_classifer(testing_data, severedictionary_list, nonseveredictionary_list)
+
+    static_dict_resp = {'Severe Lexicons': severedictionary_list, 'NonSevere Lexicon': nonseveredictionary_list }
     
     
-# #     dict_resp = helper.lexicon_classifier(severethreshold,nonseverethreshold,testing_data,payload_train)
+#     dict_resp = helper.lexicon_classifier(severethreshold,nonseverethreshold,testing_data,payload_train)
     
-#     lexicon_classifer_end_time = helper.cpuexecutiontime()
-#     lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
+    lexicon_classifer_end_time = helper.cpuexecutiontime()
+    lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
     
-#     additional_dict = {'cputime_preprocess': lexicon_preprocess_execution_time,'cputime_learner': lexicon_learner_execution_time,'cputime_classifer': lexicon_classifer_execution_time}
+    additional_dict = {'cputime_preprocess': lexicon_preprocess_execution_time,'cputime_learner': lexicon_learner_execution_time,'cputime_classifer': lexicon_classifer_execution_time}
     
-#     lexicon_classifier_results = {**dict_resp, **additional_dict, **winning_threshold,**randomseed}
+    lexicon_classifier_results = {**dict_resp, **additional_dict, **winning_threshold,**randomseed}
         
-# #     print(lexicon_classifier_results)
+#     print(lexicon_classifier_results)
 
-# #-----------------------List of dictionaries -----------------------------------#
-#     dictionary_resp_eachiteration = lexicon_classifier_results
-#     dictionary_list.append(dictionary_resp_eachiteration)
-# #     print(dictionary_list)
+#-----------------------List of dictionaries -----------------------------------#
+    dictionary_resp_eachiteration = lexicon_classifier_results
+    dictionary_list.append(dictionary_resp_eachiteration)
+#     print(dictionary_list)
 
-# #----------------------------Static Dictionary----------------------------------------#
 
-#     lexicon_classifer_start_time = helper.cpuexecutiontime()
-    
-#     severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helper.dictionary_onthresholds(severethreshold,nonseverethreshold,payload_train)
-    
-#     # Add both severe and non severe lists in a dictionary
-#     static_dict_resp = {'Severe Lexicons': severedictionary_list, 'NonSevere Lexicon': nonseveredictionary_list }
- 
-
-#     lexicon_classifer_end_time = helper.cpuexecutiontime()
-#     lexicon_classifer_execution_time =  lexicon_classifer_end_time -  lexicon_classifer_start_time
-    
-           
-# #     print(lexicon_classifier_results)
-      
-    
-#     print("*************************Dictionary Ends**************************")
-# #     file1.write("*******************Dictionary Ends**************************")
+    print("*************************Dictionary Ends**************************")
+#     file1.write("*******************Dictionary Ends**************************")
  
 
  #--------------------------------ML Models -----------------------------------------------#
@@ -210,19 +168,19 @@ for i in range(0,10):
     
     
     
-# #--------------------------------Average Results of Lexicon -----------------------------------------------#  
-# print("************************** Average Result for Lexicon classifier**************************")
-# average_results_lexicon = helper.calculate_average_results_lexicon(dictionary_list)
-# average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
+#--------------------------------Average Results of Lexicon -----------------------------------------------#  
+print("************************** Average Result for Lexicon classifier**************************")
+average_results_lexicon = helper.calculate_average_results_lexicon(dictionary_list)
+average_results_lexicon_df = pd.DataFrame(average_results_lexicon,index=[0])
 
-# print("Average Result Lexicon",average_results_lexicon_df)
+print("Average Result Lexicon",average_results_lexicon_df)
 
-# # store all lexicon results as JSON
-# with open('lexicon_results2.json', 'w') as json_file:
-#     json.dump(dictionary_list, json_file)
-# # store average lexicon results as JSON
-# with open('lexicon_average_results2.json', 'w') as json_file:
-#     json.dump(average_results_lexicon, json_file)
+# store all lexicon results as JSON
+with open('lexicon_results2.json', 'w') as json_file:
+    json.dump(dictionary_list, json_file)
+# store average lexicon results as JSON
+with open('lexicon_average_results2.json', 'w') as json_file:
+    json.dump(average_results_lexicon, json_file)
  
  #--------------------------------Average Results for ML -----------------------------------------------------#    
 print("************************** Average Result for ML classifier**************************")
@@ -253,9 +211,9 @@ with open('ml_results2.json', 'w') as json_file:
 with open('ml_average_results2.json', 'w') as json_file:
      json.dump(average_ml_json_data, json_file)
         
-# # store static dictionary for Firefox as json
-# with open('static_dictionary_Firefox_THR.json', 'w') as json_file:
-#      json.dump(static_dict_resp, json_file,indent=2)
+# store static dictionary for Firefox as json
+with open('static_dictionary_Firefox_THR.json', 'w') as json_file:
+     json.dump(static_dict_resp, json_file,indent=2)
         
 
 # # write response of dictionary and Ml CLassifiers in the txt file

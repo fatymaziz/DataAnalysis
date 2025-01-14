@@ -100,12 +100,29 @@ for i in range(0,1):
  #----------------------Lexicon Preprocess ------------------------------#
     lexicon_preprocess_start_time = helpernegation.cpuexecutiontime()
     
-    severe_list, nonsevere_list = helpernegation.lexicon_preprocess(trainingdataset_length,training_data_df)
+    # severe_list, nonsevere_list = helper.lexicon_preprocess(trainingdataset_length,training_data_df)
+    # wordlist = helper.get_distribution(training_data_df)
+    
+    df = bugs_df[['Summary', 'Severity']]
+    # print(df)
+    
+    # Get word counts
+    severe_word_counts, nonsevere_word_counts = helpernegation.get_distribution(df)
+    
+    # Calculate ratios
+    payload_train = helpernegation.lexicon_preprocess(severe_word_counts, nonsevere_word_counts)
+    # print("Wordlist with Ratios:")
+    # pd.set_option('display.max_columns', None)
+    # print(payload_train_df)
+    
     
     lexicon_preprocess_end_time = helpernegation.cpuexecutiontime()
     lexicon_preprocess_execution_time =  lexicon_preprocess_end_time -  lexicon_preprocess_start_time
 
-    wordlists = {'Severe': severe_list, 'NonSevere': nonsevere_list}
+
+    # print(payload_train_df)
+
+    wordlists = {'Severe': severe_word_counts, 'NonSevere': nonsevere_word_counts}
     # print(wordlists)
     
 # #-----------------------Lexicon Learner --------------------------------#
@@ -223,6 +240,6 @@ for i in range(0,1):
 #      json.dump(payload_train, json_file,indent=2)
 
 # wordlist_dict = wordlists.to_dict(orient='records') 
-with open('Worlist_frequentword_Firefox_THR_AFTER_negationhandled.json', 'w') as json_file: 
+with open('Worlist_frequentword_Firefox_THR_AFTER_negationhandled_complete.json', 'w') as json_file: 
     json.dump(wordlists, json_file, indent=2)
         
