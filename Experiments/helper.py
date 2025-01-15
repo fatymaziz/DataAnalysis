@@ -801,7 +801,7 @@ def lexicon_learner(payload_train, validation_data):
 
     severethreshold_ = maxf1Score['severe_threshold'].values[0]
     nonseverethreshold_ = maxf1Score['nonsevere_threshold'].values[0]
-    print("Best Threshold", severethreshold_, nonseverethreshold_)
+    # print("Best Threshold", severethreshold_, nonseverethreshold_)
     
     return severethreshold_, nonseverethreshold_
 
@@ -888,7 +888,7 @@ def mlclassifier_outerloop(trainingdataset_length,testingdataset_length,validati
 
     #Tokenised the training data and validdation dataset
     combined_train_validation_data.loc[:, 'Summary'] = combined_train_validation_data['Summary'].apply(lambda x: nlpsteps(x))
-    print(combined_train_validation_data['Summary'])
+    # print(combined_train_validation_data['Summary'])
     #Tokenised the testing data
     testing_data_df.loc[:, 'Summary'] = testing_data_df['Summary'].apply(lambda x: nlpsteps(x))
   

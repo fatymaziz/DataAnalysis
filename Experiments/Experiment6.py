@@ -135,10 +135,16 @@ for i in range(0,10):
 #     file1.write("------Interation------")
     
     
-#----------------------Lexicon Preprocess ------------------------------#
+ #----------------------Lexicon Preprocess ------------------------------#
     lexicon_preprocess_start_time = helper.cpuexecutiontime()
     
-    payload_train = helper.lexicon_preprocess(trainingdataset_length,training_data_df)
+    # payload_train = helper.lexicon_preprocess(trainingdataset_length,training_data_df)
+
+    severe_word_counts, nonsevere_word_counts = helper.get_distribution(training_data)
+    
+    # Calculate ratios
+    payload_train = helper.lexicon_preprocess(severe_word_counts, nonsevere_word_counts)
+    # print(payload_train)
     
     lexicon_preprocess_end_time = helper.cpuexecutiontime()
     lexicon_preprocess_execution_time =  lexicon_preprocess_end_time -  lexicon_preprocess_start_time
@@ -156,11 +162,19 @@ for i in range(0,10):
     lexicon_classifer_start_time = helper.cpuexecutiontime()
     
     #create lexicon on the the combined dataset of training and validation dataset on the best threshold -Pending
+    combined_train_validation_dataset = pd.concat([training_data_df, validation_data_df], ignore_index=True)
+    # print(len(combined_train_validation_dataset))
+          
+    severe_word_counts, nonsevere_word_counts = helper.get_distribution(combined_train_validation_dataset)
+
+    payload_train = helper.lexicon_preprocess(severe_word_counts, nonsevere_word_counts)
+    # print(payload_train)
+   
     severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helper.dictionary_onthresholds(severethreshold, nonseverethreshold, payload_train)
     
     dict_resp = helper.evaluate_lexicon_classifer(testing_data, severedictionary_list, nonseveredictionary_list)
-    
-    
+
+   
 #     dict_resp = helper.lexicon_classifier(severethreshold,nonseverethreshold,testing_data,payload_train)
     
     lexicon_classifer_end_time = helper.cpuexecutiontime()
@@ -177,12 +191,11 @@ for i in range(0,10):
     dictionary_list.append(dictionary_resp_eachiteration)
 #     print(dictionary_list)
 
+
 #----------------------------Static Dictionary----------------------------------------#
 
     lexicon_classifer_start_time = helper.cpuexecutiontime()
-    
-    severedictionary_list,nonseveredictionary_list,severe_threshold, nonsevere_threshold = helper.dictionary_onthresholds(severethreshold,nonseverethreshold,payload_train)
-    
+     
     # Add both severe and non severe lists in a dictionary
     static_dict_resp = {'Severe Lexicons': severedictionary_list, 'NonSevere Lexicon': nonseveredictionary_list }
  
@@ -254,7 +267,7 @@ with open('ml_average_results6.json', 'w') as json_file:
      json.dump(average_ml_json_data, json_file)
         
 # store static dictionary for Firefox as json
-with open('static_dictionary_THR_Firefox.json', 'w') as json_file:
+with open('static_dictionary_Firefox_THR_testedonEclipse.json', 'w') as json_file:
      json.dump(static_dict_resp, json_file,indent=2)
         
 
