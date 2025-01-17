@@ -52,7 +52,7 @@ bugs_df.loc[bugs_df["Severity"] == "trivial", "Severity"] = 'NonSevere'
 bugs_df.loc[bugs_df["Severity"] == "S4", "Severity"] = 'NonSevere'
 
 
-# bugs_df = bugs_df.head(2000)
+bugs_df = bugs_df.head(2000)
 # print(bugs_df)
 # print("total bugs", len(bugs_df))
 # severerity = bugs_df['Severity'].value_counts()

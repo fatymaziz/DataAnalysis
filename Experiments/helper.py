@@ -21,6 +21,7 @@ import matplotlib.pyplot as plt
 import json
 from sklearn.svm import LinearSVC
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from scipy.sparse import vstack
 
 
 # Download necessary resources
@@ -134,61 +135,116 @@ def get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation):
     return best_c_hyperparamter
       
 
-def linear_svm_features(summary_training,training_data,summary_validation,validation_data,training_data_df,validation_data_df):
+# def linear_svm_features(summary_training,training_data,summary_validation,validation_data,training_data_df,validation_data_df):
+#     """
+#     Create a wordlist and their cofficient from linear SVM.
+#     Arg: 
+#         x: Summary column of the training dataset
+#         bug_df: training dataset
+#     Returns:
+#         severe_lexicons_linearsvm, non_severe_lexicons_linearsvm dictionaries
+#     """
+#     severe_lexicons_linearsvm = {}  
+#     non_severe_lexicons_linearsvm = {} 
+   
+
+#     # Initialize CountVectorizer and Transform the processed summary column
+#     cv = CountVectorizer()
+#     cv.fit(summary_training)
+
+#     X_train = cv.transform(summary_training)
+#     X_validation = cv.transform(summary_validation)
+
+#     Y_train = training_data_df['Severity'].apply(lambda x: 1 if x == 'Severe' else 0).values
+#     y_validation = validation_data_df['Severity'].apply(lambda x: 1 if x == 'Severe' else 0).values
+
+#     # Y_train = training_data_df.iloc[:, -2].values  # target column
+#     # y_validation = validation_data_df.iloc[:, -2].values  # target column
+    
+
+# # call function to find the best c parameter
+#     C_hyperparameter = get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation)
+# #     print("C_hyperparameter",C_hyperparameter)
+   
+#   #initialize and fit model
+#     svm = LinearSVC(C = C_hyperparameter)
+#     svm.fit(X_train, Y_train)
+
+#     # Get the coefficients from the trained SVM model
+#     coef = svm.coef_.ravel()
+#     # print("coef",coef)
+#     # feature names from CountVectorizer
+#     feature_names = cv.get_feature_names_out()
+
+#     # dictionary mapping feature names to coefficients
+#     word_coefficients = {feature_names[i]: coef[i] for i in range(len(feature_names))}
+    
+#     word_coefficients
+
+#     # word list and their coefficients
+#     for word, coefficient in word_coefficients.items():
+
+#         if coefficient > 0:   
+#             severe_lexicons_linearsvm[word] = {"ratio": coefficient}
+          
+#         elif coefficient < 0:  
+#             non_severe_lexicons_linearsvm[word] = {"ratio": coefficient}
+            
+# #     print("severe_lexicons_linearsvm_before", severe_lexicons_linearsvm)
+# #     print("non_severe_lexicons_linearsvms_before", non_severe_lexicons_linearsvm)
+                       
+#     return severe_lexicons_linearsvm, non_severe_lexicons_linearsvm, C_hyperparameter
+
+def linear_svm_features(summary_training, summary_validation, training_data_df, validation_data_df):
     """
-    Create a wordlist and their cofficient from linear SVM.
-    Arg: 
-        x: Summary column of the training dataset
-        bug_df: training dataset
+    Create a wordlist and their coefficient from linear SVM.
+    Args: 
+        summary_training (list): Summary column of the training dataset.
+        summary_validation (list): Summary column of the validation dataset.
+        training_data_df (DataFrame): Training dataset DataFrame.
+        validation_data_df (DataFrame): Validation dataset DataFrame.
     Returns:
-        severe_lexicons_linearsvm, non_severe_lexicons_linearsvm dictionaries
+        severe_lexicons_linearsvm, non_severe_lexicons_linearsvm dictionaries, and best C hyperparameter.
     """
     severe_lexicons_linearsvm = {}  
     non_severe_lexicons_linearsvm = {} 
-   
 
-    # Initialize CountVectorizer and Transform the processed summary column
+    # Initialize CountVectorizer and transform the processed summary column
     cv = CountVectorizer()
     cv.fit(summary_training)
 
     X_train = cv.transform(summary_training)
     X_validation = cv.transform(summary_validation)
 
-    Y_train = training_data_df.iloc[:, -2].values  # target column
-    y_validation = validation_data_df.iloc[:, -2].values  # target column
-    
+    Y_train = training_data_df['Severity'].apply(lambda x: 1 if x == 'Severe' else 0).values
+    y_validation = validation_data_df['Severity'].apply(lambda x: 1 if x == 'Severe' else 0).values
 
-# call function to find the best c parameter
-    C_hyperparameter = get_SVM_best_C_hyperparamter(X_train,Y_train,X_validation,y_validation)
-#     print("C_hyperparameter",C_hyperparameter)
-   
-  #initialize and fit model
+    # Call function to find the best C parameter
+    C_hyperparameter = get_SVM_best_C_hyperparamter(X_train, Y_train, X_validation, y_validation)
+
+    # Combine the training and validation datasets
+    X_combined = vstack([X_train, X_validation])
+    Y_combined = np.concatenate([Y_train, y_validation])
+
+    # Initialize and fit the model
     svm = LinearSVC(C = C_hyperparameter)
-    svm.fit(X_train, Y_train)
+    svm.fit(X_combined, Y_combined)
 
     # Get the coefficients from the trained SVM model
     coef = svm.coef_.ravel()
-    print("coef",coef)
-    # feature names from CountVectorizer
+    # Feature names from CountVectorizer
     feature_names = cv.get_feature_names_out()
 
-    # dictionary mapping feature names to coefficients
+    # Dictionary mapping feature names to coefficients
     word_coefficients = {feature_names[i]: coef[i] for i in range(len(feature_names))}
-    
-    word_coefficients
 
-    # word list and their coefficients
+    # Word list and their coefficients
     for word, coefficient in word_coefficients.items():
-
         if coefficient > 0:   
             severe_lexicons_linearsvm[word] = {"ratio": coefficient}
-          
         elif coefficient < 0:  
             non_severe_lexicons_linearsvm[word] = {"ratio": coefficient}
-            
-#     print("severe_lexicons_linearsvm_before", severe_lexicons_linearsvm)
-#     print("non_severe_lexicons_linearsvms_before", non_severe_lexicons_linearsvm)
-                       
+
     return severe_lexicons_linearsvm, non_severe_lexicons_linearsvm, C_hyperparameter
 
 def zero_equal():
@@ -640,7 +696,7 @@ def classifier(Summary,severedictionary_list,nonseveredictionary_list):
     # print("NonSevere Words----------------------", nonsevere_words)
     
     
-    if mytest_severe >= mytest_nonsevere:
+    if mytest_severe > mytest_nonsevere:
         tag = "Severe"
         # print(f"Bug severity: {Summary} {tag}")
     elif mytest_severe < mytest_nonsevere:

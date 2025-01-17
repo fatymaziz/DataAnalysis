@@ -146,7 +146,7 @@ for i in range(0,10):
     validation_data['Lowered_Summary_v'] = validation_data['Processed_Summary_v'].apply(lambda y: y.lower())
 
 
-    severe_lexicons_linearsvm, non_severe_lexicons_linearsvm,C_hyperparameter = helper.linear_svm_features(training_data['Lowered_Summary'],training_data,validation_data['Lowered_Summary_v'],validation_data,training_data_df,validation_data_df)
+    severe_lexicons_linearsvm, non_severe_lexicons_linearsvm,C_hyperparameter = helper.linear_svm_features(training_data['Lowered_Summary'],validation_data['Lowered_Summary_v'],training_data_df,validation_data_df)
 
     
     # Add both severe and non severe dictionaries in a dictionary
