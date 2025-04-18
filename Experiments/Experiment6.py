@@ -161,11 +161,11 @@ for i in range(0,10):
 #-----------------------Lexicon Classifier ---------------------------------------#
     lexicon_classifer_start_time = helper.cpuexecutiontime()
     
-    #create lexicon on the the combined dataset of training and validation dataset on the best threshold -Pending
-    combined_train_validation_dataset = pd.concat([training_data_df, validation_data_df], ignore_index=True)
-    # print(len(combined_train_validation_dataset))
+    # #create lexicon on the the combined dataset of training and validation dataset on the best threshold -Pending
+    # combined_train_validation_dataset = pd.concat([training_data_df, validation_data_df], ignore_index=True)
+    # # print(len(combined_train_validation_dataset))
           
-    severe_word_counts, nonsevere_word_counts = helper.get_distribution(combined_train_validation_dataset)
+    severe_word_counts, nonsevere_word_counts = helper.get_distribution(training_data_df)
 
     payload_train = helper.lexicon_preprocess(severe_word_counts, nonsevere_word_counts)
     # print(payload_train)
